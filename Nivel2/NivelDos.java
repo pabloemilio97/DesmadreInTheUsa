@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Nivel2;
 
 /**
  *
  * @author adanlopezalatorre
  */
-public class Master {
-    //hola q pez
+public class NivelDos extends Control.Nivel{
+    
 }

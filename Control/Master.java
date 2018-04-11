@@ -1,3 +1,5 @@
+package Control;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,8 +10,6 @@
  *
  * @author adanlopezalatorre
  */
-public class Nivel {
-    //probando
-    //probando de regreso
-    // adan te la comes
+public class Master {
+    //hola q pez
 }
