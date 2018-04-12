@@ -5,10 +5,32 @@
  */
 package Nivel4;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author adanlopezalatorre
  */
 public class NivelCuatro extends Control.Nivel{
+
+    @Override
+    int[] init() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void tick() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void render(Graphics g) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void botonDeAccion(int num_player) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

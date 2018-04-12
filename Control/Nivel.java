@@ -15,9 +15,24 @@ import java.awt.Graphics;
 public abstract class Nivel {
     private int lifestock;
     
+    /**
+     * init de cada nivel, regresa scores
+     * @return int[] un arreglo con los scores de los jugadores al final del juego
+     */
     abstract int[] init();
+    /**
+     * tick de cada nivel
+     */
     abstract  void tick();
+    /**
+     * render de cada nivel
+     * @param g 
+     */
     abstract void render(Graphics g);
+    /**
+     * sirve para ecejutar accion de cada nivel, dependiendo del jugador que presiona
+     * @param num_player 
+     */
     abstract void botonDeAccion(int num_player);
 }
 
