@@ -1,21 +1,18 @@
-package Control;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Nivel3;
 
 /**
  *
- * @author adanlopezalatorre
+ * @author pablo
  */
-public class Master {
+class Obstaculo_Nivel3 {
+    int velocidad ;
     
-    Nivel []niveles;
-    
-    public void startGame(){
-        
+    public boolean colisiona(){
+        return false;
     }
-    
 }

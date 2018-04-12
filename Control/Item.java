@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Control;
 
 import java.awt.Graphics;
@@ -11,29 +12,28 @@ import java.awt.image.BufferedImage;
 
 /**
  *
- * @author adanlopezalatorre
+ * @author antoniomejorado
  */
 public abstract class Item {
-    
-    protected BufferedImage defaultImage;//In case render is not overrided in subclass
+    protected int width;
+    protected int height;
+    protected int x;        // to store x position
+    protected int y;        // to store y position
+    protected BufferedImage defaultImage;
     protected Nivel nivel;
-    protected int x, y, width, height;
     
-    Item(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game){
+    /**
+     * Set the initial values to create the item
+     * @param x <b>x</b> position of the object
+     * @param y <b>y</b> position of the object
+     */
+    public Item(int x, int y, int width, int height, Nivel game) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.defaultImage = defaultImage;
         this.nivel = game;
-    }
-    
-    public Rectangle getRectangle(){
-        return new Rectangle(x, y, width, height);
-    }
-    
-    boolean intersects(Item it){
-        return getRectangle().intersects(it.getRectangle());
     }
     
     /**
@@ -51,54 +51,74 @@ public abstract class Item {
     public void setDefaultImage(BufferedImage bi){
         defaultImage = bi;
     }
-    
+        
     /**
-     * Unlike the inherited getX, it returns x 
-     * @return x rounded
+     * To paint the item
+     * @param g <b>Graphics</b> object to paint the item
      */
-    public int getX(){
-        return x;
-    }
-    /**
-     * Unlike the inherited getY, it returns y 
-     * @return y rounded
-     */
-    public int getY(){
-        return y;
-    }
-    /**
-     * Unlike the inherited getWidth(), it returns width
-     * @return width rounded
-     */
-    public int getWidth(){
-        return width;
-    }
-    /**
-     * Unlike the inherited getHeight, it returns height 
-     * @return height rounded
-     */
-    public int getHeight(){
-        return height;
-    }
-    /**
-     * x modifier
-     * @param x new value
-     */
-    public void setX(int x){
-        this.x = x;
-    }
-    /**
-     * y modifier
-     * @param y new value
-     */
-    public void setY(int y){
-        this.y = y;
-    }
-    
-    public abstract void tick();
-    
     public void render(Graphics g){
         g.drawImage(defaultImage, getX(), getY(), width, height, null);
     }
     
+
+    /**
+     * Get x value
+     * @return x 
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * Get y value
+     * @return y 
+     */
+    public int getY() {
+        return y;
+    }
+    
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+    /**
+     * Set x value
+     * @param x to modify
+     */
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    /**
+     * Set y value
+     * @param y to modify
+     */
+    public void setY(int y) {
+        this.y = y;
+    }
+    
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+    
+    public boolean intersects(Object obj){
+        return obj instanceof Item && 
+        this.getBounds().intersects(((Item)obj).getBounds());
+    }
+    
+    private Rectangle getBounds(){
+        return new Rectangle(getX(), getY(), getWidth(), getHeight());
+    }
+    
+    /**
+     * To update positions of the item for every tick
+     */
+    public abstract void tick();
 }
