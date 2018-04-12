@@ -27,7 +27,7 @@ public abstract class Item {
      * @param x <b>x</b> position of the object
      * @param y <b>y</b> position of the object
      */
-    public Item(int x, int y, int width, int height, Nivel game) {
+    public Item(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -115,6 +115,10 @@ public abstract class Item {
     
     private Rectangle getBounds(){
         return new Rectangle(getX(), getY(), getWidth(), getHeight());
+    }
+
+    public Nivel getNivel() {
+        return nivel;
     }
     
     /**

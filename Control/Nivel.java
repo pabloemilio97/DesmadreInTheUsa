@@ -11,6 +11,24 @@ import java.awt.Graphics;
 
 public abstract class Nivel {
     private int lifestock;
+    private int width;
+    private int height;
+
+    /**
+     * getter para width
+     * @return int width
+     */
+    public int getWidth() {
+        return width;
+    }
+    
+    /**
+     * 
+     * @return int height
+     */
+    public int getHeight() {
+        return height;
+    }
     
     /**
      * init de cada nivel, regresa scores

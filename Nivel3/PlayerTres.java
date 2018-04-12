@@ -17,5 +17,16 @@ public class PlayerTres extends Control.Player{
     public PlayerTres(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game) {
         super(x, y, width, height, defaultImage, game);
     }
-    
+    public boolean llegaALimiteSup(){
+        if(this.y < 200){
+            return true;
+        }
+        return false;
+    }
+    public boolean llegaALimiteInf(){
+        if(this.y > this.getNivel().getHeight() - 200){
+            return true;
+        }
+        return false;
+    }
 }

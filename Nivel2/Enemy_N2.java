@@ -5,7 +5,9 @@
  */
 package Nivel2;
 
+import Control.Nivel;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -24,8 +26,9 @@ public class Enemy_N2 extends Control.Item{
      * @param width
      * @param height 
      */
-    public Enemy_N2(int velocidad, int direccion, int x, int y, int width, int height) {
-        super(x, y, width, height);
+    public Enemy_N2(int velocidad, int direccion, int x, int y, int width, 
+            int height, BufferedImage defaultImage, Nivel nivel) {
+        super(x, y, width, height, defaultImage, nivel);
         this.velocidad = velocidad;
         this.direccion = direccion;
     }
