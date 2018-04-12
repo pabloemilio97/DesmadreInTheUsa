@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package Nivel3;
 
 /**
  *
  * @author pablo
  */
-public abstract class Player {
-    protected int score;
-    protected int numero_de_player;
+class Obstaculo_Nivel3 {
+    int velocidad ;
+    
+    public boolean colisiona(){
+        return false;
+    }
 }
