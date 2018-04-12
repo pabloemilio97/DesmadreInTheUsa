@@ -9,7 +9,7 @@ package Nivel3;
  *
  * @author pablo
  */
-class Obstaculo_Nivel3 {
+class Obstaculo_N3 {
     int velocidad ;
     
     public boolean colisiona(){

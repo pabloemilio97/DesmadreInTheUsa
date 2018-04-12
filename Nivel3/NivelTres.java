@@ -10,8 +10,8 @@ import java.util.ArrayList;
  *
  * @author adanlopezalatorre
  */
-public class Nivel3 extends Control.Nivel{
-    private Player_Nivel3[] player;
+public class NivelTres extends Control.Nivel{
+    private Player_N3[] player;
     private ArrayList obstaculos; 
     
     @Override

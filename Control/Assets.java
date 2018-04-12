@@ -17,13 +17,23 @@ import javax.sound.sampled.Clip;
  */
 public class Assets {
     
+    public static BufferedImage catsup;
     public static BufferedImage background;
+    public static BufferedImage pattern1;
+    public static BufferedImage frida[];
 
     /**
      * initializing	the	images	of	the	game
      */
     public static void init() {
-        background = loadImage("/Images/Background.png");
+        catsup = loadImage("/Images/Catsup.png");
+        background = loadImage("/Images/FloorBG.png");
+        pattern1 = loadImage("/Images/pattern1.jpg");
+        frida = new BufferedImage[4];
+        BufferedImage temp = ImageLoader.loadImage("/Images/frida.png");
+        for(int i = 0; i < 4; i++){
+            frida[i] = temp.getSubimage(i * 256, 0, 200, 250);
+        }
     }
     
     public static Clip loadSound(String fileName){

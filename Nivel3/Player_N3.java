@@ -12,9 +12,9 @@ import java.awt.image.BufferedImage;
  *
  * @author adanlopezalatorre
  */
-public class PlayerTres extends Control.Player{
+public class Player_N3 extends Control.Player{
     
-    public PlayerTres(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game) {
+    public Player_N3(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game) {
         super(x, y, width, height, defaultImage, game);
     }
     public boolean llegaALimiteSup(){

@@ -57,6 +57,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
     private final Control.Master keyManager;
     private boolean running;				//	to	set	the	game
     private Control.Player player[];
+    int fridaCount = 0;
     
     public NivelDos(String title, int width, int height) {
 
@@ -165,9 +166,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
             display.getCanvas().createBufferStrategy(3);
         } else {
             g = bs.getDrawGraphics();
-
             gameRender();
-
             bs.show();
             g.dispose();
         }
@@ -177,8 +176,15 @@ public class NivelDos extends Control.Nivel implements Runnable{
      * Renders the actions based on the state of the player and the game
      */
     public void gameRender() {
-        
-        g.drawImage(Control.Assets.background, 0, 0, width, height, null);
+        g.drawImage(Control.Assets.background, width/5, 0, 600, height, null);
+        g.drawImage(Control.Assets.pattern1, -400, 0, 600, height, null);
+        g.drawImage(Control.Assets.pattern1, 800, 0, 600, height, null);
+        g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);
+        fridaCount++;
+            if (fridaCount >= 4){
+                fridaCount = 0;
+            }
+            g.drawImage(Control.Assets.frida[fridaCount], 300, 100, 180, 200, null);
     }
 
     /**
@@ -218,10 +224,8 @@ public class NivelDos extends Control.Nivel implements Runnable{
 
     
     public static void main(String [] args){
-        
-        NivelDos nv = new NivelDos("title", 400, 400);
-        nv.start();
-        
+        NivelDos nv2 = new NivelDos("title", 1000, 600);
+        nv2.start();
     }
     
 }
