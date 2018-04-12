@@ -23,7 +23,7 @@ public class Assets {
      * initializing	the	images	of	the	game
      */
     public static void init() {
-        background = loadImage("/Images/Background.jpg");
+        background = loadImage("/Images/Background.png");
     }
     
     public static Clip loadSound(String fileName){
