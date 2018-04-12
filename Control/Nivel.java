@@ -11,7 +11,8 @@ package Control;
  * @author adanlopezalatorre
  */
 public class Nivel {
-    //probando
-    //probando de regreso
-    // adan te la comes
+    int vida;
+    Nivel(){
+        this.vida = 0;
+    }
 }

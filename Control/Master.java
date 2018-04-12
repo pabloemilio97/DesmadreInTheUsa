@@ -11,5 +11,11 @@ package Control;
  * @author adanlopezalatorre
  */
 public class Master {
-    //hola q pez
+    
+    Nivel []niveles;
+    
+    void startGame(){
+        
+    }
+    
 }
