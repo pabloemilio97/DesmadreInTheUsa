@@ -14,22 +14,22 @@ import java.awt.Graphics;
 public class NivelDos extends Control.Nivel{
 
     @Override
-    public int[] init() {
+    int[] init() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void tick() {
+    void tick() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void render(Graphics g) {
+    void render(Graphics g) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void botonDeAccion(int num_player) {
+    void botonDeAccion(int num_player) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
