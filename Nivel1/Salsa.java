@@ -14,8 +14,7 @@ import java.awt.image.BufferedImage;
  */
 public class Salsa extends Control.Item{
     private int velocidad; //velocidad del taco
-    private int direccion; //arriba, abajo, izquierda o derecha dependiendo
-                            //del jugador
+    private int playerID; //controls direccion of salsa, and its color
     /**
      * receives as parameter an int representing the player that summons salsa
      * @param x
@@ -24,11 +23,11 @@ public class Salsa extends Control.Item{
      * @param height
      * @param defaultImage
      * @param game
-     * @param direccion 
+     * @param playerID 
      */
-    public Salsa(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game, int direccion) {
+    public Salsa(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game, int playerID) {
         super(x, y, width, height, defaultImage, game);
-        this.direccion = direccion; //se inicializa dependiendo del jugador
+        this.playerID = playerID; //se inicializa dependiendo del jugador
     }
     
     /**
@@ -51,16 +50,16 @@ public class Salsa extends Control.Item{
      * gets the direction the salsa is going to: up, down, right or left
      * @return 
      */
-    public int getDireccion() {
-        return direccion;
+    public int getPlayerID() {
+        return playerID;
     }
     
     /**
      * sets direccion for salsa
      * @param x 
      */
-    public void setDireccion(int x){
-        this.direccion = x;
+    public void setPlayerID(int x){
+        this.playerID = x;
     }
     
     @Override
