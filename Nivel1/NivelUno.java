@@ -21,8 +21,11 @@ public class NivelUno extends Control.Nivel implements Runnable{
     
     
     public NivelUno(Control.Display display, Control.Player players[]) {
-        super(display, players);
-            
+        super(display);
+        
+        for(int i = 0; i < 4; i++)
+            this.players[i] = new Player_N1(players[i]);
+        
         taco = new Taco(200, 200, 50, 50, Assets.catsup, this);
     }
     /**

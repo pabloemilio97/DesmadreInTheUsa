@@ -16,7 +16,6 @@ import javax.swing.JFrame;
  * @author adanlopezalatorre
  */
 public class Master implements KeyListener{
-    //com
     Nivel []niveles; //Level array declaration
     Player[] players;
     int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_J, KeyEvent.VK_UP};
@@ -26,6 +25,9 @@ public class Master implements KeyListener{
     
     public Master(){
         players = new Player[4];
+        
+        //CREATION OF PLAYERS
+        
         Assets.init();
         display = new Control.Display("Desmadre in the USA", 400, 400);
         display.getJframe().addKeyListener(this);

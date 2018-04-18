@@ -20,6 +20,9 @@ public class Player_N2 extends Control.Player {
     public Player_N2(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game) {
         super(x, y, width, height, defaultImage, game);
     }
+    public Player_N2(Control.Player player){
+        super(player);
+    }
 
     /**
      * para obtener velocidad x del jugador

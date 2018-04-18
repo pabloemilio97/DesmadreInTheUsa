@@ -5,6 +5,7 @@
  */
 package Nivel3;
 
+import Nivel1.*;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
@@ -21,6 +22,10 @@ public class NivelTres extends Control.Nivel implements Runnable{
     
     public NivelTres(Control.Display display) {
         super(display);
+        
+        for(int i = 0; i < 4; i++)
+            this.players[i] = new Player_N3(players[i]);
+        
     }
     /**
      * initializing	the	display	window	of	the	game

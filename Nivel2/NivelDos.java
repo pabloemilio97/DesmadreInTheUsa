@@ -5,6 +5,7 @@
  */
 package Nivel2;
 
+import Nivel1.Player_N1;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ public class NivelDos extends Control.Nivel implements Runnable{
     
     public NivelDos(Control.Display display) {
         super(display);
+        
+        for(int i = 0; i < 4; i++)
+            this.players[i] = new Player_N2(players[i]);
     }
     /**
      * initializing	the	display	window	of	the	game
