@@ -1,5 +1,6 @@
 package Control;
 
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
@@ -18,15 +19,19 @@ public class Master implements KeyListener{
     //com
     Nivel []niveles; //Level array declaration
     Player[] players;
-    int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_H, KeyEvent.VK_UP};
-    Nivel currentNivel;
+    int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_J, KeyEvent.VK_UP};
+    public Nivel currentNivel;
+    public Display display;
+    public Graphics g;
     
     public Master(){
         players = new Player[4];
+        display = new Control.Display("Desmadre in the USA", 400, 400);
+        display.getJframe().addKeyListener(this);
     }
     
     public void startGame(){
-        currentNivel = new Nivel1.NivelUno("niv1", 400, 400);
+        currentNivel = new Nivel1.NivelUno("niv1", 400, 400, display);
     }
     public void runGame(){
         currentNivel.init();

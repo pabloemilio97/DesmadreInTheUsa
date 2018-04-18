@@ -59,12 +59,13 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private Control.Player player[];
     
     
-    public NivelUno(String title, int width, int height) {
+    public NivelUno(String title, int width, int height, Control.Display display) {
 
         this.title = title;
         this.width = width;
         this.height = height;
         running = false;
+        this.display = display;
     }
     
     
@@ -89,13 +90,11 @@ public class NivelUno extends Control.Nivel implements Runnable{
      * initializing	the	display	window	of	the	game
      */
     public int[] init() {
-        display = new Control.Display(title, width, height);
-        Control.Assets.init();
+        //Control.Assets.init();
         running = true;
         /*
         Initialization of game characters should go here
          */
-        display.getJframe().addKeyListener(new Control.Master());
         return new int[]{0, 0, 0, 0};
     }
 
@@ -207,7 +206,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
 
     @Override
     public void botonDeAccion(Control.Player player) {
-        System.out.println(player);
+        
     }
 
     

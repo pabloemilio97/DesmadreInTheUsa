@@ -78,8 +78,4 @@ public class Display {
     public Canvas getCanvas() {
         return canvas;
     }
-
-    public Object getJFrame() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
