@@ -5,6 +5,7 @@
  */
 package Nivel1;
 
+import Control.Assets;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
@@ -17,10 +18,12 @@ import javax.swing.JFrame;
 public class NivelUno extends Control.Nivel implements Runnable{
 
     private Control.Player player[];
+    private Taco taco;
     
     
     public NivelUno(Control.Display display) {
         super(display);
+        taco = new Taco(getWidth(), getHeight(), 50, 50, Assets.catsup, this);
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -39,6 +42,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
      * method, call them here
      */
     public void tick() {
+        taco.tick();
         //keyManager.tick();
         //player.tick();
     }
@@ -48,6 +52,8 @@ public class NivelUno extends Control.Nivel implements Runnable{
      */
     @Override
     public void render() {
+        
+        taco.render(g);
         
         g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
         g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);

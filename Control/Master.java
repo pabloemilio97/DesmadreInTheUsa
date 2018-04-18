@@ -36,6 +36,7 @@ public class Master implements KeyListener{
     }
     public void runGame(){
         currentNivel.start();
+        System.out.println("hello");
     }
 
         //Key Typed method
