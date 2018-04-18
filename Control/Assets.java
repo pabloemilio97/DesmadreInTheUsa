@@ -16,7 +16,7 @@ import javax.sound.sampled.Clip;
  * @author adanlopezalatorre
  */
 public class Assets {
-    
+    //Prueba 
     public static BufferedImage catsup;
     public static BufferedImage background;
     public static BufferedImage pattern1;
