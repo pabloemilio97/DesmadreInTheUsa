@@ -43,7 +43,7 @@ public class Player extends Item{
 
     @Override
     public void render(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        g.drawImage(defaultImage, getX(), getY(), getWidth(), getHeight(), null);
     }
     
 }
