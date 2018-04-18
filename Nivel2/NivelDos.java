@@ -16,7 +16,7 @@ import javax.swing.JFrame;
  */
 public class NivelDos extends Control.Nivel implements Runnable{
 
-    private Control.Player player[];
+    private Control.Player players[];
     
     
     public NivelDos(Control.Display display) {

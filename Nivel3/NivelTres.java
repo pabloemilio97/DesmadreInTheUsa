@@ -16,7 +16,7 @@ import javax.swing.JFrame;
  */
 public class NivelTres extends Control.Nivel implements Runnable{
 
-    private Control.Player player[];
+    private Control.Player players[];
     
     
     public NivelTres(Control.Display display) {

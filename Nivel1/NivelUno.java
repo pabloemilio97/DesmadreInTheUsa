@@ -17,12 +17,13 @@ import javax.swing.JFrame;
  */
 public class NivelUno extends Control.Nivel implements Runnable{
 
-    private Control.Player player[];
     private Taco taco;
     
     
-    public NivelUno(Control.Display display) {
+    public NivelUno(Control.Display display, Control.Player players) {
         super(display);
+        for(Control.Player player: players)
+            
         taco = new Taco(0, 0, 50, 50, Assets.catsup, this);
     }
     /**

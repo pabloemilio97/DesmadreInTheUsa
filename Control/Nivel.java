@@ -17,8 +17,9 @@ public abstract class Nivel implements Runnable{
     protected Graphics g;
     protected boolean running;
     protected Thread thread;
+    private Control.Player players[];
     
-    public Nivel(Display display){
+    public Nivel(Display display, Control.Player players[]){
         this.display = display;
         running = false;
     }
