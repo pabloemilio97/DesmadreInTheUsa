@@ -6,6 +6,7 @@
 package Nivel1;
 
 import Control.Nivel;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 /**
@@ -18,4 +19,9 @@ public class Player_N1 extends Control.Player{
         super(x, y, width, height, defaultImage, game);
     }
     
+    @Override
+    public void tick() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
