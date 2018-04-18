@@ -19,8 +19,12 @@ public abstract class Nivel implements Runnable{
     protected Thread thread;
     private Control.Player players[];
     
-    public Nivel(Display display, Control.Player players[]){
+    public Nivel(Display display, Control.Player players[], Class playerClass){
         this.display = display;
+        this.players = new Control.Player[4];
+        for(int i = 0; i < 4; i++){
+            this.players[i] = playerClass.getConstructor();
+        }
         running = false;
     }
     
