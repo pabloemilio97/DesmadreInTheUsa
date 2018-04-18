@@ -39,17 +39,16 @@ public class NivelDos extends Control.Nivel implements Runnable{
      * method, call them here
      */
     public void tick() {
-        
         //keyManager.tick();
         //player.tick();
-
     }
 
     /**
      * Renders the actions based on the state of the player and the game
      */
     @Override
-    public void gameRender() {
+    public void render() {
+        
         g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
         g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);

@@ -6,31 +6,63 @@
 package Nivel4;
 
 import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
  * @author adanlopezalatorre
  */
-public class NivelCuatro extends Control.Nivel{
+public class NivelCuatro extends Control.Nivel implements Runnable{
 
-    @Override
+    private Control.Player player[];
+    
+    
+    public NivelCuatro(Control.Display display) {
+        super(display);
+    }
+    /**
+     * initializing	the	display	window	of	the	game
+     */
     public int[] init() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Control.Assets.init();
+        running = true;
+        /*
+        Initialization of game characters should go here
+         */
+        return new int[]{0, 0, 0, 0};
     }
-
-    @Override
+    /**
+     * Updates graphics of game. It is called 50 times per second. All
+     * characters inherit from class Item, so they all override their own tick
+     * method, call them here
+     */
     public void tick() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //keyManager.tick();
+        //player.tick();
+    }
+
+    /**
+     * Renders the actions based on the state of the player and the game
+     */
+    @Override
+    public void render() {
+        
+        g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
+        g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
+        g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
+        g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);
+        
     }
 
     @Override
-    public void render(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void botonDeAccion(Control.Player player) {
+        
     }
 
-    @Override
-    public void botonDeAccion(int num_player) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+
+    
     
 }

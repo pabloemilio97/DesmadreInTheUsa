@@ -46,7 +46,7 @@ public abstract class Nivel implements Runnable{
                 delta--;
             }
             tick();
-            render();
+            gameRender();
         }
         stop();
     }
@@ -95,7 +95,7 @@ public abstract class Nivel implements Runnable{
     /**
      * Renders the graphics of the game
      */
-    protected void render() {
+    protected void gameRender() {
         //	get	the	buffer	strategy	from	the	display
         bs = display.getCanvas().getBufferStrategy();
         /*	if	it	is	null,	we	define	one	with	3	buffers	to	display	images	of
@@ -108,7 +108,7 @@ public abstract class Nivel implements Runnable{
             display.getCanvas().createBufferStrategy(3);
         } else {
             g = bs.getDrawGraphics();
-            gameRender();
+            render();
             bs.show();
             g.dispose();
         }
@@ -117,7 +117,7 @@ public abstract class Nivel implements Runnable{
      * render de cada nivel
      * @param g 
      */
-    public abstract void gameRender();
+    public abstract void render();
     /**
      * sirve para ecejutar accion de cada nivel, dependiendo del jugador que presiona
      * @param num_player 
