@@ -207,7 +207,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
 
     @Override
     public void botonDeAccion(Control.Player player) {
-        
+        System.out.println(player);
     }
 
     

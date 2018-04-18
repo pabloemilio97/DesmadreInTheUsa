@@ -21,8 +21,14 @@ public class Master implements KeyListener{
     int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_H, KeyEvent.VK_UP};
     Nivel currentNivel;
     
+    public Master(){
+        players = new Player[4];
+    }
+    
     public void startGame(){
         currentNivel = new Nivel1.NivelUno("niv1", 400, 400);
+    }
+    public void runGame(){
         currentNivel.init();
     }
 
@@ -50,7 +56,9 @@ public class Master implements KeyListener{
     }
     
     public static void main(String [] args){
-        
+        Master mas = new Master();
+        mas.startGame();
+        mas.runGame();
     }
     
 }
