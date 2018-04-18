@@ -16,8 +16,8 @@ public class Taco extends Control.Item{
     private int velocidad; //velocidad del taco
     private int degrees;
     
-    public Taco(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game) {
-        super(x, y, width, height, defaultImage, game);
+    public Taco(int x, int y, int width, int height, BufferedImage defaultImage, Nivel nivel) {
+        super(x, y, width, height, defaultImage, nivel);
         degrees = 0;
     }
     
@@ -25,8 +25,8 @@ public class Taco extends Control.Item{
     public void tick() {
         int rad = 200;       //Radius in px
         float angle = 0;     //Angle (this needs to be represented in radians, not degrees)
-        float centreX;       //X Coordinate of the centre of rotation
-        float centreY;       //Y Coordinate of the centre of rotation
+        float centerX = nivel.getWidth() / 2;       //X Coordinate of the centre of rotation
+        float centerY = nivel.getHeight() / 2;       //Y Coordinate of the centre of rotation
         float time = 2;          //Number of seconds a full revolution should take
         int ticksPerSecond = 50; //Number of game updates per second
 
@@ -36,11 +36,11 @@ public class Taco extends Control.Item{
         angle+= 2 * Math.PI / (ticksPerSecond * time);
 
         //Update the coordinates
-        spriteX = (centreX  + (rad*Math.cos(angle)));
-        spriteY = (centreY  + (rad*Math.sin(angle)));
+        this.x = (int)(centerX  + (rad*Math.cos(angle)));
+        this.y = (int)(centerY  + (rad*Math.sin(angle)));
         
         //If you want to set the initial angle of the object around the orbit-path, then simply specify in radians
-        angle = (angle in degrees)/180 * Math.PI
+        //angle = (angle in degrees)/180 * Math.PI
     }
     
 }
