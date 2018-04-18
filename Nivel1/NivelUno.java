@@ -52,7 +52,10 @@ public class NivelUno extends Control.Nivel implements Runnable{
      */
     @Override
     public void render() {
-        
+        if (g == null) {
+            System.out.println("Error extraño");
+            return;
+        }
         taco.render(g);
         
         g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
