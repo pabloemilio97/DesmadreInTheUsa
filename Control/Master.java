@@ -26,6 +26,7 @@ public class Master implements KeyListener{
     
     public Master(){
         players = new Player[4];
+        Assets.init();
         display = new Control.Display("Desmadre in the USA", 400, 400);
         display.getJframe().addKeyListener(this);
     }

@@ -17,9 +17,16 @@ public class Display {
     private JFrame jframe;  // this is the app class
     private Canvas canvas;  // to display images
     
-    private String title;   // title of the window
-    private int width;      // width of the window
-    private int height;     // height of the window
+    private final String title;   // title of the window
+    private final int width;      // width of the window
+    private final int height;     // height of the window
+    
+    public int getWidth(){
+        return width;
+    }
+    public int getHeight(){
+        return height;
+    }
     
     /**
      * initializes the values for the application game
