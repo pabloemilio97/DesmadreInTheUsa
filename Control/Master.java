@@ -15,7 +15,7 @@ import javax.swing.JFrame;
  * @author adanlopezalatorre
  */
 public class Master implements KeyListener{
-    
+    //com
     Nivel []niveles; //Level array declaration
     Player[] players;
     int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_H, KeyEvent.VK_UP};
