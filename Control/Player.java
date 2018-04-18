@@ -5,6 +5,7 @@
  */
 package Control;
 
+import static Control.Assets.loadImage;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -14,14 +15,25 @@ import java.awt.image.BufferedImage;
  */
 public class Player extends Item{
     
-    int puntaje;
+    public static final int width = 40, height = 30;
+    int puntaje, renderCount;
+    BufferedImage animation[];
 
-    public Player(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game) {
-        super(x, y, width, height, defaultImage, game);
-        puntaje = 0;
+    public Player(int x, int y, int width, int height, String spritePath, Nivel game) {
+        super(x, y, width, height, null, game);
+        
+        animation = new BufferedImage[6];
+        for(int i = 0; i < 6; i++)
+            animation[i] = loadImage(spritePath + i);
+        
+        puntaje = renderCount = 0;
     }
+    
+    
+    
     public Player(Player p){
-        super(p.x, p.y, p.getWidth(), p.getHeight(), p.getDefaultImage(), p.getNivel());
+        super(p.x, p.y, p.getWidth(), p.getHeight(), null, p.getNivel());
+        animation = p.animation;
     }
     /**
      * Modifica el puntaje
@@ -46,7 +58,8 @@ public class Player extends Item{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(defaultImage, getX(), getY(), getWidth(), getHeight(), null);
+        renderCount = (renderCount + 1) % 14;
+        g.drawImage(animation[renderCount >> 1], getX(), getY(), getWidth(), getHeight(), null);
     }
     
 }
