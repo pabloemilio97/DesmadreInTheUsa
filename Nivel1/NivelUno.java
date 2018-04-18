@@ -54,7 +54,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private final int width;										//	width	of	the	window
     private final int height;									//	height	of	the	window
     private Thread thread;						//	thread	to	create	the	game
-    private final Control.Master keyManager;
     private boolean running;				//	to	set	the	game
     
     private Control.Player player[];
@@ -66,17 +65,9 @@ public class NivelUno extends Control.Nivel implements Runnable{
         this.width = width;
         this.height = height;
         running = false;
-        keyManager = new Control.Master();
     }
-    /**
-     * To access key manager of game
-     *
-     * @return keyManager
-     */
-    public Control.Master getKeyManager() {
-        return keyManager;
-    }
-
+    
+    
     /**
      * To access height of game screen
      *
@@ -215,8 +206,8 @@ public class NivelUno extends Control.Nivel implements Runnable{
     }
 
     @Override
-    public void botonDeAccion(int num_player) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void botonDeAccion(Control.Player player) {
+        
     }
 
     

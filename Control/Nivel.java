@@ -48,6 +48,6 @@ public abstract class Nivel {
      * sirve para ecejutar accion de cada nivel, dependiendo del jugador que presiona
      * @param num_player 
      */
-    public abstract void botonDeAccion(int num_player);
+    public abstract void botonDeAccion(Player player);
 }
 

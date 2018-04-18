@@ -17,9 +17,13 @@ import javax.swing.JFrame;
 public class Master implements KeyListener{
     
     Nivel []niveles; //Level array declaration
+    Player[] players;
+    int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_H, KeyEvent.VK_UP};
+    Nivel currentNivel;
     
     public void startGame(){
-        
+        currentNivel = new Nivel1.NivelUno("niv1", 400, 400);
+        currentNivel.init();
     }
 
         //Key Typed method
@@ -37,7 +41,12 @@ public class Master implements KeyListener{
     //Key release method
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("ddd");
+        int key = e.getKeyCode();
+        for(int i = 0; i < 4; i++){
+            if(key == playerKeys[i]){
+                currentNivel.botonDeAccion(players[i]);
+            }
+        }
     }
     
     public static void main(String [] args){
