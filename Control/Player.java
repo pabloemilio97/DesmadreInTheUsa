@@ -20,6 +20,9 @@ public class Player extends Item{
         super(x, y, width, height, defaultImage, game);
         puntaje = 0;
     }
+    public Player(Player p){
+        super(p.x, p.y, p.getWidth(), p.getHeight(), p.getDefaultImage(), p.getNivel());
+    }
     /**
      * Modifica el puntaje
      * @param puntaje nuevo valor
