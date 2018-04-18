@@ -39,7 +39,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
      * method, call them here
      */
     public void tick() {
-        
+        System.out.println("hel");
         //keyManager.tick();
         //player.tick();
 
@@ -50,6 +50,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
      */
     @Override
     public void gameRender() {
+        
         g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
         g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
@@ -59,7 +60,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
 
     @Override
     public void botonDeAccion(Control.Player player) {
-        
+        System.out.println("hello");
     }
 
     

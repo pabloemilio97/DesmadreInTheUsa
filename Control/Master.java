@@ -35,7 +35,7 @@ public class Master implements KeyListener{
         currentNivel = new Nivel1.NivelUno(display);
     }
     public void runGame(){
-        currentNivel.init();
+        currentNivel.start();
     }
 
         //Key Typed method
