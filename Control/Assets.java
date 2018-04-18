@@ -17,6 +17,7 @@ import javax.sound.sampled.Clip;
  */
 public class Assets {
     //Prueba 
+    //Toy probandoo jotos
     public static BufferedImage catsup;
     public static BufferedImage background;
     public static BufferedImage pattern1;
