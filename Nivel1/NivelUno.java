@@ -23,7 +23,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     
     public NivelUno(Control.Display display) {
         super(display);
-        taco = new Taco(getWidth(), getHeight(), 50, 50, Assets.catsup, this);
+        taco = new Taco(0, 0, 50, 50, Assets.catsup, this);
     }
     /**
      * initializing	the	display	window	of	the	game
