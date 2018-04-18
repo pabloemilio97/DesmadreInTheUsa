@@ -40,4 +40,8 @@ public class Master implements KeyListener{
         System.out.println("ddd");
     }
     
+    public static void main(String [] args){
+        
+    }
+    
 }

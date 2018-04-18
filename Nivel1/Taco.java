@@ -5,10 +5,22 @@
  */
 package Nivel1;
 
+import Control.Nivel;
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author adanlopezalatorre
  */
-public class Taco {
+public class Taco extends Control.Item{
+
+    public Taco(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game) {
+        super(x, y, width, height, defaultImage, game);
+    }
+
+    @Override
+    public void tick() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -56,8 +56,9 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private Thread thread;						//	thread	to	create	the	game
     private final Control.Master keyManager;
     private boolean running;				//	to	set	the	game
+    
     private Control.Player player[];
-    int fridaCount = 0;
+    
     
     public NivelUno(String title, int width, int height) {
 
@@ -180,11 +181,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         g.drawImage(Control.Assets.pattern1, -400, 0, 600, height, null);
         g.drawImage(Control.Assets.pattern1, 800, 0, 600, height, null);
         g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);
-        fridaCount++;
-            if (fridaCount >= 4){
-                fridaCount = 0;
-            }
-            g.drawImage(Control.Assets.frida[fridaCount], 300, 100, 180, 200, null);
+        
     }
 
     /**
@@ -223,11 +220,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     }
 
     
-    public static void main(String [] args){
-        NivelUno nv2 = new NivelUno("title", 1000, 600);
-        nv2.start();
-        System.out.println("hihi");
-    }
+
     
     
 }
