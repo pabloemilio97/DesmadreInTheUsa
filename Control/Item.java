@@ -47,8 +47,9 @@ public abstract class Item {
         this.nivel = game;
         renderCount = 0;
         animation = new BufferedImage[frames];
-        for(int i = 0; i < frames; i++)
+        for(int i = 0; i < frames; i++){
             animation[i] = loadImage(spritePath + i  + ".png");
+        }
     }
         
     /**
@@ -71,6 +72,10 @@ public abstract class Item {
     
     public BufferedImage getAnimation(int index){
         return animation[index];
+    }
+    
+    public void setAnimation(int index, BufferedImage bi){
+        animation[index] = bi;
     }
 
     /**

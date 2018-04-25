@@ -7,6 +7,7 @@
 package Nivel1;
 
 import Control.Assets;
+import static Control.Assets.rotateImage;
 import Control.Master;
 import Control.Player;
 import java.awt.Graphics;
@@ -43,13 +44,17 @@ public class NivelUno extends Control.Nivel implements Runnable{
         salsaBullets = new Salsa[4];
         
         for(int i = 0; i < 4; i++){
-            salsaBullets[i] = new Salsa(this.players[i].getWidth() / 2 + this.players[i].getX(), this.players[i].getY(), Player.width, Player.height, "Bullet_Salsa/", 2, this);
+            salsaBullets[i] = new Salsa(this.players[i].getWidth() / 2 + this.players[i].getX(), this.players[i].getY(), Player.width, Player.height, "/Images/Bullet_Salsa/", 2, this);
             
-            for(int j = 0; j < i; j++){
-                
+            for(int j = 0; j < 2; j++){
+                for(int k = 0; k < i; k++){
+                    salsaBullets[i].setAnimation(j, Assets.rotateImage(salsaBullets[i].getAnimation(j)));
+                }
             }
             
         }
+        for(int i = 0; i < 4; i++)
+            System.out.println(salsaBullets[i]);
         
         //salsaBullets[0] = loadImage("/Images/Catsup.png)
         
@@ -90,7 +95,9 @@ public class NivelUno extends Control.Nivel implements Runnable{
         //g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         //g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
         taco.render(g);
-        for(int i = 0; i < 4; i++) players[i].render(g);
+        
+        for(int i = 0; i < 4; i++) salsaBullets[i].render(g);
+        //for(int i = 0; i < 4; i++) players[i].render(g);
         
     }
 

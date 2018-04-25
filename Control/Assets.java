@@ -62,9 +62,9 @@ public class Assets {
         return bi;
     }
     
-    public static BufferedImage rotateCounter(BufferedImage bufferedImage){
+    public static BufferedImage rotateImage(BufferedImage bufferedImage){
         AffineTransform tx = new AffineTransform();
-        tx.rotate(0.5, bufferedImage.getWidth() / 2, bufferedImage.getHeight() / 2);
+        tx.rotate(0.5 * Math.PI, bufferedImage.getWidth() / 2.0, bufferedImage.getHeight() / 2.0);
 
         AffineTransformOp op = new AffineTransformOp(tx,
         AffineTransformOp.TYPE_BILINEAR);
