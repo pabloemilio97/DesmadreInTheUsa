@@ -19,12 +19,12 @@ public class Player extends Item{
     int puntaje, renderCount;
     BufferedImage animation[];
 
-    public Player(int x, int y, int width, int height, String spritePath, Nivel game) {
+    public Player(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
         super(x, y, width, height, null, game);
         
-        animation = new BufferedImage[6];
-        for(int i = 0; i < 6; i++)
-            animation[i] = loadImage(spritePath + i + ".png");
+        animation = new BufferedImage[frames];
+        for(int i = 0; i < frames; i++)
+            animation[i] = loadImage(spritePath + i  + ".png");
         
         puntaje = renderCount = 0;
     }
@@ -53,13 +53,13 @@ public class Player extends Item{
 
     @Override
     public void tick() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void render(Graphics g) {
         renderCount = (renderCount + 1) % 600;
-        g.drawImage(animation[renderCount / 100], getX(), getY(), getWidth(), getHeight(), null);
+        g.drawImage(animation[renderCount / 100 % animation.length], getX(), getY(), getWidth(), getHeight(), null);
     }
     
 }

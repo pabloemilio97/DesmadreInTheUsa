@@ -1,4 +1,5 @@
 /*
+
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -19,7 +20,7 @@ import javax.swing.JFrame;
  */
 public class NivelUno extends Control.Nivel implements Runnable{
 
-    private Taco taco;
+    private Player taco;
     private static int centerSpace = 50;
     
     public NivelUno(Control.Display display, Control.Player players[]) {
@@ -35,7 +36,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
             
         }
         
-        taco = new Taco(200, 200, Player.width, Player.height, Assets.catsup, this);
+        taco = new Player(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -71,7 +72,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
         //g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         //g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
-        //taco.render(g);
+        taco.render(g);
         for(int i = 0; i < 4; i++) players[i].render(g);
         
     }

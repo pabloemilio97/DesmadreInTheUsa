@@ -17,8 +17,8 @@ public class Player_N2 extends Control.Player {
     private int velX;
     private int velY;
 
-    public Player_N2(int x, int y, int width, int height, String spritePath, Nivel game) {
-        super(x, y, width, height, spritePath, game);
+    public Player_N2(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
+        super(x, y, width, height, spritePath, frames, game);
     }
     public Player_N2(Control.Player player){
         super(player);

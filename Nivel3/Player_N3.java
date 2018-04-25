@@ -14,8 +14,8 @@ import java.awt.image.BufferedImage;
  */
 public class Player_N3 extends Control.Player{
     
-    public Player_N3(int x, int y, int width, int height, String spritePath, Nivel game) {
-        super(x, y, width, height, spritePath, game);
+    public Player_N3(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
+        super(x, y, width, height, spritePath, frames, game);
     }
     public Player_N3(Control.Player player){
         super(player);
