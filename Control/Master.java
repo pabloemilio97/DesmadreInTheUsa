@@ -63,7 +63,7 @@ public class Master implements KeyListener{
         int key = e.getKeyCode();
         for(int i = 0; i < 4; i++){
             if(key == Master.playerKeys[i]){
-                currentNivel.botonDeAccion(players[i]);
+                currentNivel.botonDeAccion(i);
             }
         }
     }

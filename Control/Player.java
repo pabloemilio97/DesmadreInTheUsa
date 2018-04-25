@@ -58,8 +58,8 @@ public class Player extends Item{
 
     @Override
     public void render(Graphics g) {
-        renderCount = (renderCount + 1) % 600;
-        g.drawImage(animation[renderCount / 100 % animation.length], getX(), getY(), getWidth(), getHeight(), null);
+        renderCount = (renderCount + 1) % (animation.length * 100);
+        g.drawImage(animation[renderCount / 100], getX(), getY(), getWidth(), getHeight(), null);
     }
     
 }

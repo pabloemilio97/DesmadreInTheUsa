@@ -124,6 +124,6 @@ public abstract class Nivel implements Runnable{
      * sirve para ecejutar accion de cada nivel, dependiendo del jugador que presiona
      * @param num_player 
      */
-    public abstract void botonDeAccion(Player player);
+    public abstract void botonDeAccion(int playerIndex);
 }
 

@@ -5,6 +5,7 @@
  */
 package Nivel4;
 
+import Control.Player;
 import Nivel1.Player_N1;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -20,7 +21,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     private Control.Player players[];
     
     
-    public NivelCuatro(Control.Display display) {
+    public NivelCuatro(Control.Display display, Player players[]) {
         super(display);
         
         for(int i = 0; i < 4; i++)
@@ -62,7 +63,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     }
 
     @Override
-    public void botonDeAccion(Control.Player player) {
+    public void botonDeAccion(int playerIndex) {
         
     }
 

@@ -20,7 +20,7 @@ import javax.swing.JFrame;
  */
 public class NivelUno extends Control.Nivel implements Runnable{
 
-    private Player taco;
+    private Taco taco;
     private static int centerSpace = 50;
     
     public NivelUno(Control.Display display, Control.Player players[]) {
@@ -36,7 +36,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
             
         }
         
-        taco = new Player(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
+        taco = new Taco(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -55,6 +55,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
      * method, call them here
      */
     public void tick() {
+        System.out.println("ddd");
         taco.tick();
         //keyManager.tick();
         //player.tick();
@@ -78,7 +79,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     }
 
     @Override
-    public void botonDeAccion(Control.Player player) {
+    public void botonDeAccion(int playerIndex) {
         
     }
 
