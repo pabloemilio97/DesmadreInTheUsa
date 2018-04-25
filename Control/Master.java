@@ -18,18 +18,23 @@ import javax.swing.JFrame;
 public class Master implements KeyListener{
     Nivel []niveles; //Level array declaration
     Player[] players;
-    int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_J, KeyEvent.VK_UP};
+    public static int width = 700, height = 500;
+    public static int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_J, KeyEvent.VK_UP};
     public Nivel currentNivel;
     public Display display;
     public Graphics g;
     
     public Master(){
         players = new Player[4];
+        String []paths = {"Luchador/", "Mexicano/", "Frida/", "Calaca/"};
         
+            
+        for(int i = 0; i < 4; i++)
+            players[i] = new Player(0, 0, Player.width, Player.height, "/Images/" + paths[i], null);
         //CREATION OF PLAYERS
         
         Assets.init();
-        display = new Control.Display("Desmadre in the USA", 400, 400);
+        display = new Control.Display("Desmadre in the USA", Master.width, Master.height);
         display.getJframe().addKeyListener(this);
     }
     
@@ -38,7 +43,6 @@ public class Master implements KeyListener{
     }
     public void runGame(){
         currentNivel.start();
-        System.out.println("hello");
     }
 
         //Key Typed method
@@ -58,7 +62,7 @@ public class Master implements KeyListener{
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         for(int i = 0; i < 4; i++){
-            if(key == playerKeys[i]){
+            if(key == Master.playerKeys[i]){
                 currentNivel.botonDeAccion(players[i]);
             }
         }

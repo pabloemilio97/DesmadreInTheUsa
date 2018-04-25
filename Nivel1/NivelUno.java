@@ -6,6 +6,8 @@
 package Nivel1;
 
 import Control.Assets;
+import Control.Master;
+import Control.Player;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
@@ -18,15 +20,22 @@ import javax.swing.JFrame;
 public class NivelUno extends Control.Nivel implements Runnable{
 
     private Taco taco;
-    
+    private static int centerSpace = 50;
     
     public NivelUno(Control.Display display, Control.Player players[]) {
         super(display);
         
-        for(int i = 0; i < 4; i++)
-            this.players[i] = new Player_N1(players[i]);
+        int dir[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
         
-        taco = new Taco(200, 200, 50, 50, Assets.catsup, this);
+        for(int i = 0; i < 4; i++){
+            this.players[i] = new Player_N1(players[i]);
+            
+            this.players[i].setX((Master.width - Player.width) / 2 + dir[i][0] * centerSpace);
+            this.players[i].setY((Master.height - Player.height) / 2 + dir[i][1] * centerSpace);
+            
+        }
+        
+        taco = new Taco(200, 200, Player.width, Player.height, Assets.catsup, this);
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -59,11 +68,11 @@ public class NivelUno extends Control.Nivel implements Runnable{
             System.out.println("Error extraño");
             return;
         }
-        //g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
+        g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
         //g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         //g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);
-        taco.render(g);
+        //taco.render(g);
+        for(int i = 0; i < 4; i++) players[i].render(g);
         
     }
 

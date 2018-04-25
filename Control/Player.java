@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
  */
 public class Player extends Item{
     
-    public static final int width = 40, height = 30;
+    public static final int width = 50, height = 70;
     int puntaje, renderCount;
     BufferedImage animation[];
 
@@ -24,7 +24,7 @@ public class Player extends Item{
         
         animation = new BufferedImage[6];
         for(int i = 0; i < 6; i++)
-            animation[i] = loadImage(spritePath + i);
+            animation[i] = loadImage(spritePath + i + ".png");
         
         puntaje = renderCount = 0;
     }
@@ -58,8 +58,8 @@ public class Player extends Item{
 
     @Override
     public void render(Graphics g) {
-        renderCount = (renderCount + 1) % 14;
-        g.drawImage(animation[renderCount >> 1], getX(), getY(), getWidth(), getHeight(), null);
+        renderCount = (renderCount + 1) % 600;
+        g.drawImage(animation[renderCount / 100], getX(), getY(), getWidth(), getHeight(), null);
     }
     
 }

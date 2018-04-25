@@ -5,6 +5,7 @@
  */
 package Nivel1;
 
+import Control.Master;
 import Control.Nivel;
 import java.awt.image.BufferedImage;
 
@@ -23,10 +24,10 @@ public class Taco extends Control.Item{
     
     @Override
     public void tick() {
-        int rad = 200;       //Radius in px
+        /*int rad = 200;       //Radius in px
         float angle = 0;     //Angle (this needs to be represented in radians, not degrees)
-        float centerX = nivel.getWidth() / 2;       //X Coordinate of the centre of rotation
-        float centerY = nivel.getHeight() / 2;       //Y Coordinate of the centre of rotation
+        float centerX = Master.width / 2;       //X Coordinate of the centre of rotation
+        float centerY = Master.height / 2;       //Y Coordinate of the centre of rotation
         float time = 2;          //Number of seconds a full revolution should take
         int ticksPerSecond = 50; //Number of game updates per second
 
@@ -41,6 +42,7 @@ public class Taco extends Control.Item{
         
         //If you want to set the initial angle of the object around the orbit-path, then simply specify in radians
         //angle = (angle in degrees)/180 * Math.PI
+        */
     }
     
 }

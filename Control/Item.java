@@ -57,7 +57,7 @@ public abstract class Item {
      * @param g <b>Graphics</b> object to paint the item
      */
     public void render(Graphics g){
-        g.drawImage(defaultImage, getX(), getY(), width, height, null);
+        g.drawImage(defaultImage, x, y, width, height, null);
     }
     
 
