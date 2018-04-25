@@ -16,17 +16,11 @@ import java.awt.image.BufferedImage;
 public class Player extends Item{
     
     public static final int width = 50, height = 70;
-    int puntaje, renderCount;
-    BufferedImage animation[];
+    int puntaje;
 
     public Player(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
-        super(x, y, width, height, null, game);
-        
-        animation = new BufferedImage[frames];
-        for(int i = 0; i < frames; i++)
-            animation[i] = loadImage(spritePath + i  + ".png");
-        
-        puntaje = renderCount = 0;
+        super(x, y, width, height, spritePath, frames, game);
+        puntaje = 0;
     }
     
     
@@ -54,12 +48,6 @@ public class Player extends Item{
     @Override
     public void tick() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void render(Graphics g) {
-        renderCount = (renderCount + 1) % (animation.length * 100);
-        g.drawImage(animation[renderCount / 100], getX(), getY(), getWidth(), getHeight(), null);
     }
     
 }

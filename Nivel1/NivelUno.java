@@ -11,6 +11,7 @@ import Control.Master;
 import Control.Player;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 
@@ -22,7 +23,10 @@ public class NivelUno extends Control.Nivel implements Runnable{
 
     private Taco taco;
     private static int centerSpace = 50;
-    int dir[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    private static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    
+    private Salsa [] botes;
+    private Salsa salsaBullets[];
     
     public NivelUno(Control.Display display, Control.Player players[]) {
         super(display);
@@ -31,10 +35,23 @@ public class NivelUno extends Control.Nivel implements Runnable{
         for(int i = 0; i < 4; i++){
             this.players[i] = new Player_N1(players[i]);
             
-            this.players[i].setX((Master.width - Player.width) / 2 + dir[i][0] * centerSpace);
-            this.players[i].setY((Master.height - Player.height) / 2 + dir[i][1] * centerSpace);
+            this.players[i].setX((Master.width - Player.width) / 2 + dirs[i][0] * centerSpace);
+            this.players[i].setY((Master.height - Player.height) / 2 + dirs[i][1] * centerSpace);
             
         }
+        
+        salsaBullets = new Salsa[4];
+        
+        for(int i = 0; i < 4; i++){
+            salsaBullets[i] = new Salsa(this.players[i].getWidth() / 2 + this.players[i].getX(), this.players[i].getY(), Player.width, Player.height, "Bullet_Salsa/", 2, this);
+            
+            for(int j = 0; j < i; j++){
+                
+            }
+            
+        }
+        
+        //salsaBullets[0] = loadImage("/Images/Catsup.png)
         
         taco = new Taco(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
     }
@@ -55,7 +72,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
      * method, call them here
      */
     public void tick() {
-        System.out.println("ddd");
         taco.tick();
         //keyManager.tick();
         //player.tick();

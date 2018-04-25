@@ -25,6 +25,9 @@ public class Salsa extends Control.Item{
      * @param game
      * @param playerID 
      */
+    public Salsa(int x, int y, int width, int height, String path, int frames, Nivel nivel){
+        super(x, y, width, height, path, frames, nivel);
+    }
     public Salsa(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game, int playerID) {
         super(x, y, width, height, defaultImage, game);
         this.playerID = playerID; //se inicializa dependiendo del jugador

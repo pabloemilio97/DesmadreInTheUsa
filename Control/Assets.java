@@ -1,5 +1,7 @@
 package Control;
 
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -58,6 +60,17 @@ public class Assets {
             System.exit(1);
         }
         return bi;
+    }
+    
+    public static BufferedImage rotateCounter(BufferedImage bufferedImage){
+        AffineTransform tx = new AffineTransform();
+        tx.rotate(0.5, bufferedImage.getWidth() / 2, bufferedImage.getHeight() / 2);
+
+        AffineTransformOp op = new AffineTransformOp(tx,
+        AffineTransformOp.TYPE_BILINEAR);
+        bufferedImage = op.filter(bufferedImage, null);
+        
+        return bufferedImage;
     }
     
     /**

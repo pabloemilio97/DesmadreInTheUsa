@@ -6,6 +6,7 @@
 
 package Control;
 
+import static Control.Assets.loadImage;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -19,8 +20,9 @@ public abstract class Item {
     protected int height;
     protected int x;        // to store x position
     protected int y;        // to store y position
-    protected BufferedImage defaultImage;
+    private int renderCount;
     protected Nivel nivel;
+    BufferedImage animation[];
     
     /**
      * Set the initial values to create the item
@@ -32,32 +34,30 @@ public abstract class Item {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.defaultImage = defaultImage;
+        animation = new BufferedImage[]{defaultImage};
         this.nivel = game;
+        renderCount = 0;
     }
     
-    /**
-     * Accesser to th default image
-     * @return defaultImage
-     */
-    public BufferedImage getDefaultImage(){
-        return defaultImage;
-    }
-    
-    /**
-     * Modifier for the Default Image
-     * @param bi 
-     */
-    public void setDefaultImage(BufferedImage bi){
-        defaultImage = bi;
+    public Item(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {     
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.nivel = game;
+        renderCount = 0;
+        animation = new BufferedImage[frames];
+        for(int i = 0; i < frames; i++)
+            animation[i] = loadImage(spritePath + i  + ".png");
     }
         
     /**
      * To paint the item
      * @param g <b>Graphics</b> object to paint the item
      */
-    public void render(Graphics g){
-        g.drawImage(defaultImage, x, y, width, height, null);
+    public void render(Graphics g) {
+        renderCount = (renderCount + 1) % (animation.length * 100);
+        g.drawImage(animation[renderCount / 100], getX(), getY(), getWidth(), getHeight(), null);
     }
     
 
@@ -67,6 +67,10 @@ public abstract class Item {
      */
     public int getX() {
         return x;
+    }
+    
+    public BufferedImage getAnimation(int index){
+        return animation[index];
     }
 
     /**

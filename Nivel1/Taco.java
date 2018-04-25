@@ -5,6 +5,7 @@
  */
 package Nivel1;
 
+import Control.Item;
 import Control.Master;
 import Control.Nivel;
 import Control.Player;
@@ -14,7 +15,7 @@ import java.awt.image.BufferedImage;
  *
  * @author adanlopezalatorre
  */
-public class Taco extends Player{
+public class Taco extends Item{
     private int velocidad; //velocidad del taco
     private int degrees, direction;
     
