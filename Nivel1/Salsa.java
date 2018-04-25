@@ -26,8 +26,9 @@ public class Salsa extends Control.Item{
      * @param game
      * @param playerID 
      */
-    public Salsa(int x, int y, int width, int height, String path, int frames, Nivel nivel){
+    public Salsa(int x, int y, int width, int height, String path, int frames, Nivel nivel, int playerID){
         super(x, y, width, height, path, frames, nivel);
+        this.playerID = playerID;
     }
     public Salsa(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game, int playerID) {
         super(x, y, width, height, defaultImage, game);
@@ -75,6 +76,7 @@ public class Salsa extends Control.Item{
     
     @Override
     public void tick() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        x += NivelUno.dirs[playerID][0];
+        y += NivelUno.dirs[playerID][1];
     }
 }

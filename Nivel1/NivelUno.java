@@ -10,11 +10,14 @@ import Control.Assets;
 import static Control.Assets.loadImage;
 import static Control.Assets.rotateImage;
 import Control.Master;
+import Control.Nivel;
 import Control.Player;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 import javax.swing.JFrame;
 
@@ -26,12 +29,12 @@ public class NivelUno extends Control.Nivel implements Runnable{
 
     private Taco taco;
     private static int centerSpace = 50;
-    private static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    public static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     
     private Salsa [] botes;
     private Salsa salsaBullets[];
     
-    private Stack<Salsa> bulletStack;
+    private Queue<Salsa> bulletQueue;
     
     public NivelUno(Control.Display display, Control.Player players[]) {
         super(display);
@@ -40,17 +43,19 @@ public class NivelUno extends Control.Nivel implements Runnable{
         for(int i = 0; i < 4; i++){
             this.players[i] = new Player_N1(players[i]);
             
-            this.players[i].setX((Master.width - Player.width) / 2 + dirs[i][0] * centerSpace);
-            this.players[i].setY((Master.height - Player.height) / 2 + dirs[i][1] * centerSpace);
+            this.players[i].setX((Nivel.width - Player.width) / 2 + dirs[i][0] * centerSpace);
+            this.players[i].setY((Nivel.height - Player.height) / 2 + dirs[i][1] * centerSpace);
             
         }
         
         salsaBullets = new Salsa[4];
         
         for(int i = 0; i < 4; i++)
-            salsaBullets[i] = new Salsa(this.players[i].getWidth() / 2 + this.players[i].getX() - Salsa.width / 2, this.players[i].getY(), Salsa.width, Salsa.height, "/Images/Bullet_Salsa/", 2, this);
+            salsaBullets[i] = new Salsa(this.players[i].getWidth() / 2 + this.players[i].getX() - Salsa.width / 2, this.players[i].getY(), Salsa.width, Salsa.height, "/Images/Bullet_Salsa/", 2, this, i);
         
         //salsaBullets[0] = loadImage("/Images/Catsup.png)
+        
+        bulletQueue = new LinkedList<>();
         
         taco = new Taco(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
     }
@@ -72,6 +77,16 @@ public class NivelUno extends Control.Nivel implements Runnable{
      */
     public void tick() {
         taco.tick();
+        
+        for(int i = bulletQueue.size(); i > 0; i--){
+            Salsa current = bulletQueue.poll();
+            
+            current.tick();
+            
+            bulletQueue.add(current);
+            
+        }
+        
         //keyManager.tick();
         //player.tick();
     }
@@ -90,7 +105,16 @@ public class NivelUno extends Control.Nivel implements Runnable{
         //g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
         taco.render(g);
         
-        for(int i = 0; i < 4; i++) salsaBullets[i].render(g);
+        
+        for(int i = bulletQueue.size(); i > 0; i--){
+            Salsa current = bulletQueue.poll();
+            
+            current.render(g);
+            
+            bulletQueue.add(current);
+            
+        }
+        
         for(int i = 0; i < 4; i++) players[i].render(g);
         
     }
@@ -98,7 +122,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     @Override
     public void botonDeAccion(int playerIndex) {
         
-        bulletStack.push(new Salsa(salsaBullets[playerIndex]));
+        bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
         
     }
 

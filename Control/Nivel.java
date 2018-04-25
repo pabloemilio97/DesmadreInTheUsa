@@ -11,6 +11,9 @@ import java.awt.image.BufferStrategy;
 
 
 public abstract class Nivel implements Runnable{
+    
+    public static int width = 500, height = 500;
+    
     protected int lifestock;
     protected Display display;
     protected BufferStrategy bs;

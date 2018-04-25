@@ -30,14 +30,14 @@ public class Taco extends Item{
     @Override
     public void tick() {
                 
-        if(x < 0 || y < 0 || x + width > Master.width || y + height > Master.height){
+        if(x < 0 || y < 0 || x + width > Nivel.width || y + height > Nivel.height){
             direction = (direction + 1) % 4;
         }
         
         x = Math.max(0, x);
-        x = Math.min(Master.width - width, x);
+        x = Math.min(Nivel.width - width, x);
         y = Math.max(0, y);
-        y = Math.min(Master.height - height, y);
+        y = Math.min(Nivel.height - height, y);
         
         x += dirs[direction][0];
         y += dirs[direction][1];
