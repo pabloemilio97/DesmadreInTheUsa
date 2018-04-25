@@ -7,6 +7,7 @@
 package Nivel1;
 
 import Control.Assets;
+import static Control.Assets.loadImage;
 import static Control.Assets.rotateImage;
 import Control.Master;
 import Control.Player;
@@ -14,6 +15,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Stack;
 import javax.swing.JFrame;
 
 /**
@@ -29,6 +31,8 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private Salsa [] botes;
     private Salsa salsaBullets[];
     
+    private Stack<Salsa> bulletStack;
+    
     public NivelUno(Control.Display display, Control.Player players[]) {
         super(display);
 
@@ -43,18 +47,8 @@ public class NivelUno extends Control.Nivel implements Runnable{
         
         salsaBullets = new Salsa[4];
         
-        for(int i = 0; i < 4; i++){
-            salsaBullets[i] = new Salsa(this.players[i].getWidth() / 2 + this.players[i].getX(), this.players[i].getY(), Player.width, Player.height, "/Images/Bullet_Salsa/", 2, this);
-            
-            for(int j = 0; j < 2; j++){
-                for(int k = 0; k < i; k++){
-                    salsaBullets[i].setAnimation(j, Assets.rotateImage(salsaBullets[i].getAnimation(j)));
-                }
-            }
-            
-        }
         for(int i = 0; i < 4; i++)
-            System.out.println(salsaBullets[i]);
+            salsaBullets[i] = new Salsa(this.players[i].getWidth() / 2 + this.players[i].getX() - Salsa.width / 2, this.players[i].getY(), Salsa.width, Salsa.height, "/Images/Bullet_Salsa/", 2, this);
         
         //salsaBullets[0] = loadImage("/Images/Catsup.png)
         
@@ -97,12 +91,14 @@ public class NivelUno extends Control.Nivel implements Runnable{
         taco.render(g);
         
         for(int i = 0; i < 4; i++) salsaBullets[i].render(g);
-        //for(int i = 0; i < 4; i++) players[i].render(g);
+        for(int i = 0; i < 4; i++) players[i].render(g);
         
     }
 
     @Override
     public void botonDeAccion(int playerIndex) {
+        
+        bulletStack.push(new Salsa(salsaBullets[playerIndex]));
         
     }
 

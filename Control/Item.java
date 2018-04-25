@@ -51,6 +51,17 @@ public abstract class Item {
             animation[i] = loadImage(spritePath + i  + ".png");
         }
     }
+    
+    public Nivel getGame(){
+        return nivel;
+    }
+    
+    public BufferedImage[] getAnimation(){
+        return animation;
+    }
+    public void setAnimation(BufferedImage []animation){
+        this.animation = animation;
+    }
         
     /**
      * To paint the item
