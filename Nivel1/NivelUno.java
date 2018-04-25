@@ -22,11 +22,11 @@ public class NivelUno extends Control.Nivel implements Runnable{
 
     private Taco taco;
     private static int centerSpace = 50;
+    int dir[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     
     public NivelUno(Control.Display display, Control.Player players[]) {
         super(display);
-        
-        int dir[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
         
         for(int i = 0; i < 4; i++){
             this.players[i] = new Player_N1(players[i]);
