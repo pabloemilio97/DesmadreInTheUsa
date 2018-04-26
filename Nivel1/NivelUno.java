@@ -71,7 +71,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         taco = new Taco(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
         
         newTacoCounter = 0;
-        endTime = System.currentTimeMillis() + 90 * 1000;
+        endTime = System.currentTimeMillis() + 15 * 1000;
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -182,11 +182,17 @@ public class NivelUno extends Control.Nivel implements Runnable{
         
         //display timer
         
+        
         int cornerX = Nivel.width, cornerY = Nivel.height / 5 * 4;
         
         int centerX = (cornerX + Master.width) >> 1, centerY = (cornerY + Master.height) >> 1;
         
         long total = (endTime - System.currentTimeMillis()) / 1000;
+        
+        if(total == 0){
+            stop();
+            return;
+        }
         
         long seconds = total % 60, minutes = total / 60;
         
