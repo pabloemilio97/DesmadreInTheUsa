@@ -171,7 +171,17 @@ public class NivelUno extends Control.Nivel implements Runnable{
         
         for(int i = 0; i < 4; i++) players[i].render(g);
         
-        g.drawString("" + (endTime - System.currentTimeMillis()) / 1000, 500 + 20, Nivel.height / 5 * 4);
+        //display timer
+        
+        int cornerX = Nivel.width, cornerY = Nivel.height / 5 * 4;
+        
+        int centerX = (cornerX + Master.width) >> 1, centerY = (cornerY + Master.height) >> 1;
+        
+        long total = (endTime - System.currentTimeMillis()) / 1000;
+        
+        long seconds = total % 60, minutes = total / 60;
+        
+        g.drawString(minutes + ":" + seconds, centerX - 20, centerY - 20);
         
     }
 

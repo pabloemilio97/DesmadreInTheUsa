@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 public class Master implements KeyListener{
     Nivel []niveles; //Level array declaration
     Player[] players;
-    public static int width = 700, height = 500;
+    public static int width = 700, height = 515;
     public static int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_J, KeyEvent.VK_UP};
     public Nivel currentNivel;
     public Display display;
