@@ -5,6 +5,7 @@ PLAYERS IN LEVEL FOUR SPECIFICATIONS AND ADMINISTRATION CLASS FOR THE PURPOSE OF
 package Nivel4;
 
 import Control.Nivel;
+import Control.SoundClip;
 import java.awt.image.BufferedImage;
 
 /**
@@ -13,8 +14,8 @@ import java.awt.image.BufferedImage;
  */
 public class Player_N4 extends Control.Player{
     
-    public Player_N4(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
-        super(x, y, width, height, spritePath, frames, game);
+    public Player_N4(int x, int y, int width, int height, String spritePath, int frames, Nivel game, SoundClip actionSound) {
+        super(x, y, width, height, spritePath, frames, game, actionSound);
     }
     public Player_N4(Control.Player player){
         super(player);

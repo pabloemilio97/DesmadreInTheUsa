@@ -30,7 +30,7 @@ public class Master implements KeyListener{
         
             
         for(int i = 0; i < 4; i++)
-            players[i] = new Player(0, 0, Player.width, Player.height, "/Images/" + paths[i], 6, null);
+            players[i] = new Player(0, 0, Player.width, Player.height, "/Images/" + paths[i], 6, null, null);
         //CREATION OF PLAYERS
         
         Assets.init();

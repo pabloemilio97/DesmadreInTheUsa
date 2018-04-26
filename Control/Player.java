@@ -17,10 +17,12 @@ public class Player extends Item{
     
     public static final int width = 50, height = 70;
     int puntaje;
+    SoundClip actionSound;
 
-    public Player(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
+    public Player(int x, int y, int width, int height, String spritePath, int frames, Nivel game, SoundClip actionSound) {
         super(x, y, width, height, spritePath, frames, game);
         puntaje = 0;
+        this.actionSound = actionSound;
     }
     
     

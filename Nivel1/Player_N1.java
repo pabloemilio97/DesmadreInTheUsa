@@ -6,6 +6,7 @@
 package Nivel1;
 
 import Control.Nivel;
+import Control.SoundClip;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -15,8 +16,8 @@ import java.awt.image.BufferedImage;
  */
 public class Player_N1 extends Control.Player{
     
-    public Player_N1(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
-        super(x, y, width, height, spritePath, frames, game);
+    public Player_N1(int x, int y, int width, int height, String spritePath, int frames, Nivel game, SoundClip actionSound) {
+        super(x, y, width, height, spritePath, frames, game, actionSound);
     }
     public Player_N1(Control.Player player){
         super(player);
