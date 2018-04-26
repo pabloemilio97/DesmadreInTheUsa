@@ -9,12 +9,14 @@ package Nivel1;
 import Control.Assets;
 import static Control.Assets.loadImage;
 import static Control.Assets.rotateImage;
+import Control.Item;
 import Control.Master;
 import Control.Nivel;
 import Control.Player;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -33,12 +35,16 @@ public class NivelUno extends Control.Nivel implements Runnable{
     
     private Salsa [] botes;
     private Salsa salsaBullets[];
+    public Item tacoTransition, tacoReady;
     
     private Queue<Salsa> bulletQueue;
+    private Queue<Taco> tacoQueue;
     
     public NivelUno(Control.Display display, Control.Player players[]) {
         super(display);
 
+        tacoTransition = new Taco(0, 0, 0, 0, "/Images/Taco_hit/", 4, this);
+        tacoReady = new Taco(0, 0, 0, 0, "/Images/Taco_ready/", 7, this);
         
         for(int i = 0; i < 4; i++){
             this.players[i] = new Player_N1(players[i]);
@@ -56,6 +62,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         //salsaBullets[0] = loadImage("/Images/Catsup.png)
         
         bulletQueue = new LinkedList<>();
+        tacoQueue = new LinkedList<>();
         
         taco = new Taco(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
     }
@@ -70,22 +77,35 @@ public class NivelUno extends Control.Nivel implements Runnable{
          */
         return new int[]{0, 0, 0, 0};
     }
+    
+    public Item getTacoTransition(){
+        return tacoTransition;
+    }
+    
+    public Queue getBulletQueue(){
+        return bulletQueue;
+    }
+    
+    public Item getTacoReady(){
+        return tacoReady;
+    }
+    
     /**
      * Updates graphics of game. It is called 50 times per second. All
      * characters inherit from class Item, so they all override their own tick
      * method, call them here
      */
     public void tick() {
-        taco.tick();
         
         for(int i = bulletQueue.size(); i > 0; i--){
             Salsa current = bulletQueue.poll();
-            
+                        
             current.tick();
-            
-            bulletQueue.add(current);
+            if(!current.isDestroyed())
+                bulletQueue.add(current);
             
         }
+        taco.tick();
         
         //keyManager.tick();
         //player.tick();
@@ -121,9 +141,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
 
     @Override
     public void botonDeAccion(int playerIndex) {
-        
-        bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
-        
+        bulletQueue.add(new Salsa(salsaBullets[playerIndex]));        
     }
 
     

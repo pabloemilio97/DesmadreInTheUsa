@@ -10,6 +10,7 @@ import Control.Master;
 import Control.Nivel;
 import Control.Player;
 import java.awt.image.BufferedImage;
+import java.util.Queue;
 
 /**
  *
@@ -18,17 +19,25 @@ import java.awt.image.BufferedImage;
 public class Taco extends Item{
     private int velocidad; //velocidad del taco
     private int degrees, direction;
+    private boolean inTransition, ready;
     
     private static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     
     public Taco(int x, int y, int width, int height, String path, int frames, Nivel nivel) {
         super(x, y, width, height, path, frames, nivel);
         degrees = direction = 0;
+        inTransition = ready = false;
     }
     
     
     @Override
     public void tick() {
+        
+        if(inTransition && renderCount + 1 == animation.length * 100){
+            animation = ((NivelUno)nivel).getTacoReady().getAnimation();
+            inTransition = false;
+            ready = true;
+        }
                 
         if(x < 0 || y < 0 || x + width > Nivel.width || y + height > Nivel.height){
             direction = (direction + 1) % 4;
@@ -41,6 +50,25 @@ public class Taco extends Item{
         
         x += dirs[direction][0];
         y += dirs[direction][1];
+        
+        if(inTransition || ready) return;
+        
+        Queue<Salsa> bulletQueue = ((NivelUno)nivel).getBulletQueue();
+        
+        for(int i = bulletQueue.size(); i > 0; i--){
+            Salsa current = bulletQueue.poll();
+            
+            if(intersects(current)){
+                animation = ((NivelUno)nivel).getTacoTransition().getAnimation();
+                inTransition = true;
+                
+                current.setDestroyed(true);
+                
+            }
+            
+            bulletQueue.add(current);
+            
+        }
         
         /*int rad = 200;       //Radius in px
         float angle = 0;     //Angle (this needs to be represented in radians, not degrees)
