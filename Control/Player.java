@@ -30,6 +30,7 @@ public class Player extends Item{
     public Player(Player p){
         super(p.x, p.y, p.getWidth(), p.getHeight(), null, p.getNivel());
         animation = p.animation;
+        actionSound = p.actionSound;
     }
     /**
      * Modifica el puntaje
@@ -47,6 +48,17 @@ public class Player extends Item{
         return puntaje;
     }
     
+    /**
+     * gets action sound
+     * @return 
+     */
+    public SoundClip getActionSound() {
+        return actionSound;
+    }
+    
+    /**
+     * Se reproduce el sonido respectivo
+     */
     public void sonidoAccion(){
         this.actionSound.play();
     }
