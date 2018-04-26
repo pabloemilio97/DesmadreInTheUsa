@@ -91,8 +91,14 @@ public class Salsa extends Control.Item{
         x += NivelUno.dirs[playerID][0];
         y += NivelUno.dirs[playerID][1];
         
-        if(x < 0 || x + getWidth() > Nivel.width || y < 0 || y + this.getHeight() > Nivel.height)
+        if(x < 0 || x + getWidth() > Nivel.width || y < 0 || y + this.getHeight() > Nivel.height){
             destroyed = true;
+            
+            int oldPuntaje = nivel.getPlayers()[playerID].getPuntaje();
+            
+            nivel.getPlayers()[playerID].setPuntaje(oldPuntaje - 100);
+            
+        }
                 
     }
 }

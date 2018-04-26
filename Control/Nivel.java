@@ -57,6 +57,10 @@ public abstract class Nivel implements Runnable{
         stop();
     }
     
+    public Player[] getPlayers(){
+        return players;
+    }
+    
     /**
      * setting	the	thread	for	the	game
      */

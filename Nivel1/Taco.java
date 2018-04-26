@@ -79,6 +79,10 @@ public class Taco extends Item{
                 
                 current.setDestroyed(true);
                 
+                int oldPuntaje = nivel.getPlayers()[current.getPlayerID()].getPuntaje();
+            
+                nivel.getPlayers()[current.getPlayerID()].setPuntaje(oldPuntaje + 100);
+                
             }
             
             bulletQueue.add(current);
