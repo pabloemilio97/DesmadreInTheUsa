@@ -38,8 +38,8 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private Salsa salsaBullets[];
     public Item tacoTransition, tacoReady;
     private int newTacoCounter;
-    private long endTime;
-    private static final int randomTime = 3000;
+    private long endTime, lastTime;
+    private int randomTime = 3000;
     
     private Queue<Salsa> bulletQueue;
     private Queue<Taco> tacoQueue;
@@ -123,6 +123,15 @@ public class NivelUno extends Control.Nivel implements Runnable{
             
         }
         
+        long now = (endTime - System.currentTimeMillis()) / 1000;
+        
+        if(now != lastTime && now % 15 == 0){
+            randomTime -= 500;
+                        
+            System.out.println(now + " " + randomTime);
+            
+        }
+        lastTime = now;
         
         if(newTacoCounter-- == 0){
             tacoQueue.add(new Taco(taco));
