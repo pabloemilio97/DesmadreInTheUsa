@@ -187,7 +187,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
 
     @Override
     public void botonDeAccion(int playerIndex) {
-        bulletQueue.add(new Salsa(salsaBullets[playerIndex]));        
+        bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
     }
 
     

@@ -46,6 +46,10 @@ public class Player extends Item{
     public int getPuntaje() {
         return puntaje;
     }
+    
+    public void sonidoAccion(){
+        this.actionSound.play();
+    }
 
     @Override
     public void tick() {
