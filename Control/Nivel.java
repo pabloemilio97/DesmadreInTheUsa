@@ -22,6 +22,8 @@ public abstract class Nivel implements Runnable{
     protected Thread thread;
     protected Control.Player players[];
     
+    private static final int scoreWidth = 200, scoreHeight = 700 / 4;
+    
     public Nivel(Display display){
         this.display = display;
         this.players = new Player[4];
@@ -100,6 +102,19 @@ public abstract class Nivel implements Runnable{
     /**
      * Renders the graphics of the game
      */
+    
+    private void renderScore(){
+        
+        int scoreSpriteWidth = 4;
+        
+        for(int i = 0; i < 4; i++){
+            g.drawImage(players[i].getAnimation(0), 500, i * scoreHeight, scoreSpriteWidth, scoreHeight, null);
+            
+            
+            
+        }
+    }
+    
     protected void gameRender() {
         //	get	the	buffer	strategy	from	the	display
         bs = display.getCanvas().getBufferStrategy();
@@ -114,6 +129,9 @@ public abstract class Nivel implements Runnable{
         } else {
             g = bs.getDrawGraphics();
             render();
+            
+            renderScore();
+            
             bs.show();
             g.dispose();
         }
