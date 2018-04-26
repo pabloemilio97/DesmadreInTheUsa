@@ -30,6 +30,7 @@ public class Player extends Item{
     public Player(Player p){
         super(p.x, p.y, p.getWidth(), p.getHeight(), null, p.getNivel());
         animation = p.animation;
+        actionSound = p.actionSound;
     }
     /**
      * Modifica el puntaje
