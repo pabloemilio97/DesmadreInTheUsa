@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Stack;
 import javax.swing.JFrame;
 
@@ -36,6 +37,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private Salsa [] botes;
     private Salsa salsaBullets[];
     public Item tacoTransition, tacoReady;
+    private int newTacoCounter;
     
     private Queue<Salsa> bulletQueue;
     private Queue<Taco> tacoQueue;
@@ -65,6 +67,8 @@ public class NivelUno extends Control.Nivel implements Runnable{
         tacoQueue = new LinkedList<>();
         
         taco = new Taco(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
+        
+        newTacoCounter = 0;
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -105,7 +109,25 @@ public class NivelUno extends Control.Nivel implements Runnable{
                 bulletQueue.add(current);
             
         }
-        taco.tick();
+        
+        for(int i = tacoQueue.size(); i > 0; i--){
+            Taco current = tacoQueue.poll();
+            
+            current.tick();
+            
+            if(!current.isDestroyed())
+                tacoQueue.add(current);
+            
+        }
+        
+        if(newTacoCounter-- == 0){
+            tacoQueue.add(new Taco(taco));
+            
+            Random rand = new Random();
+            
+            newTacoCounter = rand.nextInt(3000) + 500;
+            
+        }
         
         //keyManager.tick();
         //player.tick();
@@ -123,7 +145,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
         g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
         //g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         //g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
-        taco.render(g);
         
         
         for(int i = bulletQueue.size(); i > 0; i--){
@@ -132,6 +153,15 @@ public class NivelUno extends Control.Nivel implements Runnable{
             current.render(g);
             
             bulletQueue.add(current);
+            
+        }
+        
+        for(int i = tacoQueue.size(); i > 0; i--){
+            Taco current = tacoQueue.poll();
+            
+            current.render(g);
+            
+            tacoQueue.add(current);
             
         }
         

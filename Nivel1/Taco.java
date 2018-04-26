@@ -19,19 +19,34 @@ import java.util.Queue;
 public class Taco extends Item{
     private int velocidad; //velocidad del taco
     private int degrees, direction;
-    private boolean inTransition, ready;
+    private boolean inTransition, ready, destroyed;
     
     private static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     
     public Taco(int x, int y, int width, int height, String path, int frames, Nivel nivel) {
         super(x, y, width, height, path, frames, nivel);
         degrees = direction = 0;
+        inTransition = ready = destroyed = false;
+    }
+    
+    public Taco(Taco taco){
+        super(taco.getX(), taco.getY(), taco.getWidth(), taco.getHeight(), null, taco.getGame());
+        
+        this.animation = taco.getAnimation();
+        degrees = direction = 0;
         inTransition = ready = false;
     }
     
+    public boolean isDestroyed(){
+        return destroyed;
+    }
     
     @Override
     public void tick() {
+        
+        if(ready && x == 0 && y == 0){
+            destroyed = true;
+        }
         
         if(inTransition && renderCount + 1 == animation.length * 100){
             animation = ((NivelUno)nivel).getTacoReady().getAnimation();
