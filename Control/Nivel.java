@@ -1,5 +1,6 @@
 package Control;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
@@ -21,9 +22,7 @@ public abstract class Nivel implements Runnable{
     protected boolean running;
     protected Thread thread;
     protected Control.Player players[];
-    
-    private static final int scoreWidth = 200, scoreHeight = 700 / 4;
-    
+        
     public Nivel(Display display){
         this.display = display;
         this.players = new Player[4];
@@ -105,12 +104,13 @@ public abstract class Nivel implements Runnable{
     
     private void renderScore(){
         
-        int scoreSpriteWidth = 4;
+        int scoreHeight = Nivel.height / 4;
         
+                
         for(int i = 0; i < 4; i++){
-            g.drawImage(players[i].getAnimation(0), 500, i * scoreHeight, scoreSpriteWidth, scoreHeight, null);
+            g.drawImage(players[i].getAnimation(0), Nivel.width, i * scoreHeight, Player.width, Player.height, null);
             
-            
+            g.drawString("" + players[i].getPuntaje(), Nivel.width + Player.width + 60, i * scoreHeight + 60);
             
         }
     }
@@ -128,6 +128,7 @@ public abstract class Nivel implements Runnable{
             display.getCanvas().createBufferStrategy(3);
         } else {
             g = bs.getDrawGraphics();
+            g.setFont(new Font("TimesRoman", Font.BOLD, 50)); 
             render();
             
             renderScore();
