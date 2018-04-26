@@ -108,7 +108,7 @@ public abstract class Nivel implements Runnable{
     
     private void renderScore(){
         
-        int scoreHeight = Nivel.height / 4;
+        int scoreHeight = Nivel.height / 5;
         
                 
         for(int i = 0; i < 4; i++){

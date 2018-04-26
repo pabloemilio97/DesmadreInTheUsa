@@ -38,6 +38,8 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private Salsa salsaBullets[];
     public Item tacoTransition, tacoReady;
     private int newTacoCounter;
+    private long endTime;
+    private static final int randomTime = 3000;
     
     private Queue<Salsa> bulletQueue;
     private Queue<Taco> tacoQueue;
@@ -69,6 +71,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         taco = new Taco(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
         
         newTacoCounter = 0;
+        endTime = System.currentTimeMillis() + 90 * 1000;
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -120,12 +123,13 @@ public class NivelUno extends Control.Nivel implements Runnable{
             
         }
         
+        
         if(newTacoCounter-- == 0){
             tacoQueue.add(new Taco(taco));
             
             Random rand = new Random();
             
-            newTacoCounter = rand.nextInt(3000) + 500;
+            newTacoCounter = rand.nextInt(randomTime) + randomTime / 6;
             
         }
         
@@ -166,6 +170,8 @@ public class NivelUno extends Control.Nivel implements Runnable{
         }
         
         for(int i = 0; i < 4; i++) players[i].render(g);
+        
+        g.drawString("" + (endTime - System.currentTimeMillis()) / 1000, 500 + 20, Nivel.height / 5 * 4);
         
     }
 
