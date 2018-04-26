@@ -47,6 +47,17 @@ public class Player extends Item{
         return puntaje;
     }
     
+    /**
+     * gets action sound
+     * @return 
+     */
+    public SoundClip getActionSound() {
+        return actionSound;
+    }
+    
+    /**
+     * Se reproduce el sonido respectivo
+     */
     public void sonidoAccion(){
         this.actionSound.play();
     }
