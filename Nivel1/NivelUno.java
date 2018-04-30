@@ -46,8 +46,9 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private Queue<Taco> tacoQueue;
     private SoundClip actionSounds[] = new SoundClip[4];
     private String actionPaths[] = {"salsa1.wav", "salsa2.wav", "salsa3.wav", "salsa4.wav"};
-    public NivelUno(Control.Display display, Control.Player players[]) {
-        super(display);
+    public NivelUno(Control.Display display, Control.Player players[], Control.Master master) {
+        super(display, master);
+        System.out.println(this.players);
 
         tacoTransition = new Taco(0, 0, 0, 0, "/Images/Taco_hit/", 4, this);
         tacoReady = new Taco(0, 0, 0, 0, "/Images/Taco_ready/", 7, this);

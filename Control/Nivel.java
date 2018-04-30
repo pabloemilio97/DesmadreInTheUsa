@@ -85,6 +85,9 @@ public abstract class Nivel implements Runnable{
             } catch (InterruptedException ie) {
                 ie.printStackTrace();
             }
+            
+            master.nextGame();
+            
         }
     }
     
