@@ -5,6 +5,7 @@
  */
 package Nivel3;
 
+import Control.Master;
 import Control.Player;
 import Nivel1.*;
 import java.awt.Graphics;
@@ -66,7 +67,12 @@ public class NivelTres extends Control.Nivel implements Runnable{
     public void botonDeAccion(int playerIndex) {
         
     }
-
+    
+    public static void main(String args[]){
+        Master mas = new Master();
+        mas.startGame();
+        mas.runGame();
+    }
     
 
     
