@@ -13,6 +13,7 @@ import Control.Item;
 import Control.Master;
 import Control.Nivel;
 import Control.Player;
+import Control.SoundClip;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -43,7 +44,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     
     private Queue<Salsa> bulletQueue;
     private Queue<Taco> tacoQueue;
-    
+    private SoundClip actionSounds = new SoundClip("/Sounds/Salsa/tacos1.wav");
     public NivelUno(Control.Display display, Control.Player players[]) {
         super(display);
 
@@ -55,7 +56,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
             
             this.players[i].setX((Nivel.width - Player.width) / 2 + dirs[i][0] * centerSpace);
             this.players[i].setY((Nivel.height - Player.height) / 2 + dirs[i][1] * centerSpace);
-            
         }
         
         salsaBullets = new Salsa[4];
@@ -218,6 +218,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     @Override
     public void botonDeAccion(int playerIndex) {
         bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
+        actionSounds.play();
     }
 
     

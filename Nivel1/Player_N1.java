@@ -26,8 +26,8 @@ public class Player_N1 extends Control.Player{
      * @param game
      * @param actionSound 
      */
-    public Player_N1(int x, int y, int width, int height, String spritePath, int frames, Nivel game, SoundClip actionSound) {
-        super(x, y, width, height, spritePath, frames, game, actionSound);
+    public Player_N1(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
+        super(x, y, width, height, spritePath, frames, game);
     }
     /**
      * copy constructor
