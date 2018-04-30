@@ -17,8 +17,6 @@ import javax.swing.JFrame;
  * @author adanlopezalatorre
  */
 public class NivelCuatro extends Control.Nivel implements Runnable{
-
-    private Control.Player players[];
     
     
     public NivelCuatro(Control.Display display, Player players[], Control.Master master) {

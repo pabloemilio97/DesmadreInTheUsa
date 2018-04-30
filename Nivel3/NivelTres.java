@@ -6,6 +6,7 @@
 package Nivel3;
 
 import Control.Master;
+import Control.Nivel;
 import Control.Player;
 import Nivel1.*;
 import java.awt.Graphics;
@@ -19,15 +20,19 @@ import javax.swing.JFrame;
  */
 public class NivelTres extends Control.Nivel implements Runnable{
 
-    private Control.Player players[];
-    
-    
     public NivelTres(Control.Display display, Player players[], Control.Master master) {
+        
         super(display, master);
-        
-        for(int i = 0; i < 4; i++)
+        this.players = new Player[4];
+        int startX = 10;
+        int startY = Nivel.height - Player.height*2;
+        int separation = Player.width * 2;
+        for (int i = 0; i < 4; i++) {
+            
             this.players[i] = new Player_N3(players[i]);
-        
+            this.players[i].setX(startX + i*(players[i].getWidth() + separation));
+            this.players[i].setY(startY);
+        }
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -55,11 +60,20 @@ public class NivelTres extends Control.Nivel implements Runnable{
      */
     @Override
     public void render() {
-        
+        if (g == null) {
+            System.out.println("Error extraño");
+            return;
+        }
+        g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
+
+        for (int i = 0; i < 4; i++) {
+            players[i].render(g);
+        }
+        /*
         g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
         g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);
+        g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);*/
         
     }
 
