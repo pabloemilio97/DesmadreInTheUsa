@@ -109,25 +109,6 @@ public class Taco extends Item{
             
         }
         
-        /*int rad = 200;       //Radius in px
-        float angle = 0;     //Angle (this needs to be represented in radians, not degrees)
-        float centerX = Master.width / 2;       //X Coordinate of the centre of rotation
-        float centerY = Master.height / 2;       //Y Coordinate of the centre of rotation
-        float time = 2;          //Number of seconds a full revolution should take
-        int ticksPerSecond = 50; //Number of game updates per second
-
-        float spriteX;       //X Position of sprite
-        float spriteY;       //Y Position of sprite
-        //Update the angle
-        angle+= 2 * Math.PI / (ticksPerSecond * time);
-
-        //Update the coordinates
-        this.x = (int)(centerX  + (rad*Math.cos(angle)));
-        this.y = (int)(centerY  + (rad*Math.sin(angle)));
-        
-        //If you want to set the initial angle of the object around the orbit-path, then simply specify in radians
-        //angle = (angle in degrees)/180 * Math.PI
-        */
     }
     
 }
