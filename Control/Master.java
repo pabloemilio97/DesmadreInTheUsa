@@ -39,7 +39,7 @@ public class Master implements KeyListener{
     }
     
     public void startGame(){
-        currentNivel = new Nivel3.NivelTres(display, players);
+        currentNivel = new Nivel1.NivelUno(display, players);
     }
     public void runGame(){
         currentNivel.start();
