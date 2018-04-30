@@ -85,14 +85,26 @@ public class NivelUno extends Control.Nivel implements Runnable{
         return new int[]{0, 0, 0, 0};
     }
     
+    /**
+     * Returns item that has the data for transitioning taco
+     * @return 
+     */
     public Item getTacoTransition(){
         return tacoTransition;
     }
     
+    /**
+     * returns the queue containing bullets
+     * @return 
+     */
     public Queue getBulletQueue(){
         return bulletQueue;
     }
     
+    /**
+     * returns item that has data for taco that is ready
+     * @return 
+     */
     public Item getTacoReady(){
         return tacoReady;
     }
@@ -199,7 +211,10 @@ public class NivelUno extends Control.Nivel implements Runnable{
         g.drawString(minutes + ":" + seconds, centerX - 20, centerY - 20);
         
     }
-
+    /**
+     * makes action for any player, which shoots salsa
+     * @param playerIndex 
+     */
     @Override
     public void botonDeAccion(int playerIndex) {
         bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
