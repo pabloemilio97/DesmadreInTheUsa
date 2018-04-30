@@ -44,16 +44,17 @@ public class NivelUno extends Control.Nivel implements Runnable{
     
     private Queue<Salsa> bulletQueue;
     private Queue<Taco> tacoQueue;
-    private SoundClip actionSounds = new SoundClip("/Sounds/Salsa/tacos1.wav");
+    private SoundClip actionSounds[] = new SoundClip[4];
+    private String actionPaths[] = {"tacos1.wav", "tacos1.wav", "tacos2.wav", "tacosDeCanasta.wav"};
     public NivelUno(Control.Display display, Control.Player players[]) {
         super(display);
 
         tacoTransition = new Taco(0, 0, 0, 0, "/Images/Taco_hit/", 4, this);
         tacoReady = new Taco(0, 0, 0, 0, "/Images/Taco_ready/", 7, this);
-        
         for(int i = 0; i < 4; i++){
             this.players[i] = new Player_N1(players[i]);
-            
+            actionPaths[i] = "/Sounds/Salsa/" + actionPaths[i];
+            actionSounds[i] = new SoundClip(actionPaths[i]);
             this.players[i].setX((Nivel.width - Player.width) / 2 + dirs[i][0] * centerSpace);
             this.players[i].setY((Nivel.height - Player.height) / 2 + dirs[i][1] * centerSpace);
         }
@@ -218,7 +219,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     @Override
     public void botonDeAccion(int playerIndex) {
         bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
-        actionSounds.play();
+        actionSounds[playerIndex].play();
     }
 
     
