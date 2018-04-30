@@ -23,7 +23,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
     public NivelTres(Control.Display display, Player players[], Control.Master master) {
         
         super(display, master);
-        this.players = new Player[4];
+        //this.players = new Player[4];
         int startX = 10;
         int startY = Nivel.height - Player.height*2;
         int separation = Player.width * 2;
