@@ -22,9 +22,11 @@ public abstract class Nivel implements Runnable{
     protected boolean running;
     protected Thread thread;
     protected Control.Player players[];
+    protected Control.Master master;
         
-    public Nivel(Display display){
+    public Nivel(Display display, Control.Master master){
         this.display = display;
+        this.master = master;
         this.players = new Player[4];
         running = false;
     }
