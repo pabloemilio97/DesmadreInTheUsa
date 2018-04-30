@@ -69,9 +69,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
     }
     
     public static void main(String args[]){
-        Master mas = new Master();
-        mas.startGame();
-        mas.runGame();
+
     }
     
 
