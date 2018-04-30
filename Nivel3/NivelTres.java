@@ -67,12 +67,4 @@ public class NivelTres extends Control.Nivel implements Runnable{
     public void botonDeAccion(int playerIndex) {
         
     }
-    
-    public static void main(String args[]){
-
-    }
-    
-
-    
-    
 }
