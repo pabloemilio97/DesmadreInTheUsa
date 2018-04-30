@@ -23,12 +23,26 @@ public class Taco extends Item{
     
     private static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     
+    /**
+     * constructor for taco
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param path
+     * @param frames
+     * @param nivel 
+     */
     public Taco(int x, int y, int width, int height, String path, int frames, Nivel nivel) {
         super(x, y, width, height, path, frames, nivel);
         degrees = direction = 0;
         inTransition = ready = destroyed = false;
     }
     
+    /**
+     * copy constructor
+     * @param taco 
+     */
     public Taco(Taco taco){
         super(taco.getX(), taco.getY(), taco.getWidth(), taco.getHeight(), null, taco.getGame());
         
@@ -37,10 +51,16 @@ public class Taco extends Item{
         inTransition = ready = false;
     }
     
+    /**
+     * getter for taco destruction
+     * @return 
+     */
     public boolean isDestroyed(){
         return destroyed;
     }
-    
+    /**
+     * 
+     */
     @Override
     public void tick() {
         
