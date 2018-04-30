@@ -137,7 +137,7 @@ public abstract class Nivel implements Runnable{
             g.setFont(new Font("TimesRoman", Font.BOLD, 50)); 
             render();
             
-            renderScore();
+           //renderScore();
             
             bs.show();
             g.dispose();
