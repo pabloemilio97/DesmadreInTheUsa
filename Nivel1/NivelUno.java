@@ -45,7 +45,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private Queue<Salsa> bulletQueue;
     private Queue<Taco> tacoQueue;
     private SoundClip actionSounds[] = new SoundClip[4];
-    private String actionPaths[] = {"tacos1.wav", "tacos1.wav", "tacos2.wav", "tacosDeCanasta.wav"};
+    private String actionPaths[] = {"salsa1.wav", "salsa2.wav", "salsa3.wav", "salsa4.wav"};
     public NivelUno(Control.Display display, Control.Player players[]) {
         super(display);
 
