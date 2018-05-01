@@ -139,10 +139,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         long now = (endTime - System.currentTimeMillis()) / 1000;
         
         if(now != lastTime && now % 15 == 0){
-            randomTime -= 500;
-                        
-            System.out.println(now + " " + randomTime);
-            
+            randomTime /= 1.3;
         }
         lastTime = now;
         
@@ -195,22 +192,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         
         //display timer
         
-        
-        int cornerX = Nivel.width, cornerY = Nivel.height / 5 * 4;
-        
-        int centerX = (cornerX + Master.width) >> 1, centerY = (cornerY + Master.height) >> 1;
-        
-        long total = (endTime - System.currentTimeMillis()) / 1000;
-        
-        if(total == 0){
-            stop();
-            return;
-        }
-        
-        long seconds = total % 60, minutes = total / 60;
-        
-        g.drawString(minutes + ":" + seconds, centerX - 20, centerY - 20);
-        
+                
     }
     /**
      * makes action for any player, which shoots salsa

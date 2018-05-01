@@ -6,8 +6,13 @@
 package Control;
 
 import java.awt.Canvas;
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
@@ -16,6 +21,8 @@ import javax.swing.JFrame;
 public class Display {
     private JFrame jframe;  // this is the app class
     private Canvas canvas;  // to display images
+    private Container scoreContainer, playerContainer[];
+    private static final int playerScoreHeight = Master.height / 5;
     
     private final String title;   // title of the window
     private final int width;      // width of the window
@@ -26,6 +33,9 @@ public class Display {
     }
     public int getHeight(){
         return height;
+    }
+    public Container getScoreContainer(){
+        return scoreContainer;
     }
     
     /**
@@ -44,6 +54,35 @@ public class Display {
     /**
      * create the app and the canvas and add the canvas to the window app
      */
+    
+    public Container getPlayerContainer(JLabel imageLabel){
+        Container container = new Container();
+        container.setPreferredSize(new Dimension(Master.width - Nivel.width, Nivel.height));
+        container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
+                
+        imageLabel.setSize()
+        
+        container.add()
+        
+    }
+    
+    public void createScoreContainer(){
+        scoreContainer = new Container();
+        scoreContainer.setPreferredSize(new Dimension(Master.width - Nivel.width, Nivel.height));
+        scoreContainer.setLayout(new BoxLayout(scoreContainer, BoxLayout.Y_AXIS));
+        
+        playerContainer = new Container[4];
+        
+        for(int i = 0; i < 4; i++){
+            playerContainer[i] = getPlayerContainer();
+            
+            
+            
+            scoreContainer.add(playerContainer[i]);
+        }
+        
+    }
+    
     public void createDisplay() {
         // create the app window
         jframe = new JFrame(title);
@@ -57,16 +96,20 @@ public class Display {
         jframe.setLocationRelativeTo(null);
         jframe.setVisible(true);
         
+        jframe.setLayout(new BoxLayout(jframe.getContentPane(), BoxLayout.X_AXIS));
+                
         // creating the canvas to paint and setting size
         canvas = new Canvas();
-        canvas.setPreferredSize(new Dimension(width, height));
-        canvas.setMaximumSize(new Dimension(width, height));
-        canvas.setPreferredSize(new Dimension(width, height));
+        canvas.setPreferredSize(new Dimension(Nivel.width, Nivel.height));
+        canvas.setMaximumSize(new Dimension(Nivel.width, Nivel.height));
+        canvas.setMinimumSize(new Dimension(Nivel.width, Nivel.height));
+        canvas.setPreferredSize(new Dimension(Nivel.width, Nivel.height));
         canvas.setFocusable(false);
         
         // adding the canvas to the app window and packing to
         // get the right dimensions
         jframe.add(canvas);
+        jframe.add(scoreContainer);
         jframe.pack();
     }
 
