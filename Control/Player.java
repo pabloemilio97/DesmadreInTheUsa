@@ -25,8 +25,8 @@ public class Player extends Item{
     
     
     
-    public Player(Player p){
-        super(p.x, p.y, p.getWidth(), p.getHeight(), null, p.getNivel());
+    public Player(Player p, Nivel miNivel){
+        super(p.x, p.y, p.getWidth(), p.getHeight(), null, miNivel);
         animation = p.animation;
     }
     /**

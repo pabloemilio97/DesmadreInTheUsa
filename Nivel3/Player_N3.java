@@ -34,8 +34,8 @@ public class Player_N3 extends Control.Player{
      * copy constructor
      * @param player 
      */
-    public Player_N3(Control.Player player){
-        super(player);
+    public Player_N3(Control.Player player, Nivel miNivel){
+        super(player, miNivel);
     }
     /**
      * determines if superior limit of level is reached
