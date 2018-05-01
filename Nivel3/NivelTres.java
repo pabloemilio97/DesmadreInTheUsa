@@ -8,6 +8,7 @@ package Nivel3;
 import Control.Master;
 import Control.Nivel;
 import Control.Player;
+import Control.SoundClip;
 import Control.Transition;
 import Nivel1.*;
 import java.awt.Graphics;
@@ -45,6 +46,10 @@ public class NivelTres extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
+        SoundClip music = new SoundClip("/Music/n3.wav");
+        music.setLooping(true);
+        music.play();
+        nivelTime = 120;
         /*
         Initialization of game characters should go here
          */

@@ -1,5 +1,6 @@
 package Control;
 
+import static Control.Assets.loadImage;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -14,7 +15,7 @@ import javax.swing.JLabel;
 
 public abstract class Nivel implements Runnable{
     
-    public static int width = 700, height = 700, nivelTime = 15;
+    public static int width = 700, height = 700, nivelTime = 100;
     
     protected int lifestock;
     protected Display display;
@@ -189,9 +190,8 @@ public abstract class Nivel implements Runnable{
             
         } else {
             g = bs.getDrawGraphics();
-            g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
+            g.drawImage(Assets.backgrounds[(master.currentNivel+1)], 0, 0, Master.width, Master.height, null);
             render();
-            
             renderScore();
             
             bs.show();
