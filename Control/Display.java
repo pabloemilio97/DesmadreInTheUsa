@@ -55,16 +55,16 @@ public class Display {
      * create the app and the canvas and add the canvas to the window app
      */
     
-    public Container getPlayerContainer(JLabel imageLabel){
+    /*public Container getPlayerContainer(JLabel imageLabel){
         Container container = new Container();
-        container.setPreferredSize(new Dimension(Master.width - Nivel.width, Nivel.height));
+        container.setPreferredSize(new Dimension(playerScoreHeight, playerScoreHeight));
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
                 
-        imageLabel.setSize()
+        imageLabel.setSize(new Dimension(Master.width - Nivel.width, playerScoreHeight));
         
-        container.add()
+        container.add(imageLabel);
         
-    }
+    }*/
     
     public void createScoreContainer(){
         scoreContainer = new Container();
@@ -74,11 +74,11 @@ public class Display {
         playerContainer = new Container[4];
         
         for(int i = 0; i < 4; i++){
-            playerContainer[i] = getPlayerContainer();
+            //playerContainer[i] = getPlayerContainer();
             
             
             
-            scoreContainer.add(playerContainer[i]);
+            //scoreContainer.add(playerContainer[i]);
         }
         
     }
@@ -105,6 +105,8 @@ public class Display {
         canvas.setMinimumSize(new Dimension(Nivel.width, Nivel.height));
         canvas.setPreferredSize(new Dimension(Nivel.width, Nivel.height));
         canvas.setFocusable(false);
+        
+        createScoreContainer();
         
         // adding the canvas to the app window and packing to
         // get the right dimensions
