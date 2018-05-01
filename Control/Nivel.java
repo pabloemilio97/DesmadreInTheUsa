@@ -194,7 +194,7 @@ public abstract class Nivel implements Runnable{
             
         } else {
             g = bs.getDrawGraphics();
-            g.drawImage(Assets.backgrounds[(master.currentNivel+1)], 0, 0, Master.width, Master.height, null);
+            g.drawImage(Assets.backgrounds[master.currentNivel + 1], 0, 0, Master.width, Master.height, null);
             render();
             renderScore();
             

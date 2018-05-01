@@ -24,8 +24,8 @@ public class Assets {
      * initializing	the	images	of	the	game
      */
     public static void init() {
-        backgrounds = new BufferedImage[4];
-        for (int i=1; i<4; i++){
+        backgrounds = new BufferedImage[5];
+        for (int i=1; i<=4; i++){
             backgrounds[i] = loadImage("/Images/BG" + i + ".png");
         }
     }

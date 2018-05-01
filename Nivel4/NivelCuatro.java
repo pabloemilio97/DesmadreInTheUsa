@@ -20,12 +20,14 @@ import javax.swing.JFrame;
  */
 public class NivelCuatro extends Control.Nivel implements Runnable{
     
-    
+    Trump trump;
     public NivelCuatro(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
         for(int i = 0; i < 4; i++)
             this.players[i] = new Player_N4(players[i], this);
+        
+        trump = new Trump(0, Trump.height, 50, 50, "/Images/Calaca", 1, this);
         
     }
     /**
@@ -63,7 +65,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
      */
     @Override
     public void render() {
-        
+        g.drawImage()
         
     }
 
