@@ -50,6 +50,10 @@ public abstract class Nivel implements Runnable{
         //start();
     }
     
+    public boolean isRunning(){
+        return running;
+    }
+    
     @Override
     public void run() {
         init();
