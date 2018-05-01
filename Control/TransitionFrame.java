@@ -20,13 +20,13 @@ public class TransitionFrame {
     private Clip begginingSound;
     
     public TransitionFrame(String path){
-        image = loadImage(path + ".png");
         
+        image = loadImage(path + ".png");
         begginingSound = loadSound(path + ".wav");
     }
     
     public void show(Graphics g){
-        g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
+        g.drawImage(image, 0, 0, Master.width, Master.height, null);
         begginingSound.loop(0);
     } 
     

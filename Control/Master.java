@@ -51,12 +51,12 @@ public class Master implements KeyListener{
     }
     
     public void nextGame(){
-        if(currentNivel == 4){
+        if(currentNivel == 3){
             //handle end of game
             return;
         }
         
-        niveles[++currentNivel].start();
+        niveles[++currentNivel].executeNivel();
     }
 
         //Key Typed method
@@ -79,6 +79,9 @@ public class Master implements KeyListener{
             if(key == Master.playerKeys[i]){
                 niveles[currentNivel].botonDeAccion(i);
             }
+        }
+        if(key == KeyEvent.VK_SPACE){
+            niveles[currentNivel].getTransition().nextTransition();
         }
     }
     

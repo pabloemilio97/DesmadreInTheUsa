@@ -8,6 +8,7 @@ package Nivel3;
 import Control.Master;
 import Control.Nivel;
 import Control.Player;
+import Control.Transition;
 import Nivel1.*;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -60,6 +61,10 @@ public class NivelTres extends Control.Nivel implements Runnable{
            players[i].tick();   
         }
         
+    }
+    @Override
+    public void setTransition(){
+        transition = new Transition("3", 7, display, this);
     }
 
     /**

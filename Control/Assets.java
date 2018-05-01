@@ -36,7 +36,7 @@ public class Assets {
         Clip collisionSound = null;
         try{
             collisionSound = AudioSystem.getClip();
-            collisionSound.open(AudioSystem.getAudioInputStream(Assets.class.getResource("/Audio/" + fileName)));
+            collisionSound.open(AudioSystem.getAudioInputStream(Assets.class.getResource(fileName)));
         }catch(Exception e){
             System.out.println(e.getClass());
             e.printStackTrace();

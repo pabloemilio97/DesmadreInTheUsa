@@ -137,20 +137,35 @@ public class Display {
         
     }
     
-    public void createDisplay() {
-        // create the app window
+    public void createDisplay(){
         jframe = new JFrame(title);
-        
-        // set the size of the window
         jframe.setSize(width, height);
-        
-        // setting not resizable, visible and possible to close
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setResizable(false);
         jframe.setLocationRelativeTo(null);
         jframe.setVisible(true);
+        // set the size of the window
+                
+    }
+    
+    public void createTransitionDisplay(){
+        canvas = new Canvas();
+        canvas.setPreferredSize(new Dimension(Master.width, Master.height));
+        canvas.setMaximumSize(new Dimension(Master.width, Nivel.height));
+        canvas.setMinimumSize(new Dimension(Master.width, Master.height));
+        canvas.setPreferredSize(new Dimension(Master.width, Master.height));
+        canvas.setFocusable(false);
         
-        jframe.setLayout(new BoxLayout(jframe.getContentPane(), BoxLayout.X_AXIS));
+        //jframe.removeAll();
+        jframe.add(canvas);
+        jframe.pack();
+        
+    }
+    
+    public void createGameDisplay() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        fixSize(panel, new Dimension(Master.width, Master.height));
                 
         // creating the canvas to paint and setting size
         canvas = new Canvas();
@@ -164,9 +179,12 @@ public class Display {
         
         // adding the canvas to the app window and packing to
         // get the right dimensions
-        jframe.add(canvas);
-        jframe.add(scoreContainer);
-        jframe.pack();
+        
+        
+        panel.add(canvas);
+        panel.add(scoreContainer);
+        jframe.setContentPane(panel);
+        //jframe.pack();
     }
 
     /**

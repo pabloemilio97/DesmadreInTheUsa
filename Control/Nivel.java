@@ -25,6 +25,7 @@ public abstract class Nivel implements Runnable{
     protected Thread thread;
     protected Control.Player players[];
     protected Control.Master master;
+    protected Transition transition;
         
     public Nivel(Display display, Control.Master master){
         this.display = display;
@@ -32,6 +33,20 @@ public abstract class Nivel implements Runnable{
         this.players = new Player[4];
         running = false;
         endTime = Nivel.nivelTime * 1000 + System.currentTimeMillis();
+        setTransition();
+        
+    }
+    
+    public Transition getTransition(){
+        return transition;
+    }
+    
+    public abstract void setTransition();
+    
+    public void executeNivel(){
+        display.createTransitionDisplay();
+        transition.nextTransition();
+        //start();
     }
     
     @Override
@@ -72,6 +87,7 @@ public abstract class Nivel implements Runnable{
     public synchronized void start() {
         if (!running) {
             running = true;
+            display.createGameDisplay();
             thread = new Thread(this);
             thread.start();
         }
@@ -170,6 +186,7 @@ public abstract class Nivel implements Runnable{
          */
         if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
+            
         } else {
             g = bs.getDrawGraphics();
             g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);

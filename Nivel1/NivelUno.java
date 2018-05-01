@@ -14,6 +14,7 @@ import Control.Master;
 import Control.Nivel;
 import Control.Player;
 import Control.SoundClip;
+import Control.Transition;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -99,6 +100,11 @@ public class NivelUno extends Control.Nivel implements Runnable{
      */
     public Queue getBulletQueue(){
         return bulletQueue;
+    }
+    
+    @Override
+    public void setTransition(){
+        transition = new Transition("1", 8, display, this);
     }
     
     /**

@@ -6,6 +6,7 @@
 package Nivel4;
 
 import Control.Player;
+import Control.Transition;
 import Nivel1.Player_N1;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -45,6 +46,11 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public void tick() {
         //keyManager.tick();
         //player.tick();
+    }
+    
+    @Override
+    public void setTransition(){
+        transition = new Transition("4", 5, display, this);
     }
 
     /**
