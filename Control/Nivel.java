@@ -158,6 +158,7 @@ public abstract class Nivel implements Runnable{
         } else {
             g = bs.getDrawGraphics();
             g.setFont(new Font("TimesRoman", Font.BOLD, 50)); 
+            g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
             render();
             
            //renderScore();

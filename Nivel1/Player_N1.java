@@ -33,8 +33,8 @@ public class Player_N1 extends Control.Player{
      * copy constructor
      * @param player 
      */
-    public Player_N1(Control.Player player){
-        super(player);
+    public Player_N1(Control.Player player, Nivel miNivel){
+        super(player, miNivel);
     }
     /**
      * tick for player

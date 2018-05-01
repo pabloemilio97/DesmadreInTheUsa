@@ -8,9 +8,11 @@ package Control;
 import java.awt.Canvas;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -22,6 +24,7 @@ public class Display {
     private JFrame jframe;  // this is the app class
     private Canvas canvas;  // to display images
     private Container scoreContainer, playerContainer[];
+    private JLabel scoreLabels[];
     private static final int playerScoreHeight = Master.height / 5;
     
     private final String title;   // title of the window
@@ -57,13 +60,14 @@ public class Display {
     
     public Container getPlayerContainer(JLabel imageLabel){
         Container container = new Container();
-        container.setPreferredSize(new Dimension(Master.width - Nivel.width, Nivel.height));
+        container.setPreferredSize(new Dimension(playerScoreHeight, playerScoreHeight));
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
                 
-        imageLabel.setSize()
+        imageLabel.setSize(new Dimension(Master.width - Nivel.width, playerScoreHeight));
         
-        container.add()
+        container.add(imageLabel);
         
+        return container;
     }
     
     public void createScoreContainer(){
@@ -72,13 +76,22 @@ public class Display {
         scoreContainer.setLayout(new BoxLayout(scoreContainer, BoxLayout.Y_AXIS));
         
         playerContainer = new Container[4];
+        scoreLabels = new JLabel[4];
+        
+        String traces[] = {"Calaca", "Frida", "Luchador", "Mexicano"};
         
         for(int i = 0; i < 4; i++){
-            playerContainer[i] = getPlayerContainer();
-            
-            
+            playerContainer[i] = getPlayerContainer(new JLabel(new ImageIcon("/Images/" + traces[i] + "/0.png")));
             
             scoreContainer.add(playerContainer[i]);
+            
+            Container labelContainer = new Container();
+            labelContainer.setLayout(new FlowLayout());
+            
+            scoreLabels[i] = new JLabel("0");
+            //labelContainer.add(scoreLabels[i]);
+            
+            playerContainer[i].add(labelContainer);
         }
         
     }
@@ -105,6 +118,8 @@ public class Display {
         canvas.setMinimumSize(new Dimension(Nivel.width, Nivel.height));
         canvas.setPreferredSize(new Dimension(Nivel.width, Nivel.height));
         canvas.setFocusable(false);
+        
+        createScoreContainer();
         
         // adding the canvas to the app window and packing to
         // get the right dimensions

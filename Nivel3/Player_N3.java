@@ -34,8 +34,8 @@ public class Player_N3 extends Control.Player{
      * copy constructor
      * @param player 
      */
-    public Player_N3(Control.Player player){
-        super(player);
+    public Player_N3(Control.Player player, Nivel miNivel){
+        super(player, miNivel);
     }
     /**
      * determines if superior limit of level is reached
@@ -62,21 +62,25 @@ public class Player_N3 extends Control.Player{
      */
     @Override
     public void tick() {
+        //general advancement
         this.x += xVel;
         this.y += yVel;
+        
+        //collision with x limits
         if(x > Nivel.width || x < 0){
             xVel *= -1;
         }
+        
         //score management
         int accumKey = 0; //0 is standard, 1 is negative, 2 is high
-        if(y <= ((NivelTres)nivel).getLimiteInf()){
+        if(llegaALimiteInf()){
             yVel = 0;
             accumKey = 1;
         }
-        if(y >= ((NivelTres)nivel).getLimiteSup()){
+        if(llegaALimiteSup()){
             yVel = 0;
             accumKey = 2;
         }
-        //this.acumPuntaje();
+        this.acumPuntaje(((NivelTres)nivel).getAccums()[accumKey]);
     }
 }

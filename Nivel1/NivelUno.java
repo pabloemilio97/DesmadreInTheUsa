@@ -52,7 +52,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         tacoTransition = new Taco(0, 0, 0, 0, "/Images/Taco_hit/", 4, this);
         tacoReady = new Taco(0, 0, 0, 0, "/Images/Taco_ready/", 7, this);
         for(int i = 0; i < 4; i++){
-            this.players[i] = new Player_N1(players[i]);
+            this.players[i] = new Player_N1(players[i], this);
             actionPaths[i] = "/Sounds/Salsa/" + actionPaths[i];
             actionSounds[i] = new SoundClip(actionPaths[i]);
             this.players[i].setX((Nivel.width - Player.width) / 2 + dirs[i][0] * centerSpace);
@@ -165,7 +165,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
             System.out.println("Error extraño");
             return;
         }
-        g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
         //g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         //g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
         

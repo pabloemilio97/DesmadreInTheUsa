@@ -33,7 +33,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
         int startX = Nivel.width - (Player.width + separation)*4;
         
         for (int i = 0; i < 4; i++) {
-            this.players[i] = new Player_N3(players[i]);
+            this.players[i] = new Player_N3(players[i], this);
             this.players[i].setX(startX + i*(players[i].getWidth() + separation));
             this.players[i].setY(startY);
         }
@@ -56,7 +56,10 @@ public class NivelTres extends Control.Nivel implements Runnable{
      */
     public void tick() {
         //keyManager.tick();
-        //player.tick();
+        for(int i = 0; i < 4; i++){
+           players[i].tick();   
+        }
+        
     }
 
     /**
@@ -68,7 +71,6 @@ public class NivelTres extends Control.Nivel implements Runnable{
             System.out.println("Error extraño");
             return;
         }
-        g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
 
         for (int i = 0; i < 4; i++) {
             players[i].render(g);

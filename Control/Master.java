@@ -42,7 +42,7 @@ public class Master implements KeyListener{
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS
         
-        currentNivel = 2;
+        currentNivel = 1;
         
     }
     
@@ -52,7 +52,7 @@ public class Master implements KeyListener{
             return;
         }
         
-        niveles[currentNivel++].start();
+        niveles[++currentNivel].start();
     }
 
         //Key Typed method
