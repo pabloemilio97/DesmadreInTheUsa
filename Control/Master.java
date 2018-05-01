@@ -37,7 +37,7 @@ public class Master implements KeyListener{
         //level's instantiation
         niveles = new Nivel[4];
         niveles[0] = new Nivel1.NivelUno(display, players, this);
-        niveles[1] = new Nivel2.NivelDos(display, players, this);
+         niveles[1] = new Nivel2.NivelDos(display, players, this);
         niveles[2] = new Nivel3.NivelTres(display, players, this);
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS

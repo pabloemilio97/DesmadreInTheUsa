@@ -25,7 +25,7 @@ public class Transition {
         currentFrame = -1;
         
         for(int i = 1; i <= frames.length; i++){
-            frames[i - 1] = new TransitionFrame("/Trans/Trans" + transNumber + "/"+ i);
+            frames[i - 1] = new TransitionFrame("/Trans/Trans" + transNumber + "/"+ i + ".png");
         }
         
     }
