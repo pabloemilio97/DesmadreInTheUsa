@@ -7,6 +7,7 @@ package Nivel2;
 
 import Control.Nivel;
 import Control.Player;
+import Control.SoundClip;
 import Control.Transition;
 import Nivel1.Player_N1;
 import java.awt.Graphics;
@@ -32,6 +33,10 @@ public class NivelDos extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
+        SoundClip music = new SoundClip("/Music/n2.wav");
+        music.setLooping(true);
+        music.play();
+        nivelTime = 120;
         /*
         Initialization of game characters should go here
          */
@@ -58,9 +63,6 @@ public class NivelDos extends Control.Nivel implements Runnable{
     @Override
     public void render() {
         
-        g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);
         
     }
 

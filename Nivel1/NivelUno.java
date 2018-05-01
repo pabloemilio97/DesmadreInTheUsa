@@ -42,6 +42,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private int newTacoCounter;
     private long lastTime;
     private int randomTime = 3000;
+    private SoundClip music;
     
     private Queue<Salsa> bulletQueue;
     private Queue<Taco> tacoQueue;
@@ -49,8 +50,8 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private String actionPaths[] = {"salsa1.wav", "salsa2.wav", "salsa3.wav", "salsa4.wav"};
     public NivelUno(Control.Display display, Control.Player players[], Control.Master master) {
         super(display, master);
-
-        tacoTransition = new Taco(0, 0, 0, 0, "/Images/Taco_hit/", 4, this);
+ 
+       tacoTransition = new Taco(0, 0, 0, 0, "/Images/Taco_hit/", 4, this);
         tacoReady = new Taco(0, 0, 0, 0, "/Images/Taco_ready/", 7, this);
         for(int i = 0; i < 4; i++){
             this.players[i] = new Player_N1(players[i], this);
@@ -80,6 +81,10 @@ public class NivelUno extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
+        music = new SoundClip("/Music/n1.wav");
+        music.setLooping(true);
+        music.play();
+        nivelTime = 120;
         /*
         Initialization of game characters should go here
          */

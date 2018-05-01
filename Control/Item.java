@@ -23,6 +23,7 @@ public abstract class Item {
     protected int renderCount;
     protected Nivel nivel;
     protected BufferedImage animation[];
+    public static final int step = 50;
     
     /**
      * Set the initial values to create the item
@@ -68,8 +69,8 @@ public abstract class Item {
      * @param g <b>Graphics</b> object to paint the item
      */
     public void render(Graphics g) {
-        renderCount = (renderCount + 1) % (animation.length * 100);
-        g.drawImage(animation[renderCount / 100], getX(), getY(), getWidth(), getHeight(), null);
+        renderCount = (renderCount + 1) % (animation.length * step);
+        g.drawImage(animation[renderCount / step], getX(), getY(), getWidth(), getHeight(), null);
     }
     
 
