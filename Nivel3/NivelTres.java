@@ -33,7 +33,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
         int startX = Nivel.width - (Player.width + separation)*4;
         
         for (int i = 0; i < 4; i++) {
-            this.players[i] = new Player_N3(players[i]);
+            this.players[i] = new Player_N3(players[i], this);
             this.players[i].setX(startX + i*(players[i].getWidth() + separation));
             this.players[i].setY(startY);
         }
