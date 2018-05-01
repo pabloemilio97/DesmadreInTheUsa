@@ -5,16 +5,25 @@
  */
 package Control;
 
+import static Control.Assets.loadImage;
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -23,9 +32,9 @@ import javax.swing.JLabel;
 public class Display {
     private JFrame jframe;  // this is the app class
     private Canvas canvas;  // to display images
-    private Container scoreContainer, playerContainer[];
+    private JPanel scoreContainer;
     private JLabel scoreLabels[];
-    private static final int playerScoreHeight = Master.height / 5;
+    private static final int playerScoreHeight = Master.height / 7;
     
     private final String title;   // title of the window
     private final int width;      // width of the window
@@ -37,9 +46,11 @@ public class Display {
     public int getHeight(){
         return height;
     }
-    public Container getScoreContainer(){
-        return scoreContainer;
+    public JLabel[] getScoreLabels(){
+        return scoreLabels;
     }
+    
+    
     
     /**
      * initializes the values for the application game
@@ -54,44 +65,53 @@ public class Display {
         createDisplay();
     }
     
-    /**
-     * create the app and the canvas and add the canvas to the window app
-     */
+    public static BufferedImage resize(BufferedImage img, int newW, int newH) {  
+        int w = img.getWidth();  
+        int h = img.getHeight();  
+        BufferedImage dimg = new BufferedImage(newW, newH, img.getType());  
+        Graphics2D g = dimg.createGraphics();  
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+        RenderingHints.VALUE_INTERPOLATION_BILINEAR);  
+        g.drawImage(img, 0, 0, newW, newH, 0, 0, w, h, null);  
+        g.dispose();  
+        return dimg;  
+    }  
     
-    public Container getPlayerContainer(JLabel imageLabel){
-        Container container = new Container();
-        container.setPreferredSize(new Dimension(playerScoreHeight, playerScoreHeight));
-        container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
-                
-        imageLabel.setSize(new Dimension(Master.width - Nivel.width, playerScoreHeight));
-        
-        container.add(imageLabel);
-        
-        return container;
+    private void fixSize(Component cont, Dimension d){
+        cont.setMinimumSize(d);
+        cont.setPreferredSize(d);
+        cont.setMaximumSize(d);
     }
     
     public void createScoreContainer(){
-        scoreContainer = new Container();
-        scoreContainer.setPreferredSize(new Dimension(Master.width - Nivel.width, Nivel.height));
-        scoreContainer.setLayout(new BoxLayout(scoreContainer, BoxLayout.Y_AXIS));
-        
-        playerContainer = new Container[4];
+        scoreContainer = new Control.JPanel();
+        fixSize(scoreContainer, new Dimension(Master.width - Nivel.width, Nivel.height));
+        scoreContainer.setOpaque(false);
+        scoreContainer.setLayout(new GridLayout(6, 1));
+                
+        scoreContainer.add(new JLabel());//new ImageIcon(loadImage("/Images/" + "scoreword"))));
         scoreLabels = new JLabel[4];
         
         String traces[] = {"Calaca", "Frida", "Luchador", "Mexicano"};
         
         for(int i = 0; i < 4; i++){
-            playerContainer[i] = getPlayerContainer(new JLabel(new ImageIcon("/Images/" + traces[i] + "/0.png")));
+                      
+            Container current = new Container();
+            current.setLayout(new GridLayout(1, 2));
             
-            scoreContainer.add(playerContainer[i]);
+            Icon myIcon = new ImageIcon(resize(loadImage("/Images/" + traces[i] + "/0.png"), Player.width, Player.height));
             
-            Container labelContainer = new Container();
-            labelContainer.setLayout(new FlowLayout());
+            JLabel imageLabel = new JLabel(myIcon);
+            current.add(imageLabel);
             
             scoreLabels[i] = new JLabel("0");
-            //labelContainer.add(scoreLabels[i]);
+            scoreLabels[i].setFont(new Font("TimesRoman", Font.BOLD, 30));
+            scoreLabels[i].setHorizontalAlignment(JLabel.CENTER);
+            scoreLabels[i].setVerticalAlignment(JLabel.CENTER);
             
-            playerContainer[i].add(labelContainer);
+            current.add(scoreLabels[i]);
+            scoreContainer.add(current);
+            
         }
         
     }

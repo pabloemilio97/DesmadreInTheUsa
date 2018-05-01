@@ -3,6 +3,7 @@ package Control;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import javax.swing.JLabel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -115,6 +116,11 @@ public abstract class Nivel implements Runnable{
     
     private void renderScore(){
         
+        JLabel [] labels = master.getDisplay().getScoreLabels();
+        for(int i = 0; i < 4; i++){
+            labels[i].setText("" + players[i].getPuntaje());
+        }
+        
         
         
         /*int scoreHeight = Nivel.height / 5;
@@ -157,11 +163,10 @@ public abstract class Nivel implements Runnable{
             display.getCanvas().createBufferStrategy(3);
         } else {
             g = bs.getDrawGraphics();
-            g.setFont(new Font("TimesRoman", Font.BOLD, 50)); 
             g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
             render();
             
-           //renderScore();
+           renderScore();
             
             bs.show();
             g.dispose();
