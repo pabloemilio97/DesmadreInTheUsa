@@ -65,9 +65,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         
         for(int i = 0; i < 4; i++)
             salsaBullets[i] = new Salsa(this.players[i].getWidth() / 2 + this.players[i].getX() - Salsa.width / 2, this.players[i].getY(), Salsa.width, Salsa.height, "/Images/Bullet_Salsa/", 2, this, i);
-        
-        //salsaBullets[0] = loadImage("/Images/Catsup.png)
-        
+                
         bulletQueue = new LinkedList<>();
         tacoQueue = new LinkedList<>();
         
@@ -138,12 +136,9 @@ public class NivelUno extends Control.Nivel implements Runnable{
         
         for(int i = tacoQueue.size(); i > 0; i--){
             Taco current = tacoQueue.poll();
-            
             current.tick();
-            
             if(!current.isDestroyed())
                 tacoQueue.add(current);
-            
         }
         
         long now = (endTime - System.currentTimeMillis()) / 1000;
@@ -155,7 +150,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
         
         if(newTacoCounter-- == 0){
             tacoQueue.add(new Taco(taco));
-            
             Random rand = new Random();
             
             newTacoCounter = rand.nextInt(randomTime) + randomTime / 6;
@@ -212,9 +206,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
         bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
         actionSounds[playerIndex].play();
     }
-
-    
-
     
     
 }

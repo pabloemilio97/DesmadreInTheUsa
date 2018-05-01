@@ -21,6 +21,11 @@ import javax.swing.JFrame;
  */
 public class NivelDos extends Control.Nivel implements Runnable{    
     
+    private static int centerSpace = 150;
+    public static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    
+    
+    
     public NivelDos(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
@@ -48,8 +53,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
      * method, call them here
      */
     public void tick() {
-        //keyManager.tick();
-        //player.tick();
+        
     }
     
     @Override
@@ -62,8 +66,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
      */
     @Override
     public void render() {
-        
-        
+        for(int i = 0; i < 4; i++) players[i].render(g);
     }
 
     @Override
