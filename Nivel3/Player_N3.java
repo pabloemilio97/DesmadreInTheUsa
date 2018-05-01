@@ -62,11 +62,15 @@ public class Player_N3 extends Control.Player{
      */
     @Override
     public void tick() {
+        //general advancement
         this.x += xVel;
         this.y += yVel;
+        
+        //collision with x limits
         if(x > Nivel.width || x < 0){
             xVel *= -1;
         }
+        
         //score management
         int accumKey = 0; //0 is standard, 1 is negative, 2 is high
         if(y <= ((NivelTres)nivel).getLimiteInf()){
@@ -77,6 +81,6 @@ public class Player_N3 extends Control.Player{
             yVel = 0;
             accumKey = 2;
         }
-        //this.acumPuntaje();
+        this.acumPuntaje(((NivelTres)nivel).getAccums()[accumKey]);
     }
 }
