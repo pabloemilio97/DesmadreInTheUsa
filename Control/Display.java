@@ -63,7 +63,8 @@ public class Display {
         this.title = title;
         this.master = master;
         this.width = width;
-        this.height = height;        
+        this.height = height;     
+        createDisplay();
     }
     
     public static BufferedImage resize(BufferedImage img, int newW, int newH) {  
@@ -151,9 +152,6 @@ public class Display {
     }
     
     public void createTransitionDisplay(){
-        if(jframe != null)jframe.setVisible(false);
-        if(jframe != null) jframe.dispose();
-        createDisplay();
         
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(Master.width, Master.height));
@@ -170,12 +168,10 @@ public class Display {
     
     public void createGameDisplay() {
         
-        if(jframe != null) jframe.setVisible(false);
-        if(jframe != null) jframe.dispose();
-        createDisplay();
         
-        System.out.println("hii");
-        jframe.setLayout(new BoxLayout(jframe.getContentPane(), BoxLayout.X_AXIS));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        fixSize(panel, new Dimension(Master.width, Master.height));
                 
         // creating the canvas to paint and setting size
         canvas = new Canvas();
@@ -191,8 +187,9 @@ public class Display {
         // get the right dimensions
         
         
-        jframe.add(canvas);
-        jframe.add(scoreContainer);
+        panel.add(canvas);
+        panel.add(scoreContainer);
+        jframe.setContentPane(panel);
         jframe.pack();
     }
 
