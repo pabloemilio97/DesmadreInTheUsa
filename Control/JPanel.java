@@ -18,6 +18,6 @@ public class JPanel extends javax.swing.JPanel{
   protected void paintComponent(Graphics g) {
 
     super.paintComponent(g);
-        g.drawImage(loadImage("/Images/FloorBG.png"), 0, 0, null);
+        g.drawImage(loadImage("/Images/score.png"), 0, 0, null);
     }
 }

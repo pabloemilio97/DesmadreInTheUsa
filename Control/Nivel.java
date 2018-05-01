@@ -118,7 +118,7 @@ public abstract class Nivel implements Runnable{
         
         JLabel [] labels = master.getDisplay().getScoreLabels();
         for(int i = 0; i < 4; i++){
-            labels[i].setText("" + players[i].getPuntaje());
+            labels[i].setText(players[i].getPuntaje() + "");
         }
         
         

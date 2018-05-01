@@ -97,19 +97,21 @@ public class Display {
         for(int i = 0; i < 4; i++){
                       
             Container current = new Container();
-            current.setLayout(new GridLayout(1, 2));
+            current.setLayout(new GridLayout(1, 5));
             
-            Icon myIcon = new ImageIcon(resize(loadImage("/Images/" + traces[i] + "/0.png"), Player.width, Player.height));
+            current.add(new Container());
+            Icon myIcon = new ImageIcon(resize(loadImage("/Images/" + traces[i] + "/0.png"), Player.width + 10, Player.height));
             
             JLabel imageLabel = new JLabel(myIcon);
             current.add(imageLabel);
-            
+            current.add(new Container());
             scoreLabels[i] = new JLabel("0");
             scoreLabels[i].setFont(new Font("TimesRoman", Font.BOLD, 30));
             scoreLabels[i].setHorizontalAlignment(JLabel.CENTER);
             scoreLabels[i].setVerticalAlignment(JLabel.CENTER);
             
             current.add(scoreLabels[i]);
+            current.add(new Container());
             scoreContainer.add(current);
             
         }
