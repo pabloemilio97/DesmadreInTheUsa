@@ -23,7 +23,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         super(display, master);
         
         for(int i = 0; i < 4; i++)
-            this.players[i] = new Player_N4(players[i]);
+            this.players[i] = new Player_N4(players[i], this);
         
     }
     /**

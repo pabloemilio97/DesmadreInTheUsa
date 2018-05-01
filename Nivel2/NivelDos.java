@@ -23,7 +23,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
         super(display, master);
         
         for(int i = 0; i < 4; i++)
-            this.players[i] = new Player_N2(players[i]);
+            this.players[i] = new Player_N2(players[i], this);
     }
     /**
      * initializing	the	display	window	of	the	game
