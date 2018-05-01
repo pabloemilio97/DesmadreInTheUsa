@@ -36,7 +36,15 @@ public class Player extends Item{
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
-
+    /**
+     * suma al puntaje
+     *
+     * @param puntaje nuevo valor
+     */
+    public void acumPuntaje(int puntaje) {
+        this.puntaje += puntaje;
+    }
+    
     /**
      * Acceso a variable puntaje
      * @return el puntaje actual

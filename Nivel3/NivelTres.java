@@ -19,16 +19,20 @@ import javax.swing.JFrame;
  * @author adanlopezalatorre
  */
 public class NivelTres extends Control.Nivel implements Runnable{
-
+    private int limiteSup;
+    private int limiteInf;
+    private final int accums[] = {100, -50, 150};
     public NivelTres(Control.Display display, Player players[], Control.Master master) {
-        
         super(display, master);
-        //this.players = new Player[4];
-        int startX = 10;
+        
+        limiteSup = Player.height;
+        limiteInf = Nivel.height - Player.height;
+        
         int startY = Nivel.height - Player.height*2;
         int separation = Player.width * 2;
+        int startX = Nivel.width - (Player.width + separation)*4;
+        
         for (int i = 0; i < 4; i++) {
-            
             this.players[i] = new Player_N3(players[i]);
             this.players[i].setX(startX + i*(players[i].getWidth() + separation));
             this.players[i].setY(startY);
@@ -76,7 +80,32 @@ public class NivelTres extends Control.Nivel implements Runnable{
         g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);*/
         
     }
-
+    
+    /**
+     * getter limite superior (coord Y)
+     * @return 
+     */
+    public int getLimiteSup() {
+        return limiteSup;
+    }
+    
+    /**
+     * getter limite inferior (coord Y)
+     * @return 
+     */
+    public int getLimiteInf() {
+        return limiteInf;
+    }
+    
+    /**
+     * getter for different values of accumulators for score
+     * @return 
+     */
+    public int[] getAccums() {
+        return accums;
+    }
+    
+    
     @Override
     public void botonDeAccion(int playerIndex) {
         
