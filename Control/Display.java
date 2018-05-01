@@ -33,6 +33,7 @@ public class Display {
     private JFrame jframe;  // this is the app class
     private Canvas canvas;  // to display images
     private JPanel scoreContainer;
+    private Master master;
     private JLabel scoreLabels[], clockLabel;
     private static final int playerScoreHeight = Master.height / 7;
     
@@ -58,11 +59,11 @@ public class Display {
      * @param width to set the width
      * @param height to set the height
      */
-    public Display(String title, int width, int height) {
+    public Display(String title, int width, int height, Master master) {
         this.title = title;
+        this.master = master;
         this.width = width;
         this.height = height;        
-        createDisplay();
     }
     
     public static BufferedImage resize(BufferedImage img, int newW, int newH) {  
@@ -144,11 +145,16 @@ public class Display {
         jframe.setResizable(false);
         jframe.setLocationRelativeTo(null);
         jframe.setVisible(true);
+        jframe.addKeyListener(master);
         // set the size of the window
                 
     }
     
     public void createTransitionDisplay(){
+        if(jframe != null)jframe.setVisible(false);
+        if(jframe != null) jframe.dispose();
+        createDisplay();
+        
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(Master.width, Master.height));
         canvas.setMaximumSize(new Dimension(Master.width, Nivel.height));
@@ -163,9 +169,13 @@ public class Display {
     }
     
     public void createGameDisplay() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        fixSize(panel, new Dimension(Master.width, Master.height));
+        
+        if(jframe != null) jframe.setVisible(false);
+        if(jframe != null) jframe.dispose();
+        createDisplay();
+        
+        System.out.println("hii");
+        jframe.setLayout(new BoxLayout(jframe.getContentPane(), BoxLayout.X_AXIS));
                 
         // creating the canvas to paint and setting size
         canvas = new Canvas();
@@ -181,10 +191,9 @@ public class Display {
         // get the right dimensions
         
         
-        panel.add(canvas);
-        panel.add(scoreContainer);
-        jframe.setContentPane(panel);
-        //jframe.pack();
+        jframe.add(canvas);
+        jframe.add(scoreContainer);
+        jframe.pack();
     }
 
     /**
