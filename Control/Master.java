@@ -75,7 +75,7 @@ public class Master implements KeyListener{
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         for(int i = 0; i < 4; i++){
-            if(key == Master.playerKeys[i]){
+            if(niveles[currentNivel].isRunning() && key == Master.playerKeys[i]){
                 niveles[currentNivel].botonDeAccion(i);
             }
         }
