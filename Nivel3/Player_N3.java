@@ -73,6 +73,7 @@ public class Player_N3 extends Control.Player{
         
         //score management
         int accumKey = 0; //0 is standard, 1 is negative, 2 is high
+        System.out.println(nivel);
         if(y <= ((NivelTres)nivel).getLimiteInf()){
             yVel = 0;
             accumKey = 1;

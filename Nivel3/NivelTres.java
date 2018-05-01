@@ -57,7 +57,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
     public void tick() {
         //keyManager.tick();
         for(int i = 0; i < 4; i++){
-           // players[i].tick();   
+           players[i].tick();   
         }
         
     }
