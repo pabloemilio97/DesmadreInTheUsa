@@ -5,12 +5,17 @@
  */
 package Nivel4;
 
+import Control.Item;
 import Control.Player;
+import Control.SoundClip;
 import Control.Transition;
 import Nivel1.Player_N1;
+import Nivel1.Salsa;
+import Nivel1.Taco;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.Queue;
 import javax.swing.JFrame;
 
 /**
@@ -18,6 +23,15 @@ import javax.swing.JFrame;
  * @author adanlopezalatorre
  */
 public class NivelCuatro extends Control.Nivel implements Runnable{
+    private static int centerSpace = 50;
+    public static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    
+    private Salsa [] botes;
+    private Salsa salsaBullets[];
+    
+    private Queue<Salsa> bulletQueue;
+    private SoundClip actionSounds[] = new SoundClip[4];
+    private String actionPaths[] = {"salsa1.wav", "salsa2.wav", "salsa3.wav", "salsa4.wav"};
     
     
     public NivelCuatro(Control.Display display, Player players[], Control.Master master) {
@@ -46,6 +60,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public void tick() {
         //keyManager.tick();
         //player.tick();
+        
     }
     
     @Override
@@ -61,9 +76,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         
         g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
         g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);
-        
+        g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);        
     }
 
     @Override
