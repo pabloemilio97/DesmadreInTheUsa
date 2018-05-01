@@ -165,7 +165,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
             System.out.println("Error extraño");
             return;
         }
-        g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
         //g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         //g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
         

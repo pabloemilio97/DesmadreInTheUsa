@@ -5,6 +5,7 @@
  */
 package Nivel2;
 
+import Control.Nivel;
 import Control.Player;
 import Nivel1.Player_N1;
 import java.awt.Graphics;
@@ -51,7 +52,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
     @Override
     public void render() {
         
-        g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
+        g.drawImage(Control.Assets.background, 0, 0, Nivel.width, Nivel.height, null);
         g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
         g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);

@@ -8,9 +8,11 @@ package Control;
 import java.awt.Canvas;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -22,6 +24,7 @@ public class Display {
     private JFrame jframe;  // this is the app class
     private Canvas canvas;  // to display images
     private Container scoreContainer, playerContainer[];
+    private JLabel scoreLabels[];
     private static final int playerScoreHeight = Master.height / 5;
     
     private final String title;   // title of the window
@@ -55,7 +58,7 @@ public class Display {
      * create the app and the canvas and add the canvas to the window app
      */
     
-    /*public Container getPlayerContainer(JLabel imageLabel){
+    public Container getPlayerContainer(JLabel imageLabel){
         Container container = new Container();
         container.setPreferredSize(new Dimension(playerScoreHeight, playerScoreHeight));
         container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
@@ -64,7 +67,8 @@ public class Display {
         
         container.add(imageLabel);
         
-    }*/
+        return container;
+    }
     
     public void createScoreContainer(){
         scoreContainer = new Container();
@@ -72,13 +76,22 @@ public class Display {
         scoreContainer.setLayout(new BoxLayout(scoreContainer, BoxLayout.Y_AXIS));
         
         playerContainer = new Container[4];
+        scoreLabels = new JLabel[4];
+        
+        String traces[] = {"Calaca", "Frida", "Luchador", "Mexicano"};
         
         for(int i = 0; i < 4; i++){
-            //playerContainer[i] = getPlayerContainer();
+            playerContainer[i] = getPlayerContainer(new JLabel(new ImageIcon("/Images/" + traces[i] + "/0.png")));
             
+            scoreContainer.add(playerContainer[i]);
             
+            Container labelContainer = new Container();
+            labelContainer.setLayout(new FlowLayout());
             
-            //scoreContainer.add(playerContainer[i]);
+            scoreLabels[i] = new JLabel("0");
+            //labelContainer.add(scoreLabels[i]);
+            
+            playerContainer[i].add(labelContainer);
         }
         
     }

@@ -52,7 +52,7 @@ public class Master implements KeyListener{
             return;
         }
         
-        niveles[currentNivel++].start();
+        niveles[++currentNivel].start();
     }
 
         //Key Typed method
