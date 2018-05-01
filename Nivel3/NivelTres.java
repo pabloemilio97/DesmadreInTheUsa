@@ -71,7 +71,6 @@ public class NivelTres extends Control.Nivel implements Runnable{
             System.out.println("Error extraño");
             return;
         }
-        g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
 
         for (int i = 0; i < 4; i++) {
             players[i].render(g);
