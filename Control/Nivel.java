@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 public abstract class Nivel implements Runnable{
     
-    public static int width = 700, height = 700, nivelTime = 90;
+    public static int width = 700, height = 700, nivelTime = 15;
     
     protected int lifestock;
     protected Display display;
@@ -31,7 +31,7 @@ public abstract class Nivel implements Runnable{
         this.master = master;
         this.players = new Player[4];
         running = false;
-        endTime = Nivel.nivelTime * 1000;
+        endTime = Nivel.nivelTime * 1000 + System.currentTimeMillis();
     }
     
     @Override
@@ -114,14 +114,17 @@ public abstract class Nivel implements Runnable{
      * Renders the graphics of the game
      */
     
+    
+    
     private void renderScore(){
+        
         
         JLabel [] labels = master.getDisplay().getScoreLabels();
         for(int i = 0; i < 4; i++){
             labels[i].setText(players[i].getPuntaje() + "");
         }
         
-        
+        master.getDisplay().setClock((int)(endTime - System.currentTimeMillis()) / 1000);
         
         /*int scoreHeight = Nivel.height / 5;
         
@@ -151,6 +154,12 @@ public abstract class Nivel implements Runnable{
     }
     
     protected void gameRender() {
+        
+        if((endTime - System.currentTimeMillis()) / 1000 < 0){
+            stop();
+            return;
+        }
+        
         //	get	the	buffer	strategy	from	the	display
         bs = display.getCanvas().getBufferStrategy();
         /*	if	it	is	null,	we	define	one	with	3	buffers	to	display	images	of

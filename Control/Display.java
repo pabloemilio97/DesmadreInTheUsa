@@ -33,7 +33,7 @@ public class Display {
     private JFrame jframe;  // this is the app class
     private Canvas canvas;  // to display images
     private JPanel scoreContainer;
-    private JLabel scoreLabels[];
+    private JLabel scoreLabels[], clockLabel;
     private static final int playerScoreHeight = Master.height / 7;
     
     private final String title;   // title of the window
@@ -115,6 +115,25 @@ public class Display {
             scoreContainer.add(current);
             
         }
+        
+        clockLabel = new JLabel("00:00");
+        clockLabel.setFont(new Font("TimesRoman", Font.BOLD, 30));
+        clockLabel.setHorizontalAlignment(JLabel.CENTER);
+        clockLabel.setVerticalAlignment(JLabel.CENTER);
+        
+        scoreContainer.add(clockLabel);
+        
+    }
+    
+    public JLabel getClockLabel(){
+        return clockLabel;
+    }
+    
+    public void setClock(int seconds){
+        int minutes = seconds / 60;
+        seconds %= 60;
+        
+        clockLabel.setText("" + minutes / 10 + "" + minutes % 10 + ":" + seconds / 10 + "" + seconds % 10);
         
     }
     
