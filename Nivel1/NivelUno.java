@@ -51,7 +51,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     public NivelUno(Control.Display display, Control.Player players[], Control.Master master) {
         super(display, master);
  
-       tacoTransition = new Taco(0, 0, 0, 0, "/Images/Taco_hit/", 4, this);
+        tacoTransition = new Taco(0, 0, 0, 0, "/Images/Taco_hit/", 4, this);
         tacoReady = new Taco(0, 0, 0, 0, "/Images/Taco_ready/", 7, this);
         for(int i = 0; i < 4; i++){
             this.players[i] = new Player_N1(players[i], this);
@@ -171,10 +171,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
      */
     @Override
     public void render() {
-        if (g == null) {
-            System.out.println("Error extraño");
-            return;
-        }
         //g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         //g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
         

@@ -73,7 +73,7 @@ public abstract class Nivel implements Runnable{
             lastTime = now;
             if (delta >= 1) {
                 tick();
-                render();
+                gameRender();
                 delta--;
             }
             tick();
