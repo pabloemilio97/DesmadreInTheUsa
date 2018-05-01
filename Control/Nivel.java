@@ -175,7 +175,7 @@ public abstract class Nivel implements Runnable{
             g.drawImage(Control.Assets.background, 0, 0, Master.width, Master.height, null);
             render();
             
-           renderScore();
+            renderScore();
             
             bs.show();
             g.dispose();
