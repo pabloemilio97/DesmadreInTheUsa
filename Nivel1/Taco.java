@@ -68,7 +68,7 @@ public class Taco extends Item{
             destroyed = true;
         }
         
-        if(inTransition && renderCount + 1 == animation.length * 100){
+        if(inTransition && renderCount + 1 == animation.length * Item.step){
             animation = ((NivelUno)nivel).getTacoReady().getAnimation();
             inTransition = false;
             ready = true;
