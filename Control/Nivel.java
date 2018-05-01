@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 public abstract class Nivel implements Runnable{
     
-    public static int width = 700, height = 700, nivelTime = 15;
+    public static int width = 700, height = 700, nivelTime = 90;
     
     protected int lifestock;
     protected Display display;

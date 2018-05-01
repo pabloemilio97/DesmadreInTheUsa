@@ -32,8 +32,7 @@ public class Master implements KeyListener{
         for(int i = 0; i < 4; i++)
             players[i] = new Player(0, 0, Player.width, Player.height, "/Images/" + paths[i], 6, null);
         Assets.init();
-        display = new Control.Display("Desmadre in the USA", Master.width, Master.height);
-        display.getJframe().addKeyListener(this);
+        display = new Control.Display("Desmadre in the USA", Master.width, Master.height, this);
         //level's instantiation
         niveles = new Nivel[4];
         niveles[0] = new Nivel1.NivelUno(display, players, this);
