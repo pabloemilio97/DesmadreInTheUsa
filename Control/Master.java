@@ -18,9 +18,9 @@ import javax.swing.JFrame;
 public class Master implements KeyListener{
     Nivel []niveles; //Level array declaration
     Player[] players;
-    public static int width = 700, height = 500;
+    public static int width = 1000, height = 700;
     public static int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_J, KeyEvent.VK_UP};
-    public Nivel currentNivel;
+    public int currentNivel;
     public Display display;
     public Graphics g;
     
@@ -31,18 +31,28 @@ public class Master implements KeyListener{
             
         for(int i = 0; i < 4; i++)
             players[i] = new Player(0, 0, Player.width, Player.height, "/Images/" + paths[i], 6, null);
-        //CREATION OF PLAYERS
-        
         Assets.init();
         display = new Control.Display("Desmadre in the USA", Master.width, Master.height);
         display.getJframe().addKeyListener(this);
+        //level's instantiation
+        niveles = new Nivel[4];
+        niveles[0] = new Nivel1.NivelUno(display, players, this);
+        niveles[1] = new Nivel2.NivelDos(display, players, this);
+        niveles[2] = new Nivel3.NivelTres(display, players, this);
+        niveles[3] = new Nivel4.NivelCuatro(display, players, this);
+        //CREATION OF PLAYERS
+        
+        currentNivel = 2;
+        
     }
     
-    public void startGame(){
-        currentNivel = new Nivel1.NivelUno(display, players);
-    }
-    public void runGame(){
-        currentNivel.start();
+    public void nextGame(){
+        if(currentNivel == 4){
+            //handle end of game
+            return;
+        }
+        
+        niveles[currentNivel++].start();
     }
 
         //Key Typed method
@@ -63,15 +73,14 @@ public class Master implements KeyListener{
         int key = e.getKeyCode();
         for(int i = 0; i < 4; i++){
             if(key == Master.playerKeys[i]){
-                currentNivel.botonDeAccion(i);
+                niveles[currentNivel].botonDeAccion(i);
             }
         }
     }
     
     public static void main(String [] args){
         Master mas = new Master();
-        mas.startGame();
-        mas.runGame();
+        mas.nextGame();
     }
     
 }

@@ -20,9 +20,9 @@ public abstract class Item {
     protected int height;
     protected int x;        // to store x position
     protected int y;        // to store y position
-    private int renderCount;
+    protected int renderCount;
     protected Nivel nivel;
-    BufferedImage animation[];
+    protected BufferedImage animation[];
     
     /**
      * Set the initial values to create the item

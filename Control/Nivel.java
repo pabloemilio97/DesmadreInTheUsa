@@ -1,5 +1,6 @@
 package Control;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
@@ -12,20 +13,24 @@ import java.awt.image.BufferStrategy;
 
 public abstract class Nivel implements Runnable{
     
-    public static int width = 500, height = 500;
+    public static int width = 700, height = 700, nivelTime = 90;
     
     protected int lifestock;
     protected Display display;
     protected BufferStrategy bs;
     protected Graphics g;
     protected boolean running;
+    protected long endTime;
     protected Thread thread;
     protected Control.Player players[];
-    
-    public Nivel(Display display){
+    protected Control.Master master;
+        
+    public Nivel(Display display, Control.Master master){
         this.display = display;
+        this.master = master;
         this.players = new Player[4];
         running = false;
+        endTime = Nivel.nivelTime * 1000;
     }
     
     @Override
@@ -56,6 +61,10 @@ public abstract class Nivel implements Runnable{
         stop();
     }
     
+    public Player[] getPlayers(){
+        return players;
+    }
+    
     /**
      * setting	the	thread	for	the	game
      */
@@ -78,6 +87,9 @@ public abstract class Nivel implements Runnable{
             } catch (InterruptedException ie) {
                 ie.printStackTrace();
             }
+            
+            master.nextGame();
+            
         }
     }
     
@@ -100,6 +112,38 @@ public abstract class Nivel implements Runnable{
     /**
      * Renders the graphics of the game
      */
+    
+    private void renderScore(){
+        
+        
+        
+        /*int scoreHeight = Nivel.height / 5;
+        
+                
+        for(int i = 0; i < 4; i++){
+            g.drawImage(players[i].getAnimation(0), Nivel.width, i * scoreHeight, Player.width, Player.height, null);
+            
+            g.drawString("" + players[i].getPuntaje(), Nivel.width + Player.width + 60, i * scoreHeight + 60);
+            
+        }
+        
+        int cornerX = Nivel.width, cornerY = Nivel.height / 5 * 4;
+        
+        int centerX = (cornerX + Master.width) >> 1, centerY = (cornerY + Master.height) >> 1;
+        
+        long total = (endTime - System.currentTimeMillis()) / 1000;
+        
+        if(total == 0){
+            stop();
+            return;
+        }
+        
+        long seconds = total % 60, minutes = total / 60;
+        
+        g.drawString(minutes + ":" + seconds, centerX - 20, centerY - 20);*/
+        
+    }
+    
     protected void gameRender() {
         //	get	the	buffer	strategy	from	the	display
         bs = display.getCanvas().getBufferStrategy();
@@ -113,7 +157,11 @@ public abstract class Nivel implements Runnable{
             display.getCanvas().createBufferStrategy(3);
         } else {
             g = bs.getDrawGraphics();
+            g.setFont(new Font("TimesRoman", Font.BOLD, 50)); 
             render();
+            
+           //renderScore();
+            
             bs.show();
             g.dispose();
         }

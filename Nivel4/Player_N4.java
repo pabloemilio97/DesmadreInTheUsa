@@ -5,6 +5,7 @@ PLAYERS IN LEVEL FOUR SPECIFICATIONS AND ADMINISTRATION CLASS FOR THE PURPOSE OF
 package Nivel4;
 
 import Control.Nivel;
+import Control.SoundClip;
 import java.awt.image.BufferedImage;
 
 /**

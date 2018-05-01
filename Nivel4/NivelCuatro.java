@@ -17,12 +17,10 @@ import javax.swing.JFrame;
  * @author adanlopezalatorre
  */
 public class NivelCuatro extends Control.Nivel implements Runnable{
-
-    private Control.Player players[];
     
     
-    public NivelCuatro(Control.Display display, Player players[]) {
-        super(display);
+    public NivelCuatro(Control.Display display, Player players[], Control.Master master) {
+        super(display, master);
         
         for(int i = 0; i < 4; i++)
             this.players[i] = new Player_N4(players[i]);

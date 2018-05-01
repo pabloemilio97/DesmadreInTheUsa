@@ -36,7 +36,15 @@ public class Player extends Item{
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
-
+    /**
+     * suma al puntaje
+     *
+     * @param puntaje nuevo valor
+     */
+    public void acumPuntaje(int puntaje) {
+        this.puntaje += puntaje;
+    }
+    
     /**
      * Acceso a variable puntaje
      * @return el puntaje actual
@@ -44,7 +52,7 @@ public class Player extends Item{
     public int getPuntaje() {
         return puntaje;
     }
-
+    
     @Override
     public void tick() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

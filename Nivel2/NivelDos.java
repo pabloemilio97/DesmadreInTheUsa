@@ -16,13 +16,10 @@ import javax.swing.JFrame;
  *
  * @author adanlopezalatorre
  */
-public class NivelDos extends Control.Nivel implements Runnable{
-
-    private Control.Player players[];
+public class NivelDos extends Control.Nivel implements Runnable{    
     
-    
-    public NivelDos(Control.Display display, Player players[]) {
-        super(display);
+    public NivelDos(Control.Display display, Player players[], Control.Master master) {
+        super(display, master);
         
         for(int i = 0; i < 4; i++)
             this.players[i] = new Player_N2(players[i]);

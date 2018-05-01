@@ -6,6 +6,7 @@
 package Nivel2;
 
 import Control.Nivel;
+import Control.SoundClip;
 import java.awt.image.BufferedImage;
 
 /**
