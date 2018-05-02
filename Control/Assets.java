@@ -20,6 +20,7 @@ import javax.sound.sampled.Clip;
 public class Assets {
 
     public static BufferedImage [] backgrounds;
+    public static BufferedImage spaceBar;
     /**
      * initializing	the	images	of	the	game
      */
@@ -28,6 +29,7 @@ public class Assets {
         for (int i=1; i<=4; i++){
             backgrounds[i] = loadImage("/Images/BG" + i + ".png");
         }
+        spaceBar = loadImage("/Images/Spacebar/1.png");
     }
     
     public static Clip loadSound(String fileName){

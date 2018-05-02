@@ -99,7 +99,7 @@ public class Taco extends Item{
             if(intersects(current)){
                 animation = ((NivelUno)nivel).getTacoTransition().getAnimation();
                 inTransition = true;
-                good.play();
+                if(good != null) good.play();
                 current.setDestroyed(true);
                 
                 int oldPuntaje = nivel.getPlayers()[current.getPlayerID()].getPuntaje();
