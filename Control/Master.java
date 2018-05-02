@@ -19,7 +19,7 @@ public class Master implements KeyListener{
     Nivel []niveles; //Level array declaration
     Player[] players;
     public static int width = 1000, height = 700;
-    public static int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_F, KeyEvent.VK_J, KeyEvent.VK_UP};
+    public static int [] playerKeys = {KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_UP, KeyEvent.VK_LEFT};
     public int currentNivel;
     public Display display;
     public Graphics g;

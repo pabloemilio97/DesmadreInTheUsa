@@ -42,7 +42,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private int newTacoCounter;
     private long lastTime;
     private int randomTime = 3000;
-    private SoundClip music;
     
     private Queue<Salsa> bulletQueue;
     private Queue<Taco> tacoQueue;
@@ -79,10 +78,9 @@ public class NivelUno extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
-        music = new SoundClip("/Music/n1.wav");
+        SoundClip music = new SoundClip("/Music/n1.wav");
         music.setLooping(true);
         music.play();
-        nivelTime = 120;
         /*
         Initialization of game characters should go here
          */
@@ -156,8 +154,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
             
         }
         
-        //keyManager.tick();
-        //player.tick();
     }
 
     /**
