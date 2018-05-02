@@ -185,7 +185,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
     
     @Override
     public void setTransition(){
-        transition = new Transition("2", 9, display, this);
+        transition = new Transition("2", 10, display, this);
     }
 
     /**

@@ -140,7 +140,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
     }
     @Override
     public void setTransition(){
-        transition = new Transition("3", 7, display, this);
+        transition = new Transition("3", 8, display, this);
     }
 
     /**
