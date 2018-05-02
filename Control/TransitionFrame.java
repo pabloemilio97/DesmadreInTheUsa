@@ -21,7 +21,11 @@ public class TransitionFrame {
     
     public TransitionFrame(String path){
         image = loadImage(path + ".png");
+        try{
         beginningSound = new SoundClip(path + ".wav");
+        }catch (Exception e){
+            return;
+        }
     }
     
     public void show(Graphics g){

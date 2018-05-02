@@ -73,7 +73,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
         good = new SoundClip("/Sounds/good.wav");
         music.setLooping(true);
         music.play();
-        nivelTime = 120;
+        nivelTime = Nivel.nivelTime;
         /*
         Initialization of game characters should go here
          */

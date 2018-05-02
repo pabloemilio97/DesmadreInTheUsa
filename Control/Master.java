@@ -61,6 +61,9 @@ public class Master implements KeyListener{
     
     public void nextGame(){
         if(currentNivel == 3){
+            currentNivel++;
+            display.createDisplay();
+            display.setTransitionDisplay();
             end.nextTransition();
         }
         else {
@@ -84,14 +87,23 @@ public class Master implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
+        
+        if(currentNivel == 4 || !niveles[currentNivel].isRunning()){
+            if(key == KeyEvent.VK_SPACE){
+                if(currentNivel == 4){
+                    end.nextTransition();
+                }
+                else{
+                niveles[currentNivel].getTransition().nextTransition();
+                }
+            }
+            return;
+        }
+        
         for(int i = 0; i < 4; i++){
             if(niveles[currentNivel].isRunning() && key == Master.playerKeys[i]){
                 niveles[currentNivel].botonDeAccion(i);
             }
-        }
-        if(key == KeyEvent.VK_SPACE){
-            niveles[currentNivel].getTransition().nextTransition();
-            
         }
     }
     
