@@ -19,7 +19,7 @@ import javax.sound.sampled.Clip;
  */
 public class Assets {
 
-    static BufferedImage [] backgrounds;
+    public static BufferedImage [] backgrounds;
     /**
      * initializing	the	images	of	the	game
      */
