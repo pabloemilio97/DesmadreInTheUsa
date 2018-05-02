@@ -199,7 +199,6 @@ public class NivelDos extends Control.Nivel implements Runnable{
             enemies.add(current);
         }
         chain.render(g);
-        chain2.render(g);
         for(int i = 0; i < 4; i++) players[i].render(g);
     }
 
