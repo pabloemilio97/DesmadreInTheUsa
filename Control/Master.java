@@ -23,6 +23,7 @@ public class Master implements KeyListener{
     public int currentNivel;
     public Display display;
     public Graphics g;
+    private Transition end;
     
     public Master(){
         players = new Player[4];
@@ -40,7 +41,8 @@ public class Master implements KeyListener{
         niveles[2] = new Nivel3.NivelTres(display, players, this);
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS
-        currentNivel = -1;
+        currentNivel = 2;
+        end = new Transition ("X", 3, display, null);
     }
     
     public Display getDisplay(){
@@ -50,11 +52,11 @@ public class Master implements KeyListener{
     
     public void nextGame(){
         if(currentNivel == 3){
-            //handle end of game
-            return;
+            end.nextTransition();
         }
-        
-        niveles[++currentNivel].executeNivel();
+        else {
+            niveles[++currentNivel].executeNivel();
+        }
     }
 
         //Key Typed method

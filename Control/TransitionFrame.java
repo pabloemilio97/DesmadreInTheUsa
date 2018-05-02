@@ -26,10 +26,15 @@ public class TransitionFrame {
     
     public void show(Graphics g){
         g.drawImage(image, 0, 0, Master.width, Master.height, null);
-        beginningSound.play();
+        if (beginningSound!=null){
+            beginningSound.play();
+        }
+        
     } 
     
     public void stopSound(){
-        beginningSound.stop();
+        if (beginningSound!=null){
+            beginningSound.stop();
+        }
     }
 }

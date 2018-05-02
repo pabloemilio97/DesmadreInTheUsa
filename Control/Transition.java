@@ -31,13 +31,29 @@ public class Transition {
     }
     
     public void nextTransition(){
-        System.out.println(currentFrame);
-        if (currentFrame>=2){
-            frames[currentFrame-1].stopSound();
+        if (nivel!=null){
+            if (nivel.master.getNivel()==0){
+                if (currentFrame==1){
+                    frames[0].stopSound();
+                }
+                if (currentFrame>3){
+                    frames[currentFrame-1].stopSound();
+                }
+        }
+        else 
+            if (currentFrame>=2){
+                frames[currentFrame-1].stopSound();
+            }
         }
         
+        
         if(currentFrame + 1 == frames.length){
-            frames[0].stopSound();
+            if (nivel.master.getNivel()==0){
+                frames[2].stopSound();
+            }
+            else {
+                frames[0].stopSound();
+            }
             frames[currentFrame].stopSound();
             nivel.start();
             return;
