@@ -35,7 +35,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
         enemyQueue = new LinkedList<>();
         for(int i = 0; i < 4; i++)
             this.players[i] = new Player_N2(players[i], this);
-        enemy = new Enemy_N2 (0, 0, Player.width, Player.height, loadImage("/Images/snake.png"), this);
+        enemy = new Enemy_N2(0, 0, Player.width, Player.height, loadImage("/Images/snake.png"), this);
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -49,7 +49,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
         
         //Control.Assets.init();
         running = true;
-        SoundClip music = new SoundClip("/Music/n2.wav");
+        music = new SoundClip("/Music/n2.wav");
         music.setLooping(true);
         music.play();
         nivelTime = 120;

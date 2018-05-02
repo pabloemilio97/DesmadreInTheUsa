@@ -75,7 +75,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
-        SoundClip music = new SoundClip("/Music/n3.wav");
+        music = new SoundClip("/Music/n3.wav");
         music.setLooping(true);
         music.play();
         nivelTime = 120;

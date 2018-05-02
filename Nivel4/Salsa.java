@@ -7,6 +7,7 @@ package Nivel4;
 
 import Control.Nivel;
 import java.awt.image.BufferedImage;
+import java.util.Queue;
 
 /**
  *
@@ -15,7 +16,7 @@ import java.awt.image.BufferedImage;
 public class Salsa extends Control.Item{
     private int velocidad; //velocidad del taco
     private int playerID; //controls direccion of salsa, and its color
-    private boolean destroyed;
+    private boolean destroyed, venomous;
     public static final int width = 30, height = 30;
     /**
      * receives as parameter an int representing the player that summons salsa
@@ -42,6 +43,7 @@ public class Salsa extends Control.Item{
         super(x, y, width, height, path, frames, nivel);
         destroyed = false;
         this.playerID = playerID;
+        venomous = true;
     }
     /**
      * builds salsa by player
@@ -69,6 +71,14 @@ public class Salsa extends Control.Item{
         
         this.setAnimation(salsa.getAnimation());
         destroyed = false;
+    }
+    
+    public boolean isVenomous(){
+        return venomous;
+    }
+    
+    public void setVenomous(boolean venomous){
+        this.venomous = venomous;
     }
     
     /**
@@ -125,6 +135,20 @@ public class Salsa extends Control.Item{
     public void tick() {
         x -= NivelCuatro.dirs[playerID][0];
         y -= NivelCuatro.dirs[playerID][1];
+        
+        Queue<Salsa> q = ((NivelCuatro)nivel).getBulletQueue();
+        
+        for(int i = q.size(); i > 0; i--){
+            Salsa current = q.poll();
+            
+            if(intersects(current)){
+                setDestroyed(true);
+                current.setDestroyed(true);
+            }
+            
+            q.add(current);
+            
+        }
         
         if(x < 0 || x + getWidth() > Nivel.width || y < 0 || y + this.getHeight() > Nivel.height){
             destroyed = true;
