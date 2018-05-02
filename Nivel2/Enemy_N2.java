@@ -28,7 +28,7 @@ public class Enemy_N2 extends Control.Item{
     public Enemy_N2(int x, int y, int width, 
             int height, BufferedImage defaultImage, Nivel nivel) {
         super(x, y, width, height, defaultImage, nivel);
-        this.velX = 0;
+        this.velX = 1;
         this.velY = 0;
     }
     
@@ -68,9 +68,27 @@ public class Enemy_N2 extends Control.Item{
     public void tick() {
         this.y += velY;
         this.x += velX;
-//        if (getY() >= height-50 || getX() >= width-50 || getX() <= 0 || getY() <= 0){
-//            destroyed = true;
-//        }
+        
+        if (getY() >= height+400){
+            setX(-200);
+            setVelX(2);
+            setVelY(0);
+        }
+        if (getX() >= width+400){
+            setY(-200);
+            setVelY(1);
+            setVelX(0);
+        }
+        if (getX() <= -400){
+            setY(-200);
+            setVelY(1);
+            setVelX(0);
+        }
+        if (getY() <= -400){
+            
+        }
+            
+        }
         
     }
     

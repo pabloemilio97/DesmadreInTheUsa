@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 import javax.swing.JFrame;
 
 /**
@@ -30,23 +31,26 @@ public class NivelDos extends Control.Nivel implements Runnable{
     private Queue<Enemy_N2> enemies;
     private Enemy_N2 enemy;
     
-    private int enemyCount = 1;
+    private int enemyCount = 3;
     
     public NivelDos(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
         for(int i = 0; i < 4; i++)
             this.players[i] = new Player_N2(players[i], this);
-        enemies = new LinkedList<>();
+        
         //Initialize array list of enemies
-        enemy = new Enemy_N2(0, 0, 50, 50, loadImage("/Images/snake.png"), this);
+        Random myRand = new Random();
+        enemies = new LinkedList<>();
         for (int i = 0; i < 3; i++) {
-            int randX = (int) (Math.random()*(width - Player.width));
-            int randY = (int) (Math.random()*(height - Player.height));
+            int randX = -myRand.nextInt(200);
+            int randY = myRand.nextInt(height - Player.height);
+            enemy = new Enemy_N2(0, 0, 50, 50, loadImage("/Images/snake.png"), this);
             enemy.setX(randX);
             enemy.setY(randY);
             enemies.add(enemy);
         }
+        
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -104,7 +108,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
         checkLimits();
 
         //tick for obstacles
-        for (int i = 0; i < enemies.size(); i++) {
+        for (int i = 0; i < enemyCount; i++) {
             Enemy_N2 current = enemies.poll();
             current.tick();
             if(!current.isDestroyed()){
