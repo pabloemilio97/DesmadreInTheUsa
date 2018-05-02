@@ -95,6 +95,9 @@ public abstract class Nivel implements Runnable{
             thread = new Thread(this);
             thread.start();
             endTime = Nivel.nivelTime * 1000 + System.currentTimeMillis();
+            for (int i=0; i<4; i++){
+                System.out.println(players[i].getX()+" "+players[i].getY());
+            }
         }
     }
 
