@@ -79,7 +79,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
         good = new SoundClip("/Sounds/good.wav");
         music.setLooping(true);
         music.play();
-        nivelTime = 120;
+        nivelTime = Nivel.nivelTime;
         /*
         Initialization of game characters should go here
          */
@@ -193,7 +193,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
      */
     @Override
     public void setTransition(){
-        transition = new Transition("2", 9, display, this);
+        transition = new Transition("2", 10, display, this);
     }
 
     /**
@@ -207,7 +207,6 @@ public class NivelDos extends Control.Nivel implements Runnable{
             enemies.add(current);
         }
         chain.render(g);
-        chain2.render(g);
         for(int i = 0; i < 4; i++) players[i].render(g);
     }
 

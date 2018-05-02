@@ -111,7 +111,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     
     @Override
     public void setTransition(){
-        transition = new Transition("1", 10, display, this);
+        transition = new Transition("1", 11, display, this);
     }
     
     /**

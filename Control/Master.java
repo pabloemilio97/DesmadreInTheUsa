@@ -18,7 +18,7 @@ public class Master implements KeyListener{
     Nivel []niveles; //Level array declaration
     Player[] players;
     public static int width = 1000, height = 700;
-    public static int [] playerKeys = {KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_UP, KeyEvent.VK_LEFT};
+    public static int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_P, KeyEvent.VK_Z, KeyEvent.VK_M};
     public int currentNivel;
     public boolean won;
     public Display display;
@@ -44,7 +44,7 @@ public class Master implements KeyListener{
         niveles[2] = new Nivel3.NivelTres(display, players, this);
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS
-        currentNivel = 2;
+        currentNivel = -1;
         won = false;
         end = new Transition ("X", 3, display, null);
     }
@@ -77,6 +77,9 @@ public class Master implements KeyListener{
      */
     public void nextGame(){
         if(currentNivel == 3){
+            currentNivel++;
+            display.createDisplay();
+            display.setTransitionDisplay();
             end.nextTransition();
         }
         else {
@@ -109,14 +112,23 @@ public class Master implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
+        
+        if(currentNivel == 4 || !niveles[currentNivel].isRunning()){
+            if(key == KeyEvent.VK_SPACE){
+                if(currentNivel == 4){
+                    end.nextTransition();
+                }
+                else{
+                niveles[currentNivel].getTransition().nextTransition();
+                }
+            }
+            return;
+        }
+        
         for(int i = 0; i < 4; i++){
             if(niveles[currentNivel].isRunning() && key == Master.playerKeys[i]){
                 niveles[currentNivel].botonDeAccion(i);
             }
-        }
-        if(key == KeyEvent.VK_SPACE){
-            niveles[currentNivel].getTransition().nextTransition();
-            
         }
     }
     /**

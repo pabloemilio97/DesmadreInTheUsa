@@ -182,7 +182,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
      */
     @Override
     public void setTransition(){
-        transition = new Transition("4", 5, display, this);
+        transition = new Transition("4", 6, display, this);
     }
 
     /**
@@ -208,7 +208,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         }
         //g.drawString(String.valueOf(trump.getLife()), width/2 - 25, height/2 + 100);
         
-        master.getDisplay().getClockLabel().setText("Enemy's life: " + trump.getLife());
+        master.getDisplay().getTrumpLabel().setText("Enemy's life: " + trump.getLife());
         
     }
 

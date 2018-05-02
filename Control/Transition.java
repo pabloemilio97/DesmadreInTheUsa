@@ -16,6 +16,8 @@ public class Transition {
     private TransitionFrame frames[];
     private Display display;
     private int currentFrame;
+    Graphics g;
+    BufferStrategy bs;
     private Nivel nivel;
     
     /**
@@ -41,35 +43,9 @@ public class Transition {
      * changes the transition frames
      */
     public void nextTransition(){
-        if (nivel!=null){
-            if (nivel.master.getNivel()==0){
-                if (currentFrame==1){
-                    frames[0].stopSound();
-                }
-                if (currentFrame>3){
-                    frames[currentFrame-1].stopSound();
-                }
-        }
-        else 
-            if (currentFrame>=2){
-                frames[currentFrame-1].stopSound();
-            }
-        }
         
-        
-        if(currentFrame + 1 == frames.length){
-            if (nivel.master.getNivel()==0){
-                frames[2].stopSound();
-            }
-            else {
-                frames[0].stopSound();
-            }
-            frames[currentFrame].stopSound();
-            nivel.start();
-            return;
-        }
         //	get	the	buffer	strategy	from	the	display
-        BufferStrategy bs = display.getCanvas().getBufferStrategy();
+        bs = display.getCanvas().getBufferStrategy();
         /*	if	it	is	null,	we	define	one	with	3	buffers	to	display	images	of
 								the	game,	if	not	null,	then	we	display every	image	of	the	game	but
 								after	clearing	the	Rectanlge,	getting	the	graphic	object	from	the	
@@ -80,9 +56,24 @@ public class Transition {
             display.getCanvas().createBufferStrategy(2);
             bs = display.getCanvas().getBufferStrategy();
         }
-        Graphics g = bs.getDrawGraphics();
+        try{
+        g = bs.getDrawGraphics();
+        }catch(Exception e){
+            return;
+        }
             
-        frames[++currentFrame].show(g);
+        if(currentFrame != -1) frames[currentFrame].stopSound();
+        
+        if(currentFrame + 1 == frames.length){
+            if(nivel != null)
+                nivel.start();
+            return;
+        }
+        else{
+            frames[++currentFrame].show(g);
+        }
+        
+        g.drawImage(Assets.spaceBar, 0, 0, 300, 50, null);
             
         bs.show();
         g.dispose();
