@@ -178,7 +178,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
             Taco current = tacoQueue.poll();
             
             current.render(g);
-            
             tacoQueue.add(current);
             
         }
@@ -198,6 +197,5 @@ public class NivelUno extends Control.Nivel implements Runnable{
         bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
         actionSounds[playerIndex].play();
     }
-    
     
 }

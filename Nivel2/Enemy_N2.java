@@ -12,8 +12,9 @@ import java.awt.image.BufferedImage;
  * @author macuser
  */
 public class Enemy_N2 extends Control.Item{
-    private int velocidad;
-    private int direccion;
+    private int velX;
+    private int velY;
+    private boolean destroyed;
 
     /**
      * Constructor for enemy in level 2
@@ -24,54 +25,78 @@ public class Enemy_N2 extends Control.Item{
      * @param width
      * @param height 
      */
-    public Enemy_N2(int velocidad, int direccion, int x, int y, int width, 
+    public Enemy_N2(int x, int y, int width, 
             int height, BufferedImage defaultImage, Nivel nivel) {
         super(x, y, width, height, defaultImage, nivel);
-        this.velocidad = velocidad;
-        this.direccion = direccion;
+        this.velX = 0;
+        this.velY = 0;
+    }
+    
+    public Enemy_N2(Enemy_N2 enemy) {
+        super(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight(), null, enemy.getGame());
+        this.velX = 0;
+        this.velY = 0;
     }
     
     /**
      * Para sacar la velocidad del enemigo
-     * @return velocidad
+     * @return velocidadX
      */
-    public int getVelocidad() {
-        return velocidad;
+    public int getVelX() {
+        return velX;
+    }
+
+    /**
+     * Para cambiar velocidad de enemigo
+     * @param velocidad X
+     */
+    public void setVelX(int velX) {
+        this.velX = velX;
+    }
+    
+        /**
+     * Para sacar la velocidad y del enemigo
+     * @return velocidadY
+     */
+    public int getVelY() {
+        return velY;
     }
 
     /**
      * Para cambiar velocidad de enemigo
      * @param velocidad 
      */
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
-    }
-
-    /**
-     * Para obtener direccion de enemigo
-     * @return direccion
-     */
-    public int getDireccion() {
-        return direccion;
-    }
-
-    /**
-     * Para cambiar direccion de enemigo
-     * @param direccion 
-     */
-    public void setDireccion(int direccion) {
-        this.direccion = direccion;
+    public void setVelY(int velY) {
+        this.velY = velY;
     }
 
     @Override
     public void tick() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            this.y += velY;
+        if(y > ((NivelDos) nivel).height){
+            destroyed = true;
+        }
     }
 
     @Override
     public void render(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
+       /**
+     * to determine if obstacle is destroyed
+     * @return bool
+     */
+    public boolean isDestroyed() {
+        return destroyed;
+    }
+    
+    /**
+     * to set obstacle to destroyed
+     * @param destroyed 
+     */
+    public void setDestroyed(boolean destroyed) {
+        this.destroyed = destroyed;
+    }
     
 }
