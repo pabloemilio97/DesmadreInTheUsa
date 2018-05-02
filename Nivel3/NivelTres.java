@@ -67,7 +67,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
         }
         
         //initialize obstacle to be added to queue each time
-        obstacle = new Obstaculo_N3(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
+        obstacle = new Obstaculo_N3(0, 0, Player.width, Player.height, "/Images/Cactus/", 2, this);
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -136,22 +136,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
                 newObstacleCounter = 1;
             }
         }
-        /*
-        long now = (endTime - System.currentTimeMillis()) / 1000;
 
-        if (now != lastTime && now % 15 == 0) {
-            randomTime /= 1.2;
-        }
-        lastTime = now;
-        
-        if (newObstacleCounter-- == 0) {
-            int xRandom = (int)(Math.random() * (1000 - Player.width));
-            obstacle.setX(xRandom);
-            obstacleQueue.add(new Obstaculo_N3(obstacle));
-            Random rand = new Random();
-            newObstacleCounter = rand.nextInt(randomTime) + randomTime / 6;
-        }
-        */
     }
     @Override
     public void setTransition(){

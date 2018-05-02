@@ -20,6 +20,7 @@ public class Player_N3 extends Control.Player{
     double yVel = 1;
     private int puntajeChoca = -30;
     private int distChoca = 150;
+    private SoundClip sonidoChoca;
     /**
      * standard constructor 
      * @param x
@@ -32,6 +33,7 @@ public class Player_N3 extends Control.Player{
      */
     public Player_N3(int x, int y, int width, int height, String spritePath, int frames, Nivel nivel) {
         super(x, y, width, height, spritePath, frames, nivel);
+        sonidoChoca = new SoundClip("/Sounds/oof.wav");
     }
     /**
      * copy constructor
@@ -39,6 +41,7 @@ public class Player_N3 extends Control.Player{
      */
     public Player_N3(Control.Player player, Nivel miNivel){
         super(player, miNivel);
+        sonidoChoca = new SoundClip("/Sounds/oof.wav");
     }
     /**
      * determines if superior limit of level is reached
@@ -93,6 +96,7 @@ public class Player_N3 extends Control.Player{
         for (int i = obstacleQueue.size(); i > 0; i--) {
             Obstaculo_N3 current = obstacleQueue.poll();
             if (intersects(current)) {
+                sonidoChoca.play();
                 current.setDestroyed(true);
                 acumPuntaje(puntajeChoca);
                 if(!llegaALimiteInf()){
