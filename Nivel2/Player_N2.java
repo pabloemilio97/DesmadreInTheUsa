@@ -56,4 +56,15 @@ public class Player_N2 extends Control.Player {
     public void setVelY(int velY) {
         this.velY = velY;
     }
+    
+    
+    /**
+     * tick for player
+     */
+    @Override
+    public void tick() {
+        this.x += getVelX();
+        this.y += getVelY();
+    }
+    
 }
