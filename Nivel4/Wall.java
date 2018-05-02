@@ -17,11 +17,15 @@ import static java.lang.Math.PI;
 public class Wall extends Item{
     private int velocidad;
     private int degrees;
+    private int index;
     private int type;
+    Vector [] circlePoints;
 
-    public Wall(int x, int y, int width, int height, BufferedImage defaultImage, int type, Nivel game) {
-        super(x, y, width, height, defaultImage, game);
+    public Wall(int index, int width, int height, BufferedImage defaultImage, int type, Nivel game) {
+        super(((NivelCuatro)game).circlePoints[index].x, ((NivelCuatro)game).circlePoints[index].y, width, height, defaultImage, game);
         this.type = type;
+        this.index = index;
+        this.circlePoints = ((NivelCuatro)game).circlePoints;
     }
 
     public void setType(int type) {
@@ -53,16 +57,10 @@ public class Wall extends Item{
     //Circular motion of the wall. Determine what happens with collision
     @Override
     public void tick() {
-       if (type == 1){
-           //destruir proyectil
-       }
+       index = (index + 1) % circlePoints.length;
        
-       if (type == 2){
-           //dejar que pase
-       }
+       x = Nivel.width / 2 + circlePoints[index].x;
+       y = Nivel.height / 2 + circlePoints[index].y;
        
-       if (type == 3){
-           //reflejarlo en otro
-       }
     }
 }

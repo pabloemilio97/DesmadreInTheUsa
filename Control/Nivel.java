@@ -33,7 +33,6 @@ public abstract class Nivel implements Runnable{
         this.master = master;
         this.players = new Player[4];
         running = false;
-        endTime = Nivel.nivelTime * 1000 + System.currentTimeMillis();
         setTransition();
         
     }
@@ -56,7 +55,7 @@ public abstract class Nivel implements Runnable{
     
     @Override
     public void run() {
-        init();
+        // init();
 
         //frames per second
         int fps = 50;
@@ -73,7 +72,7 @@ public abstract class Nivel implements Runnable{
             lastTime = now;
             if (delta >= 1) {
                 tick();
-                render();
+                gameRender();
                 delta--;
             }
             tick();
@@ -95,6 +94,7 @@ public abstract class Nivel implements Runnable{
             display.createGameDisplay();
             thread = new Thread(this);
             thread.start();
+            endTime = Nivel.nivelTime * 1000 + System.currentTimeMillis();
         }
     }
 
@@ -194,7 +194,7 @@ public abstract class Nivel implements Runnable{
             
         } else {
             g = bs.getDrawGraphics();
-            g.drawImage(Assets.backgrounds[(master.currentNivel+1)], 0, 0, Master.width, Master.height, null);
+            g.drawImage(Assets.backgrounds[master.currentNivel + 1], 0, 0, Master.width, Master.height, null);
             render();
             renderScore();
             
