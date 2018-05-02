@@ -4,6 +4,7 @@ import static Control.Assets.loadImage;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JLabel;
 
 /*
@@ -15,7 +16,7 @@ import javax.swing.JLabel;
 
 public abstract class Nivel implements Runnable{
     
-    public static int width = 700, height = 700, nivelTime = 50;
+    public static int width = 700, height = 700, nivelTime = 100;
     
     protected int lifestock;
     protected Display display;
@@ -45,7 +46,8 @@ public abstract class Nivel implements Runnable{
     public abstract void setTransition();
     
     public void executeNivel(){
-        display.createTransitionDisplay();
+        display.createDisplay();
+        display.setTransitionDisplay();
         transition.nextTransition();
     }
     
@@ -97,13 +99,16 @@ public abstract class Nivel implements Runnable{
     public synchronized void start() {
         if (!running) {
             running = true;
-            display.createGameDisplay();
+            display.setGameDisplay();
+            
             thread = new Thread(this);
+            try{
+            ///TimeUnit.SECONDS.sleep(2);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             thread.start();
             endTime = Nivel.nivelTime * 1000 + System.currentTimeMillis();
-            for (int i=0; i<4; i++){
-                System.out.println(players[i].getX()+" "+players[i].getY());
-            }
         }
     }
 
@@ -163,7 +168,8 @@ public abstract class Nivel implements Runnable{
             labels[i].setText(players[i].getPuntaje() + "");
         }
         
-        master.getDisplay().setClock((int)(endTime - System.currentTimeMillis()) / 1000);
+        if(!(this instanceof Nivel4.NivelCuatro))
+            master.getDisplay().setClock((int)(endTime - System.currentTimeMillis()) / 1000);
         
         /*int scoreHeight = Nivel.height / 5;
         
@@ -211,8 +217,13 @@ public abstract class Nivel implements Runnable{
             display.getCanvas().createBufferStrategy(3);
             
         } else {
+            try{
             g = bs.getDrawGraphics();
+            }catch(Exception e){
+                return;
+            }
             g.drawImage(Assets.backgrounds[master.currentNivel + 1], 0, 0, Master.width, Master.height, null);
+            
             render();
             renderScore();
             
