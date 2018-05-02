@@ -37,18 +37,13 @@ public class Player_N4 extends Control.Player{
     public Player_N4(Control.Player player, Nivel miNivel){
         super(player, miNivel);
     }
-<<<<<<< HEAD
+
     /**
      * tick for player
      */
-    @Override
-    public void tick() {
-        
-    }
 
-}
-=======
-    
+
+
     @Override
     public void tick(){
         Queue<Salsa> q = ((NivelCuatro)nivel).getBulletQueue();
@@ -67,4 +62,4 @@ public class Player_N4 extends Control.Player{
     }
     
 }
->>>>>>> f9e3058418df2d7f8cf0d2450603521487c73e79
+
