@@ -24,15 +24,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
- * @author 
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Display {
     private JFrame jframe;  // this is the app class
     private Canvas canvas, transitionCanvas, gameCanvas;  // to display images
     private JPanel scoreContainer;
     private Master master;
-    private JLabel scoreLabels[], clockLabel, trumpLabel;
+    private JLabel scoreLabels[], clockLabel;
     private JPanel gamePanel, transitionPanel;
     private static final int playerScoreHeight = Master.height / 7;
     
@@ -41,37 +43,37 @@ public class Display {
     private final int height;     // height of the window
     
     /**
-<<<<<<< HEAD
+
      * getter for width of window
      * @return int
-=======
+
      * to get width of window
      * @return width
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     public int getWidth(){
         return width;
     }
     /**
-<<<<<<< HEAD
+
      * getter for height of window
      * @return int
-=======
+
      * to get height of window
      * @return height
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     public int getHeight(){
         return height;
     }
     /**
-<<<<<<< HEAD
+
      * getter for the score labels
      * @return JLabel
-=======
+
      * To get the labels that display score
      * @return score Labels
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     public JLabel[] getScoreLabels(){
         return scoreLabels;
@@ -94,19 +96,19 @@ public class Display {
     }
     
     /**
-<<<<<<< HEAD
+
      * changes the size of a given image, given its desired resolution
      * @param img
      * @param newW
      * @param newH
      * @return BufferedImage
-=======
+
      * To be able to resize an image
      * @param img
      * @param newW
      * @param newH
      * @return 
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     public static BufferedImage resize(BufferedImage img, int newW, int newH) {  
         int w = img.getWidth();  
@@ -121,12 +123,12 @@ public class Display {
     }  
     
     /**
-<<<<<<< HEAD
+
      * Sets the minimum and maximum size, as well as the preferred size of an image
      * sets size
-=======
+
      * To put a fixed size of an object
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      * @param cont
      * @param d 
      */
@@ -137,17 +139,17 @@ public class Display {
     }
     
     /**
-<<<<<<< HEAD
+
      * creates the score bar that appears to the right of the screen
-=======
+
      * Creates the place where the score is displayed
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     public void createScoreContainer(){
         scoreContainer = new Control.JPanel();
         fixSize(scoreContainer, new Dimension(Master.width - Nivel.width, Nivel.height));
         scoreContainer.setOpaque(false);
-        scoreContainer.setLayout(new GridLayout(7, 1));
+        scoreContainer.setLayout(new GridLayout(6, 1));
                 
         scoreContainer.add(new JLabel());//new ImageIcon(loadImage("/Images/" + "scoreword"))));
         scoreLabels = new JLabel[4];
@@ -196,38 +198,40 @@ public class Display {
     }
     
     /**
-<<<<<<< HEAD
+
      * resets the game display
-=======
+
      * To set the display
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     void setGameDisplay(){        
         canvas = gameCanvas;
+        
         jframe.setContentPane(gamePanel);
+        
         jframe.pack();
         
     }
     
     /**
-<<<<<<< HEAD
+
      * getter for the clock label
      * @return JLabel
-=======
+
      * To create the label of time
      * @return 
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     public JLabel getClockLabel(){
         return clockLabel;
     }
     
     /**
-<<<<<<< HEAD
+
      * setter for the transition display
-=======
+
      * Display for transition story frames
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     void setTransitionDisplay(){
         canvas = transitionCanvas;
@@ -236,11 +240,11 @@ public class Display {
     }
     
     /**
-<<<<<<< HEAD
+
      * setter for the game's clock
-=======
+
      * To change time of level
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      * @param seconds 
      */
     public void setClock(int seconds){
@@ -252,11 +256,11 @@ public class Display {
     }
     
     /**
-<<<<<<< HEAD
+
      * creates the display that shows everything
-=======
+
      * To create the display for game
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     public void createDisplay(){
         jframe = new JFrame(title);
@@ -299,22 +303,22 @@ public class Display {
     }
     
     /**
-<<<<<<< HEAD
+
      * creates the transition display 
-=======
+
      * creates a display for transition story frames
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     public void createTransitionDisplay(){        
         
     }
     
     /**
-<<<<<<< HEAD
+
      * creates the display specific to a level
-=======
+
      * Creates display 
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
+
      */
     public void createGameDisplay() {
         

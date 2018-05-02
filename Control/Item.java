@@ -1,7 +1,5 @@
  /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This is tha class from which all objects in the game inherit from, including players and enemies
  */
 
 package Control;
@@ -12,8 +10,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
- *
- * @author antoniomejorado
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public abstract class Item {
     protected int width;
@@ -40,6 +40,16 @@ public abstract class Item {
         renderCount = 0;
     }
     
+    /**
+     * copy constructor
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param spritePath
+     * @param frames
+     * @param game 
+     */
     public Item(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {     
         this.x = x;
         this.y = y;
@@ -53,13 +63,25 @@ public abstract class Item {
         }
     }
     
+    /**
+     * gets the nivel object
+     * @return 
+     */
     public Nivel getGame(){
         return nivel;
     }
     
+    /**
+     * 
+     * @return BufferedImage[]
+     */
     public BufferedImage[] getAnimation(){
         return animation;
     }
+    /**
+     * setter for an item's animation
+     * @param animation 
+     */
     public void setAnimation(BufferedImage []animation){
         this.animation = animation;
     }
@@ -82,10 +104,20 @@ public abstract class Item {
         return x;
     }
     
+    /**
+     * gets the item's animation
+     * @param index
+     * @return BufferedImage
+     */
     public BufferedImage getAnimation(int index){
         return animation[index];
     }
     
+    /**
+     * sets the character's animation
+     * @param index
+     * @param bi 
+     */
     public void setAnimation(int index, BufferedImage bi){
         animation[index] = bi;
     }
@@ -98,10 +130,18 @@ public abstract class Item {
         return y;
     }
     
+    /**
+     * gets the width of the item
+     * @return int
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * gets the height of an item
+     * @return 
+     */
     public int getHeight() {
         return height;
     }
@@ -121,23 +161,44 @@ public abstract class Item {
         this.y = y;
     }
     
+    /**
+     * sets the width of the item
+     * @param width 
+     */
     public void setWidth(int width) {
         this.width = width;
     }
 
+    /**
+     * sets the height of an object
+     * @param height 
+     */
     public void setHeight(int height) {
         this.height = height;
     }
     
+    /**
+     * determines if this item intersects with given object
+     * @param obj
+     * @return 
+     */
     public boolean intersects(Object obj){
         return obj instanceof Item && 
         this.getBounds().intersects(((Item)obj).getBounds());
     }
     
+    /**
+     * gets the coordinates and dimensions of item's rectangle
+     * @return 
+     */
     private Rectangle getBounds(){
         return new Rectangle(getX(), getY(), getWidth(), getHeight());
     }
 
+    /**
+     * gets this item's corresponding level
+     * @return 
+     */
     public Nivel getNivel() {
         return nivel;
     }
