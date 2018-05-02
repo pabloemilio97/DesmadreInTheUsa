@@ -101,6 +101,9 @@ public abstract class Nivel implements Runnable{
             thread = new Thread(this);
             thread.start();
             endTime = Nivel.nivelTime * 1000 + System.currentTimeMillis();
+            for (int i=0; i<4; i++){
+                System.out.println(players[i].getX()+" "+players[i].getY());
+            }
         }
     }
 
@@ -127,6 +130,14 @@ public abstract class Nivel implements Runnable{
     }
     public int getHeight(){
         return display.getHeight();
+    }
+
+    public long getEndTime() {
+        return endTime;
+    }
+    
+    public int getSeconds(){
+        return (int)(endTime - System.currentTimeMillis()) / 1000;
     }
     
     /**
