@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 import javax.swing.JFrame;
 
 /**
@@ -29,25 +30,27 @@ public class NivelDos extends Control.Nivel implements Runnable{
     public static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     private Queue<Enemy_N2> enemies;
     private Enemy_N2 enemy;
-    
-    private int enemyCount = 1;
+    private SoundClip oof;
     
     public NivelDos(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
         for(int i = 0; i < 4; i++)
             this.players[i] = new Player_N2(players[i], this);
-        enemy = new Enemy_N2(0, 0, Player.width, Player.height, loadImage("/Images/snake.png"), this);
+
         enemies = new LinkedList<>();
         //Initialize array list of enemies
-        enemy = new Enemy_N2(0, 0, 50, 50, loadImage("/Images/snake.png"), this);
-        for (int i = 0; i < 3; i++) {
-            int randX = (int) (Math.random()*(width - Player.width));
-            int randY = (int) (Math.random()*(height - Player.height));
+        Random myRand = new Random();
+        enemies = new LinkedList<>();
+        for (int i = 0; i < 4; i++) {
+            int randX = -myRand.nextInt(390);
+            int randY = myRand.nextInt(height - Player.height);
+            enemy = new Enemy_N2(0, 0, 50, 50, loadImage("/Images/snake.png"), this);
             enemy.setX(randX);
             enemy.setY(randY);
             enemies.add(enemy);
         }
+        
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -60,6 +63,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
         }
         running = true;
         music = new SoundClip("/Music/n2.wav");
+        oof = new SoundClip("/Sounds/oof.wav");
         music.setLooping(true);
         music.play();
         nivelTime = 120;
@@ -92,6 +96,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
         }
     }
     
+    
     /**
      * Updates graphics of game. It is called 50 times per second. All
      * characters inherit from class Item, so they all override their own tick
@@ -108,11 +113,46 @@ public class NivelDos extends Control.Nivel implements Runnable{
         for (int i = 0; i < enemies.size(); i++) {
             Enemy_N2 current = enemies.poll();
             current.tick();
-            if(!current.isDestroyed()){
-                enemies.add(current);
+            
+            //CHECKS COLLISSION WITH PLAYER
+            for (int j=0; j<4; j++){
+                if (current.intersects(players[j])){
+                    oof.play();
+                    if (current.getVelY()>0){
+                        Random myRand = new Random();
+                        current.setX(getWidth()+myRand.nextInt(200));
+                        current.setY(myRand.nextInt(getHeight()-100));
+                        current.setVelX(-2);
+                        current.setVelY(0);
+                    }
+                    else if (current.getVelX()>0){
+                        Random myRand = new Random();
+                        current.setX(myRand.nextInt(getWidth()-100));
+                        current.setY(-myRand.nextInt(200));
+                        current.setVelY(2);
+                        current.setVelX(0);
+                    }
+                    else if (current.getVelX()<0){
+                        Random myRand = new Random();
+                        current.setX(myRand.nextInt(getWidth()-100));
+                        current.setY(getHeight()+myRand.nextInt(200));
+                        current.setVelY(-2);
+                        current.setVelX(0);
+                    }
+                    else if (current.getVelY()<0){
+                        Random myRand = new Random();
+                        current.setX(-myRand.nextInt(200));
+                        current.setY(myRand.nextInt(getHeight()-100));
+                        current.setVelX(2);
+                        current.setVelY(0);
+                    }
+                }
             }
+            enemies.add(current);
         }
     }
+    
+   
   
     
     @Override
@@ -139,7 +179,6 @@ public class NivelDos extends Control.Nivel implements Runnable{
             ((Player_N2)players[i]).setVelX(((Player_N2)players[i]).getVelX() + dirs[playerIndex][0]);
             ((Player_N2)players[i]).setVelY(((Player_N2)players[i]).getVelY() + dirs[playerIndex][1]);
         }
-      
         
     }
     
