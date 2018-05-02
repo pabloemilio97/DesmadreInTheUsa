@@ -13,8 +13,10 @@ import Nivel1.*;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.JFrame;
-
+import java.util.Queue;
+import java.util.Random;
 /**
  *
  * @author adanlopezalatorre
@@ -22,12 +24,29 @@ import javax.swing.JFrame;
 public class NivelTres extends Control.Nivel implements Runnable{
     private int limiteSup;
     private int limiteInf;
-    private final int accums[] = {100, -50, 150};
+    private boolean ready; //when true, players and obstacles move
+    private long lastTime;
+    private long prevTime; //controls how often players and objects move
+    private final int accums[] = {5, -100, 15};
+    private Queue<Obstaculo_N3> obstacleQueue;
+    private int newObstacleCounter;
+    private Obstaculo_N3 obstacle;
+    private int randomTime = 3000;
+    
     public NivelTres(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
-        limiteSup = Player.height;
-        limiteInf = Nivel.height - Player.height;
+        //time related stuff
+        ready = false;
+        prevTime = System.currentTimeMillis(); //to handle time 
+        
+        //limits
+        limiteSup = Player.height * 4;
+        limiteInf = Nivel.height - Player.height * 2;
+        
+        //obstacles
+        obstacleQueue = new LinkedList<>();
+        newObstacleCounter = 0;
         
         int startY = Nivel.height - Player.height*2;
         int separation = Player.width * 2;
@@ -38,6 +57,9 @@ public class NivelTres extends Control.Nivel implements Runnable{
             this.players[i].setX(startX + i*(players[i].getWidth() + separation));
             this.players[i].setY(startY);
         }
+        
+        //initialize obstacle to be added to queue each time
+        obstacle = new Obstaculo_N3(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -57,10 +79,58 @@ public class NivelTres extends Control.Nivel implements Runnable{
      */
     public void tick() {
         //keyManager.tick();
+        long thisTime = System.currentTimeMillis();
+        int timeDiff = (int)(thisTime - prevTime);
+        if(timeDiff > 10){
+            prevTime = thisTime;
+            ready = true; //for moving players and obstacles
+            newObstacleCounter++;
+        }
+        else{
+            ready = false;
+        }
+        
+        //players tick
         for(int i = 0; i < 4; i++){
            players[i].tick();   
         }
         
+        //tick for obstacles
+        for (int i = obstacleQueue.size(); i > 0; i--) {
+            Obstaculo_N3 current = obstacleQueue.poll();
+
+            current.tick();
+            if (!current.isDestroyed()) {
+                obstacleQueue.add(current);
+            }
+        }
+        
+        //generacion de cactus individuales
+        int randValue = (int)(Math.random() * 300) + 1;
+        if (newObstacleCounter % randValue == 0 && obstacleQueue.size() < 5) {
+            int xRandom = (int) (Math.random() * (1000 - Player.width));
+            obstacle.setX(xRandom);
+            obstacleQueue.add(new Obstaculo_N3(obstacle));
+            if(randValue % 2 == 0){
+                newObstacleCounter = 1;
+            }
+        }
+        /*
+        long now = (endTime - System.currentTimeMillis()) / 1000;
+
+        if (now != lastTime && now % 15 == 0) {
+            randomTime /= 1.2;
+        }
+        lastTime = now;
+        
+        if (newObstacleCounter-- == 0) {
+            int xRandom = (int)(Math.random() * (1000 - Player.width));
+            obstacle.setX(xRandom);
+            obstacleQueue.add(new Obstaculo_N3(obstacle));
+            Random rand = new Random();
+            newObstacleCounter = rand.nextInt(randomTime) + randomTime / 6;
+        }
+        */
     }
     @Override
     public void setTransition(){
@@ -80,12 +150,11 @@ public class NivelTres extends Control.Nivel implements Runnable{
         for (int i = 0; i < 4; i++) {
             players[i].render(g);
         }
-        /*
-        g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);*/
-        
+        for (int i = obstacleQueue.size(); i > 0; i--) {
+            Obstaculo_N3 current = obstacleQueue.poll();
+            current.render(g);
+            obstacleQueue.add(current);
+        }
     }
     
     /**
@@ -112,9 +181,25 @@ public class NivelTres extends Control.Nivel implements Runnable{
         return accums;
     }
     
+    /**
+     * getter for when items are ready to move
+     * @return  boolean
+     */
+    public boolean isReady() {
+        return ready;
+    }
+
+    /**
+     * getter for queue of obstacles
+     * @return Queue<Obstaculo_N3>
+     */
+    public Queue<Obstaculo_N3> getObstacleQueue() {
+        return obstacleQueue;
+    }
+    
     
     @Override
     public void botonDeAccion(int playerIndex) {
-        
+        ((Player_N3)players[playerIndex]).changeDirection();
     }
 }
