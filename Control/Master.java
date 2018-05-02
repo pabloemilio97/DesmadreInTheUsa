@@ -24,6 +24,7 @@ public class Master implements KeyListener{
     public boolean won;
     public Display display;
     public Graphics g;
+    private Transition end;
     
     public Master(){
         players = new Player[4];
@@ -43,6 +44,7 @@ public class Master implements KeyListener{
         //CREATION OF PLAYERS
         currentNivel = 2;
         won = false;
+        end = new Transition ("X", 3, display, null);
     }
     
     public boolean getWon(){
@@ -59,11 +61,11 @@ public class Master implements KeyListener{
     
     public void nextGame(){
         if(currentNivel == 3){
-            //handle end of game
-            return;
+            end.nextTransition();
         }
-        
-        niveles[++currentNivel].executeNivel();
+        else {
+            niveles[++currentNivel].executeNivel();
+        }
     }
 
         //Key Typed method

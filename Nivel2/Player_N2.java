@@ -63,9 +63,9 @@ public class Player_N2 extends Control.Player {
      */
     @Override
     public void tick() {
+        
         this.x += getVelX();
         this.y += getVelY();
-        
     }
     
 }

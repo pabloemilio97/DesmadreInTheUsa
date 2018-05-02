@@ -15,6 +15,7 @@ import java.util.Random;
 public class Enemy_N2 extends Control.Item{
     private int velX;
     private int velY;
+    private int speed = 1;
     private boolean destroyed;
 
     /**
@@ -31,6 +32,22 @@ public class Enemy_N2 extends Control.Item{
         super(x, y, width, height, defaultImage, nivel);
         this.velX = 1;
         this.velY = 0;
+    }
+    
+    /**
+     * to change speed of enemies
+     * @param sp speed
+     */
+    public void setSpeed(int sp){
+        speed = sp;
+    }
+    
+    /**
+     * to get speed from nivel
+     * @return 
+     */
+    public int getSpeed(){
+        return speed;
     }
     
     /**
@@ -74,31 +91,30 @@ public class Enemy_N2 extends Control.Item{
             Random myRand = new Random();
             setX(nivel.getWidth()+myRand.nextInt(200));
             setY(myRand.nextInt(nivel.getHeight()-100));
-            setVelX(-2);
+            setVelX(-speed);
             setVelY(0);
         }
         if (getX() >= nivel.width+100){
             Random myRand = new Random();
             setX(myRand.nextInt(nivel.getWidth()-100));
             setY(-myRand.nextInt(200));
-            setVelY(2);
+            setVelY(speed);
             setVelX(0);
         }
         if (getX() <= -100){
             Random myRand = new Random();
             setX(myRand.nextInt(nivel.getWidth()-100));
             setY(nivel.getHeight()+myRand.nextInt(200));
-            setVelY(-2);
+            setVelY(-speed);
             setVelX(0);
         }
         if (getY() <= -100){
             Random myRand = new Random();
             setX(-myRand.nextInt(200));
             setY(myRand.nextInt(nivel.getHeight()-100));
-            setVelX(2);
+            setVelX(speed);
             setVelY(0);
         }
-            
       
         
     }

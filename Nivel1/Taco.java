@@ -9,6 +9,7 @@ import Control.Item;
 import Control.Master;
 import Control.Nivel;
 import Control.Player;
+import Control.SoundClip;
 import java.awt.image.BufferedImage;
 import java.util.Queue;
 
@@ -20,6 +21,7 @@ public class Taco extends Item{
     private int velocidad; //velocidad del taco
     private int degrees, direction;
     private boolean inTransition, ready, destroyed;
+    private SoundClip good;
     
     private static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
     
@@ -37,6 +39,7 @@ public class Taco extends Item{
         super(x, y, width, height, path, frames, nivel);
         degrees = direction = 0;
         inTransition = ready = destroyed = false;
+        good = new SoundClip("/Sounds/good.wav");
     }
     
     /**
@@ -96,7 +99,7 @@ public class Taco extends Item{
             if(intersects(current)){
                 animation = ((NivelUno)nivel).getTacoTransition().getAnimation();
                 inTransition = true;
-                
+                good.play();
                 current.setDestroyed(true);
                 
                 int oldPuntaje = nivel.getPlayers()[current.getPlayerID()].getPuntaje();
