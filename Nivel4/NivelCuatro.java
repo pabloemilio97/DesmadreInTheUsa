@@ -131,7 +131,6 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
             current.tick();
             if(!current.isDestroyed())
                 bulletQueue.add(current);
-            
         }
     }
     
