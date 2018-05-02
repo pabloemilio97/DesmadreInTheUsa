@@ -94,7 +94,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
         long thisTime = System.currentTimeMillis();
         int timeDiff = (int)(thisTime - prevTime);
         
-        long now = (endTime - System.currentTimeMillis()) / 1000;
+        long now = (endTime - System.currentTimeMillis()) / 62;
         if (now != lastTime && now % 2 == 0) {
             Control.Assets.backgrounds[3] = bg1;
         }
