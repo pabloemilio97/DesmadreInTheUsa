@@ -27,9 +27,9 @@ public class NivelTres extends Control.Nivel implements Runnable{
     private int limiteSup;
     private int limiteInf;
     private boolean ready; //when true, players and obstacles move
-    private long lastTime;
+    public long lastTime;
     private long prevTime; //controls how often players and objects move
-    private final int accums[] = {5, -100, 15};
+    private final int accums[] = {50, -50, 100};
     private Queue<Obstaculo_N3> obstacleQueue;
     private int newObstacleCounter;
     private Obstaculo_N3 obstacle;
@@ -129,7 +129,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
         //generacion de cactus individuales
         int randValue = (int)(Math.random() * 300) + 1;
         if (newObstacleCounter % randValue == 0 && obstacleQueue.size() < 5) {
-            int xRandom = (int) (Math.random() * (1000 - Player.width));
+            int xRandom = (int) (Math.random() * (Nivel.width - Player.width));
             obstacle.setX(xRandom);
             obstacleQueue.add(new Obstaculo_N3(obstacle));
             if(randValue % 2 == 0){

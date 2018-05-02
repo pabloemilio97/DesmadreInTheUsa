@@ -18,8 +18,9 @@ import java.util.Queue;
 public class Player_N3 extends Control.Player{
     double xVel = 3;
     double yVel = 1;
-    private int puntajeChoca = -30;
+    private int puntajeChoca = -10;
     private int distChoca = 150;
+    private int prevTime;
     private SoundClip sonidoChoca;
     /**
      * standard constructor 
@@ -34,6 +35,7 @@ public class Player_N3 extends Control.Player{
     public Player_N3(int x, int y, int width, int height, String spritePath, int frames, Nivel nivel) {
         super(x, y, width, height, spritePath, frames, nivel);
         sonidoChoca = new SoundClip("/Sounds/oof.wav");
+        prevTime = (int)System.currentTimeMillis();
     }
     /**
      * copy constructor
@@ -42,6 +44,7 @@ public class Player_N3 extends Control.Player{
     public Player_N3(Control.Player player, Nivel miNivel){
         super(player, miNivel);
         sonidoChoca = new SoundClip("/Sounds/oof.wav");
+        prevTime = (int)System.currentTimeMillis();
     }
     /**
      * determines if superior limit of level is reached
@@ -78,8 +81,11 @@ public class Player_N3 extends Control.Player{
             if (x > Nivel.width - this.width || x < 0) {
                 changeDirection();
             }
-            
+        }
+                
+        if (prevTime != nivel.getSeconds()) {
             //score management
+            prevTime = nivel.getSeconds();
             int accumKey = 0; //0 is standard, 1 is negative, 2 is high
             if (llegaALimiteInf()) {
                 accumKey = 1;
@@ -88,7 +94,7 @@ public class Player_N3 extends Control.Player{
                 accumKey = 2;
             }
             this.acumPuntaje(((NivelTres) nivel).getAccums()[accumKey]);
-        }
+        } 
         
         //collision with obstacles
         Queue<Obstaculo_N3> obstacleQueue = ((NivelTres) nivel).getObstacleQueue();

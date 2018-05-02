@@ -124,6 +124,14 @@ public abstract class Nivel implements Runnable{
     public int getHeight(){
         return display.getHeight();
     }
+
+    public long getEndTime() {
+        return endTime;
+    }
+    
+    public int getSeconds(){
+        return (int)(endTime - System.currentTimeMillis()) / 1000;
+    }
     
     /**
      * init de cada nivel, regresa scores
