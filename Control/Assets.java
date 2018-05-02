@@ -9,9 +9,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages asset manipulation and sets backgrounds of each level
  */
 /**
  *
@@ -30,6 +28,11 @@ public class Assets {
         }
     }
     
+    /**
+     * loads a sound given a path to that soundclip
+     * @param fileName
+     * @return Clip
+     */
     public static Clip loadSound(String fileName){
         Clip collisionSound = null;
         try{
@@ -42,6 +45,11 @@ public class Assets {
         return collisionSound;
     }
     
+    /**
+     * loads an image given its string path
+     * @param path
+     * @return Buffered image
+     */
     public static BufferedImage loadImage(String path) {
         BufferedImage bi = null;
         try {
@@ -53,6 +61,11 @@ public class Assets {
         return bi;
     }
     
+    /**
+     * rotates image 90 degrees to the right
+     * @param bufferedImage
+     * @return BufferedImage, modified
+     */
     public static BufferedImage rotateImage(BufferedImage bufferedImage){
         AffineTransform tx = new AffineTransform();
         tx.rotate(0.5 * Math.PI, bufferedImage.getWidth() / 2.0, bufferedImage.getHeight() / 2.0);
@@ -63,11 +76,5 @@ public class Assets {
         
         return bufferedImage;
     }
-    
-    /**
-     * to	get	an	image	from	the	file	path
-     *
-     * @param	path	it	is	the	path	of	the	file
-     * @return	the	<bold>BufferedImage</bold>	object
-     */
+
 }

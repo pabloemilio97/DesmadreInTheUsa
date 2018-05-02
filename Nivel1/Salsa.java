@@ -1,15 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Salsa's actions are controled here
  */
 package Nivel1;
 
 import java.awt.image.BufferedImage;
 
 /**
- *
- * @author pablo
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Salsa extends Control.Item{
     private int velocidad; //velocidad del taco

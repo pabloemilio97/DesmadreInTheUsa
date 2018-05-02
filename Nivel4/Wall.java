@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages wall's actions on level 4
  */
 package Nivel4;
 
@@ -13,32 +11,56 @@ import static java.lang.Math.PI;
 import java.util.Queue;
 
 /**
- *
- * @author Luis Felipe Miranda
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Wall extends Guard{
         
+    /**
+     * constructor
+     * @param index
+     * @param width
+     * @param height
+     * @param path
+     * @param frames
+     * @param game 
+     */
     public Wall(int index, int width, int height, String path, int frames, Nivel game){
         super(index, width, height, path, frames, game);
         this.index = index;
         this.circlePoints = ((NivelCuatro)game).circlePoints;
         lives = 4;
     }
-
+    /**
+     * sets wall's type
+     * @param type 
+     */
     public void setType(int type) {
         this.type = type;
     }
-
+    
+    /**
+     * gets the wall's type
+     * @return 
+     */
     public int getType() {
         return type;
     }
     
+    /**
+     * renders the wall
+     * @param g 
+     */
     @Override
     public void render(Graphics g){
         g.drawImage(animation[animation.length - lives], x, y, width, height, null);
     }
     
-    //Circular motion of the wall. Determine what happens with collision
+    /**
+     * Circular motion of the wall. Determine what happens with collision
+     */
      @Override
     public void tick() {
        index = (index + 1) % circlePoints.length;

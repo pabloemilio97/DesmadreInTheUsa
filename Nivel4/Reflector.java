@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages the reflector squares in level 4
  */
 package Nivel4;
 
@@ -11,8 +9,10 @@ import java.awt.image.BufferedImage;
 import java.util.Queue;
 
 /**
- *
- * @author adanlopezalatorre
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Reflector extends Guard{
     
@@ -21,20 +21,44 @@ public class Reflector extends Guard{
     public static int refCount = 500;
     private int reflectCountDown;
 
+    /**
+     * constructor
+     * @param index
+     * @param width
+     * @param height
+     * @param defaultImage
+     * @param type
+     * @param game 
+     */
     public Reflector(int index, int width, int height, BufferedImage defaultImage, int type, Nivel game) {
         super(index, width, height, defaultImage, type, game);
     }
+    /**
+     * constructor but takes a string path for image 
+     * @param index
+     * @param width
+     * @param height
+     * @param path
+     * @param frames
+     * @param game 
+     */
     public Reflector(int index, int width, int height, String path, int frames, Nivel game){
         super(index, width, height, path, frames, game);
         reflection = false;
         revenge = false;
         
     }
-    
+    /**
+     * getter for reflection
+     * @return 
+     */
     boolean isReflection(){
         return reflection;
     }
     
+    /**
+     * reflection's tick
+     */
     @Override
     public void tick() {
        index = (index + 1) % circlePoints.length;
@@ -81,7 +105,10 @@ public class Reflector extends Guard{
        }
        
     }
-    
+    /**
+     * renders the reflection square
+     * @param g 
+     */
     @Override
     public void render(Graphics g){
         if(reflection){

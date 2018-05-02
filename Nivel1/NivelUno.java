@@ -1,8 +1,6 @@
 /*
 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * manages first level's actions
  */
 package Nivel1;
 
@@ -27,8 +25,10 @@ import java.util.Stack;
 import javax.swing.JFrame;
 
 /**
- *
- * @author adanlopezalatorre
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class NivelUno extends Control.Nivel implements Runnable{
 
@@ -47,6 +47,12 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private Queue<Taco> tacoQueue;
     private SoundClip actionSounds[] = new SoundClip[4];
     private String actionPaths[] = {"salsa1.wav", "salsa2.wav", "salsa3.wav", "salsa4.wav"};
+    /**
+     * constructor
+     * @param display
+     * @param players
+     * @param master 
+     */
     public NivelUno(Control.Display display, Control.Player players[], Control.Master master) {
         super(display, master);
  

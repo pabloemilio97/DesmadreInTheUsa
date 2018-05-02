@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages the display that is shown along the game, from window sizes to window partitions
  */
 package Control;
 
@@ -42,12 +40,24 @@ public class Display {
     private final int width;      // width of the window
     private final int height;     // height of the window
     
+    /**
+     * getter for width of window
+     * @return int
+     */
     public int getWidth(){
         return width;
     }
+    /**
+     * getter for height of window
+     * @return int
+     */
     public int getHeight(){
         return height;
     }
+    /**
+     * getter for the score labels
+     * @return JLabel
+     */
     public JLabel[] getScoreLabels(){
         return scoreLabels;
     }
@@ -68,6 +78,13 @@ public class Display {
         createDisplay();
     }
     
+    /**
+     * changes the size of a given image, given its desired resolution
+     * @param img
+     * @param newW
+     * @param newH
+     * @return BufferedImage
+     */
     public static BufferedImage resize(BufferedImage img, int newW, int newH) {  
         int w = img.getWidth();  
         int h = img.getHeight();  
@@ -80,12 +97,21 @@ public class Display {
         return dimg;  
     }  
     
+    /**
+     * Sets the minimum and maximum size, as well as the preferred size of an image
+     * sets size
+     * @param cont
+     * @param d 
+     */
     private void fixSize(Component cont, Dimension d){
         cont.setMinimumSize(d);
         cont.setPreferredSize(d);
         cont.setMaximumSize(d);
     }
     
+    /**
+     * creates the score bar that appears to the right of the screen
+     */
     public void createScoreContainer(){
         scoreContainer = new Control.JPanel();
         fixSize(scoreContainer, new Dimension(Master.width - Nivel.width, Nivel.height));
@@ -128,6 +154,9 @@ public class Display {
         
     }
     
+    /**
+     * resets the game display
+     */
     void setGameDisplay(){        
         canvas = gameCanvas;
         
@@ -137,16 +166,27 @@ public class Display {
         
     }
     
+    /**
+     * getter for the clock label
+     * @return JLabel
+     */
     public JLabel getClockLabel(){
         return clockLabel;
     }
     
+    /**
+     * setter for the transition display
+     */
     void setTransitionDisplay(){
         canvas = transitionCanvas;
         jframe.setContentPane(transitionPanel);
         jframe.pack();
     }
     
+    /**
+     * setter for the game's clock
+     * @param seconds 
+     */
     public void setClock(int seconds){
         int minutes = seconds / 60;
         seconds %= 60;
@@ -155,6 +195,9 @@ public class Display {
         
     }
     
+    /**
+     * creates the display that shows everything
+     */
     public void createDisplay(){
         jframe = new JFrame(title);
         jframe.setSize(width, height);
@@ -195,10 +238,16 @@ public class Display {
                         
     }
     
+    /**
+     * creates the transition display 
+     */
     public void createTransitionDisplay(){        
         
     }
     
+    /**
+     * creates the display specific to a level
+     */
     public void createGameDisplay() {
         
         gamePanel = new JPanel();

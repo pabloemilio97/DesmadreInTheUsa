@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages trump's actions on the game
  */
 package Nivel4;
 
@@ -10,14 +8,26 @@ import Control.Nivel;
 import java.util.Queue;
 
 /**
- *
- * @author Luis Felipe Miranda
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Trump extends Item{
     public static final int height = 200, width = 200;
     public int index;
     private int life;
     
+    /**
+     * constructor for trump
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param spritePath
+     * @param frames
+     * @param nivel 
+     */
     public Trump(int x, int y, int width, int height, String spritePath, int frames, Nivel nivel){
         super(x, y, width, height, spritePath, frames, nivel);
         
@@ -25,15 +35,25 @@ public class Trump extends Item{
         life = 200;
         
     }
-
+    /**
+     * changes trump's life
+     * @param life 
+     */
     public void setLife(int life) {
         this.life = life;
     }
-
+    
+    /**
+     * gets trump's life
+     * @return 
+     */
     public int getLife() {
         return life;
     }
-
+    
+    /**
+     * tick for trump's actions
+     */
     @Override
     public void tick() {
         boolean hit = false;

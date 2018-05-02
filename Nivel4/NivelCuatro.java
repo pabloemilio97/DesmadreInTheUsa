@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages all actions in level 4
  */
 package Nivel4;
 
@@ -19,8 +17,10 @@ import java.util.Queue;
 import javax.swing.JFrame;
 
 /**
- *
- * @author adanlopezalatorre
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class NivelCuatro extends Control.Nivel implements Runnable{
     
@@ -31,6 +31,9 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     private Queue<Salsa> bulletQueue;
     private Salsa salsaBullets[];
     
+    /**
+     * creates array with positions for circular motion
+     */
     public void setPositionArray(){
         circlePoints = new Vector[1000];
         
@@ -53,19 +56,33 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         }
         
     }
-    
+    /**
+     * gets the bullet queue of enemy
+     * @return 
+     */
     public Queue getBulletQueue(){
         return bulletQueue;
     }
-    
+    /**
+     * gets the salsa bullets
+     * @return 
+     */
     public Salsa[] getSalsaBullets(){
         return salsaBullets;
     }
-    
+    /**
+     * gets wall array
+     * @return 
+     */
     public Guard[] getWallArray(){
         return wallArray;
     }
-    
+    /**
+     * constructor
+     * @param display
+     * @param players
+     * @param master 
+     */
     public NivelCuatro(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
@@ -160,6 +177,9 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         }
     }
     
+    /**
+     * changes transition to be played before level
+     */
     @Override
     public void setTransition(){
         transition = new Transition("4", 5, display, this);
@@ -192,6 +212,10 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         
     }
 
+    /**
+     * determines what each player's action button does (shoot)
+     * @param playerIndex 
+     */
     @Override
     public void botonDeAccion(int playerIndex) {
         bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
