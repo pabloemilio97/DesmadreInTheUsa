@@ -21,6 +21,7 @@ public class Master implements KeyListener{
     public static int width = 1000, height = 700;
     public static int [] playerKeys = {KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_UP, KeyEvent.VK_LEFT};
     public int currentNivel;
+    public boolean won;
     public Display display;
     public Graphics g;
     
@@ -41,6 +42,14 @@ public class Master implements KeyListener{
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS
         currentNivel = 2;
+        won = false;
+    }
+    
+    public boolean getWon(){
+        return won;
+    }
+    public void setWon(boolean won){
+        this.won = won;
     }
     
     public Display getDisplay(){

@@ -132,6 +132,13 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public void tick() {
         //keyManager.tick();
         //player.tick();
+        
+        if(trump.getLife() == 0){
+            master.setWon(true);
+           stop();
+           return;
+        }
+        
         trump.tick();
         for(int i = 0; i < wallArray.length; i++){
             if(!wallArray[i].isDestroyed()){
@@ -181,7 +188,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         }
         //g.drawString(String.valueOf(trump.getLife()), width/2 - 25, height/2 + 100);
         
-        master.getDisplay().getClockLabel().setText("Enemy's life:" + trump.getLife());
+        master.getDisplay().getClockLabel().setText("Enemy's life: " + trump.getLife());
         
     }
 
