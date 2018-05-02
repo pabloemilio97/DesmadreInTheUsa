@@ -19,7 +19,7 @@ public class Master implements KeyListener{
     Nivel []niveles; //Level array declaration
     Player[] players;
     public static int width = 1000, height = 700;
-    public static int [] playerKeys = {KeyEvent.VK_DOWN, KeyEvent.VK_RIGHT, KeyEvent.VK_UP, KeyEvent.VK_LEFT};
+    public static int [] playerKeys = {KeyEvent.VK_Q, KeyEvent.VK_P, KeyEvent.VK_Z, KeyEvent.VK_M};
     public int currentNivel;
     public boolean won;
     public Display display;
@@ -42,7 +42,7 @@ public class Master implements KeyListener{
         niveles[2] = new Nivel3.NivelTres(display, players, this);
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS
-        currentNivel = 2;
+        currentNivel = -1;
         won = false;
         end = new Transition ("X", 3, display, null);
     }
