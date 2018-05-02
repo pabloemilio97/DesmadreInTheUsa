@@ -9,14 +9,17 @@ import Control.Master;
 import Control.Nivel;
 import Control.SoundClip;
 import java.awt.image.BufferedImage;
+import java.util.Queue;
 
 /**
  *
  * @author adanlopezalatorre
  */
 public class Player_N3 extends Control.Player{
-    int xVel = 10;
-    int yVel = 10;
+    double xVel = 3;
+    double yVel = 1;
+    private int puntajeChoca = -30;
+    private int distChoca = 150;
     /**
      * standard constructor 
      * @param x
@@ -62,25 +65,54 @@ public class Player_N3 extends Control.Player{
      */
     @Override
     public void tick() {
-        //general advancement
-        this.x += xVel;
-        this.y += yVel;
-        
-        //collision with x limits
-        if(x > Nivel.width || x < 0){
-            xVel *= -1;
+        if(((NivelTres)nivel).isReady()){
+            //update yVel
+            yVel = (llegaALimiteSup()) ? 0 : 1;
+            //general advancement
+            this.x += xVel;
+            this.y -= yVel;   
+            //collision with x limits
+            if (x > Nivel.width - this.width || x < 0) {
+                changeDirection();
+            }
+            
+            //score management
+            int accumKey = 0; //0 is standard, 1 is negative, 2 is high
+            if (llegaALimiteInf()) {
+                accumKey = 1;
+            }
+            if (llegaALimiteSup()) {
+                accumKey = 2;
+            }
+            this.acumPuntaje(((NivelTres) nivel).getAccums()[accumKey]);
         }
         
-        //score management
-        int accumKey = 0; //0 is standard, 1 is negative, 2 is high
-        if(llegaALimiteInf()){
-            yVel = 0;
-            accumKey = 1;
+        //collision with obstacles
+        Queue<Obstaculo_N3> obstacleQueue = ((NivelTres) nivel).getObstacleQueue();
+
+        for (int i = obstacleQueue.size(); i > 0; i--) {
+            Obstaculo_N3 current = obstacleQueue.poll();
+            if (intersects(current)) {
+                current.setDestroyed(true);
+                acumPuntaje(puntajeChoca);
+                if(!llegaALimiteInf()){
+                    if(y + distChoca > ((NivelTres)nivel).getLimiteInf()){
+                        y = ((NivelTres)nivel).getLimiteInf();
+                    }
+                    else{
+                        y += distChoca;
+                    }
+                }
+            }
+            obstacleQueue.add(current);
         }
-        if(llegaALimiteSup()){
-            yVel = 0;
-            accumKey = 2;
-        }
-        this.acumPuntaje(((NivelTres)nivel).getAccums()[accumKey]);
+    }
+    
+    /**
+     * if player is moving right, now it moves left
+     */
+    public void changeDirection(){
+        xVel *= -1;
     }
 }
+

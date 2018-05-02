@@ -18,6 +18,16 @@ public class Salsa extends Control.Item{
     private boolean destroyed;
     public static final int width = 30, height = 30;
     /**
+     * receives as parameter an int representing the player that summons salsa
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param defaultImage
+     * @param game
+     * @param playerID 
+     */
+    /**
      * constructor for building salsa with its string path
      * @param x
      * @param y

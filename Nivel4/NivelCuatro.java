@@ -21,6 +21,7 @@ import javax.swing.JFrame;
  */
 public class NivelCuatro extends Control.Nivel implements Runnable{
     
+    private Wall [] wallArray;
     public Vector [] circlePoints;
     Trump trump;
     
@@ -42,8 +43,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
             circlePoints[i]= new Vector((int)Math.round(curX), (int)Math.round(curY));
             
             prevX = curX;
-            prevY = curY;
-            
+            prevY = curY; 
         }
         
     }
@@ -55,6 +55,9 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
             this.players[i] = new Player_N4(players[i], this);
         
         trump = new Trump(Nivel.width / 2 + 0, Nivel.height / 2 - Trump.height, 50, 50, "/Images/Calaca/", 1, this);
+        for (int i = 0; i < 20; i++){
+            wallArray[i] = new Wall();
+        }
         
     }
     /**
@@ -67,9 +70,11 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         music.setLooping(true);
         music.play();
         nivelTime = 120;
+        wallArray = new Wall[20];
         /*
         Initialization of game characters should go here
          */
+        
         return new int[]{0, 0, 0, 0};
     }
     /**
