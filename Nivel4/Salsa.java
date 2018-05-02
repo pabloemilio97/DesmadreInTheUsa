@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Nivel1;
+package Nivel4;
 
 import Control.Nivel;
 import java.awt.image.BufferedImage;
@@ -124,8 +124,8 @@ public class Salsa extends Control.Item{
      */
     @Override
     public void tick() {
-        x += NivelUno.dirs[playerID][0];
-        y += NivelUno.dirs[playerID][1];
+        x += NivelCuatro.dirs[playerID][0];
+        y += NivelCuatro.dirs[playerID][1];
         
         if(x < 0 || x + getWidth() > Nivel.width || y < 0 || y + this.getHeight() > Nivel.height){
             destroyed = true;

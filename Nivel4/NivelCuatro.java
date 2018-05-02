@@ -5,6 +5,7 @@
  */
 package Nivel4;
 
+import static Control.Assets.loadImage;
 import Control.Nivel;
 import Control.Player;
 import Control.SoundClip;
@@ -22,6 +23,7 @@ import javax.swing.JFrame;
 public class NivelCuatro extends Control.Nivel implements Runnable{
     
     private Wall [] wallArray;
+    public static final int dirs[][] = {{-1, -1}, {-1, 1}, {1, 1}, {1, -1}};
     public Vector [] circlePoints;
     Trump trump;
     
@@ -48,15 +50,20 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         
     }
     
+    public Wall[] getWallArray(){
+        return wallArray;
+    }
+    
     public NivelCuatro(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
         for(int i = 0; i < 4; i++)
             this.players[i] = new Player_N4(players[i], this);
         
-        trump = new Trump(Nivel.width / 2 + 0, Nivel.height / 2 - Trump.height, 50, 50, "/Images/Calaca/", 1, this);
-        for (int i = 0; i < 20; i++){
-            wallArray[i] = new Wall();
+        setPositionArray();
+        wallArray = new Wall[20];
+        for (int i = 0; i < wallArray.length; i++){
+            wallArray[i] = new Wall(circlePoints.length / wallArray.length * i, 50, 50, loadImage("/Images/Calaca/0.png"), 0, this);
         }
         
     }
@@ -65,6 +72,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
      */
     public int[] init() {
         //Control.Assets.init();
+        Wall o = wallArray[-1];
         running = true;
         SoundClip music = new SoundClip("/Music/n4.wav");
         music.setLooping(true);
@@ -85,7 +93,10 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public void tick() {
         //keyManager.tick();
         //player.tick();
-        trump.tick();
+        //trump.tick();
+        for(int i = 0; i < wallArray.length; i++){
+            wallArray[i].tick();
+        }
     }
     
     @Override
@@ -98,7 +109,10 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
      */
     @Override
     public void render() {
-        trump.render(g);
+        //trump.render(g);
+        for(int i = 0; i < wallArray.length; i++){
+            wallArray[i].render(g);
+        }
     }
 
     @Override
