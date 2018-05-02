@@ -40,12 +40,17 @@ public class Master implements KeyListener{
         niveles[2] = new Nivel3.NivelTres(display, players, this);
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS
+<<<<<<< HEAD
         currentNivel = 0;
+=======
+        currentNivel = -1;
+>>>>>>> 09e6af3c5481ed30919ee0d8ef270b09eed9e633
     }
     
     public Display getDisplay(){
         return display;
     }
+    
     
     public void nextGame(){
         if(currentNivel == 3){

@@ -78,7 +78,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
-        SoundClip music = new SoundClip("/Music/n1.wav");
+        music = new SoundClip("/Music/n1.wav");
         music.setLooping(true);
         music.play();
         /*
