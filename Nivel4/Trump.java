@@ -22,7 +22,7 @@ public class Trump extends Item{
         super(x, y, width, height, spritePath, frames, nivel);
         
         index = 0;
-        life = 20000;
+        life = 2000;
         
     }
 

@@ -55,10 +55,6 @@ public class Player_N4 extends Control.Player{
             if(current.isVenomous() && !current.isDestroyed() && intersects(current)){
                 current.setDestroyed(true);
                 puntaje -= 100;
-                Player[] array = nivel.getPlayers();
-                for(int j = 0; j < 4; j++){
-                    System.out.println(array[j].getPuntaje());
-                }
             }
             
             q.add(current);

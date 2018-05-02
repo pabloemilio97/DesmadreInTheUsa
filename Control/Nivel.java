@@ -168,7 +168,8 @@ public abstract class Nivel implements Runnable{
             labels[i].setText(players[i].getPuntaje() + "");
         }
         
-        master.getDisplay().setClock((int)(endTime - System.currentTimeMillis()) / 1000);
+        if(!(this instanceof Nivel4.NivelCuatro))
+            master.getDisplay().setClock((int)(endTime - System.currentTimeMillis()) / 1000);
         
         /*int scoreHeight = Nivel.height / 5;
         
@@ -222,6 +223,7 @@ public abstract class Nivel implements Runnable{
                 return;
             }
             g.drawImage(Assets.backgrounds[master.currentNivel + 1], 0, 0, Master.width, Master.height, null);
+            
             render();
             renderScore();
             

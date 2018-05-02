@@ -136,14 +136,15 @@ public class Display {
         jframe.pack();
         
     }
+    
+    public JLabel getClockLabel(){
+        return clockLabel;
+    }
+    
     void setTransitionDisplay(){
         canvas = transitionCanvas;
         jframe.setContentPane(transitionPanel);
         jframe.pack();
-    }
-    
-    public JLabel getClockLabel(){
-        return clockLabel;
     }
     
     public void setClock(int seconds){
