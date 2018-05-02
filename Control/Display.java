@@ -31,10 +31,11 @@ import javax.swing.JPanel;
  */
 public class Display {
     private JFrame jframe;  // this is the app class
-    private Canvas canvas;  // to display images
+    private Canvas canvas, transitionCanvas, gameCanvas;  // to display images
     private JPanel scoreContainer;
     private Master master;
     private JLabel scoreLabels[], clockLabel;
+    private JPanel gamePanel, transitionPanel;
     private static final int playerScoreHeight = Master.height / 7;
     
     private final String title;   // title of the window
@@ -127,6 +128,20 @@ public class Display {
         
     }
     
+    void setGameDisplay(){        
+        canvas = gameCanvas;
+        
+        jframe.setContentPane(gamePanel);
+        
+        jframe.pack();
+        
+    }
+    void setTransitionDisplay(){
+        canvas = transitionCanvas;
+        jframe.setContentPane(transitionPanel);
+        jframe.pack();
+    }
+    
     public JLabel getClockLabel(){
         return clockLabel;
     }
@@ -145,37 +160,50 @@ public class Display {
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setResizable(false);
         jframe.setLocationRelativeTo(null);
-        jframe.setVisible(true);
+        
         jframe.addKeyListener(master);
         
+        jframe.setVisible(true);
         // set the size of the window
+        transitionCanvas = new Canvas();
+        transitionCanvas.setPreferredSize(new Dimension(Master.width, Master.height));
+        transitionCanvas.setMaximumSize(new Dimension(Master.width, Nivel.height));
+        transitionCanvas.setMinimumSize(new Dimension(Master.width, Master.height));
+        transitionCanvas.setPreferredSize(new Dimension(Master.width, Master.height));
+        transitionCanvas.setFocusable(false);
+        
+        transitionPanel = new JPanel();
+        transitionPanel.add(transitionCanvas);
+        
+        gameCanvas = new Canvas();
+        gameCanvas.setPreferredSize(new Dimension(Nivel.width, Nivel.height));
+        gameCanvas.setMaximumSize(new Dimension(Nivel.width, Nivel.height));
+        gameCanvas.setMinimumSize(new Dimension(Nivel.width, Nivel.height));
+        gameCanvas.setPreferredSize(new Dimension(Nivel.width, Nivel.height));
+        gameCanvas.setFocusable(false);
+        
+        gamePanel = new JPanel();
                 
+        createScoreContainer();
+        gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.X_AXIS));
+        
+        fixSize(gamePanel, new Dimension(Master.width, Master.height));
+        
+        gamePanel.add(gameCanvas);
+        gamePanel.add(scoreContainer);
+                        
     }
     
-    public void createTransitionDisplay(){
-        
-        canvas = new Canvas();
-        canvas.setPreferredSize(new Dimension(Master.width, Master.height));
-        canvas.setMaximumSize(new Dimension(Master.width, Nivel.height));
-        canvas.setMinimumSize(new Dimension(Master.width, Master.height));
-        canvas.setPreferredSize(new Dimension(Master.width, Master.height));
-        canvas.setFocusable(false);
-        
-        //jframe.removeAll();
-        JPanel panel = new JPanel();
-        
-        panel.add(canvas);
-        jframe.setContentPane(panel);
-        jframe.pack();
+    public void createTransitionDisplay(){        
         
     }
     
     public void createGameDisplay() {
         
+        gamePanel = new JPanel();
         
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        fixSize(panel, new Dimension(Master.width, Master.height));
+        gamePanel.setLayout(new BoxLayout(gamePanel, BoxLayout.X_AXIS));
+        fixSize(gamePanel, new Dimension(Master.width, Master.height));
                 
         // creating the canvas to paint and setting size
         canvas = new Canvas();
@@ -191,10 +219,9 @@ public class Display {
         // get the right dimensions
         
         
-        panel.add(canvas);
-        panel.add(scoreContainer);
-        jframe.setContentPane(panel);
-        jframe.pack();
+        gamePanel.add(canvas);
+        gamePanel.add(scoreContainer);
+        
     }
 
     /**
