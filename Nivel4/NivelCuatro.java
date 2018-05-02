@@ -178,8 +178,8 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
             current.render(g);
             
             bulletQueue.add(current);
-            
         }
+        g.drawString(String.valueOf(trump.getLife()), width/2 - 25, height/2 + 100);
     }
 
     @Override
