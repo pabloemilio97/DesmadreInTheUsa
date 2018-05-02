@@ -5,7 +5,9 @@
  */
 package Nivel4;
 
+import Control.Nivel;
 import Control.Player;
+import Control.SoundClip;
 import Control.Transition;
 import Nivel1.Player_N1;
 import java.awt.Graphics;
@@ -19,12 +21,40 @@ import javax.swing.JFrame;
  */
 public class NivelCuatro extends Control.Nivel implements Runnable{
     
+    public Vector [] circlePoints;
+    Trump trump;
+    
+    public void setPositionArray(){
+        circlePoints = new Vector[1000];
+        
+        circlePoints[0] = new Vector(0, Trump.height);
+        
+        double angle = Math.PI * 2 / circlePoints.length;
+        
+        double prevX = 0, prevY = Trump.height, curX, curY;
+        
+        double sin = Math.sin(angle), cos = Math.cos(angle);
+        
+        for(int i = 1; i < circlePoints.length; i++){
+            curX = cos * prevX - sin * prevY;
+            curY = sin * prevX + cos * prevY;
+            
+            circlePoints[i]= new Vector((int)Math.round(curX), (int)Math.round(curY));
+            
+            prevX = curX;
+            prevY = curY;
+            
+        }
+        
+    }
     
     public NivelCuatro(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
         for(int i = 0; i < 4; i++)
             this.players[i] = new Player_N4(players[i], this);
+        
+        trump = new Trump(Nivel.width / 2 + 0, Nivel.height / 2 - Trump.height, 50, 50, "/Images/Calaca/", 1, this);
         
     }
     /**
@@ -33,6 +63,10 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
+        SoundClip music = new SoundClip("/Music/n4.wav");
+        music.setLooping(true);
+        music.play();
+        nivelTime = 120;
         /*
         Initialization of game characters should go here
          */
@@ -46,6 +80,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public void tick() {
         //keyManager.tick();
         //player.tick();
+        trump.tick();
     }
     
     @Override
@@ -58,12 +93,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
      */
     @Override
     public void render() {
-        
-        g.drawImage(Control.Assets.background, getWidth()/5, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);
-        
+        trump.render(g);
     }
 
     @Override

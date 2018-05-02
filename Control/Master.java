@@ -40,9 +40,7 @@ public class Master implements KeyListener{
         niveles[2] = new Nivel3.NivelTres(display, players, this);
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS
-        
-        currentNivel = 1;
-        
+        currentNivel = 2;
     }
     
     public Display getDisplay(){
@@ -75,12 +73,13 @@ public class Master implements KeyListener{
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         for(int i = 0; i < 4; i++){
-            if(key == Master.playerKeys[i]){
+            if(niveles[currentNivel].isRunning() && key == Master.playerKeys[i]){
                 niveles[currentNivel].botonDeAccion(i);
             }
         }
         if(key == KeyEvent.VK_SPACE){
             niveles[currentNivel].getTransition().nextTransition();
+            
         }
     }
     
@@ -89,4 +88,11 @@ public class Master implements KeyListener{
         mas.nextGame();
     }
     
+    /**
+     * Regresa el numero de nivel para saber posicion
+     * @return el numero del nivel en que se encuentra el juego
+     */
+    public int getNivel(){
+        return currentNivel;
+    }
 }

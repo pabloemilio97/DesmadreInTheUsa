@@ -108,7 +108,7 @@ public class Display {
             current.add(imageLabel);
             current.add(new Container());
             scoreLabels[i] = new JLabel("0");
-            scoreLabels[i].setFont(new Font("TimesRoman", Font.BOLD, 30));
+            scoreLabels[i].setFont(new Font("TimesRoman", Font.BOLD, 20));
             scoreLabels[i].setHorizontalAlignment(JLabel.CENTER);
             scoreLabels[i].setVerticalAlignment(JLabel.CENTER);
             

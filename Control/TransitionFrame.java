@@ -17,17 +17,19 @@ import javax.sound.sampled.Clip;
  */
 public class TransitionFrame {
     private BufferedImage image;
-    private Clip begginingSound;
+    private SoundClip beginningSound;
     
     public TransitionFrame(String path){
-        
         image = loadImage(path + ".png");
-        begginingSound = loadSound(path + ".wav");
+        beginningSound = new SoundClip(path + ".wav");
     }
     
     public void show(Graphics g){
         g.drawImage(image, 0, 0, Master.width, Master.height, null);
-        begginingSound.loop(0);
+        beginningSound.play();
     } 
     
+    public void stopSound(){
+        beginningSound.stop();
+    }
 }

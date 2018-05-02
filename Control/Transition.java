@@ -29,9 +29,16 @@ public class Transition {
         }
         
     }
+    
     public void nextTransition(){
+        System.out.println(currentFrame);
+        if (currentFrame>=2){
+            frames[currentFrame-1].stopSound();
+        }
         
         if(currentFrame + 1 == frames.length){
+            frames[0].stopSound();
+            frames[currentFrame].stopSound();
             nivel.start();
             return;
         }

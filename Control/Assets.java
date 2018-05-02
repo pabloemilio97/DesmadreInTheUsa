@@ -18,18 +18,16 @@ import javax.sound.sampled.Clip;
  * @author adanlopezalatorre
  */
 public class Assets {
-    //Prueba 
-    //Toy probandoo jotos
-    public static BufferedImage catsup;
-    public static BufferedImage background;
-    public static BufferedImage pattern1;
-    public static BufferedImage frida[];
 
+    static BufferedImage [] backgrounds;
     /**
      * initializing	the	images	of	the	game
      */
     public static void init() {
-        background = loadImage("/Images/FloorBG.png");
+        backgrounds = new BufferedImage[5];
+        for (int i=1; i<=4; i++){
+            backgrounds[i] = loadImage("/Images/BG" + i + ".png");
+        }
     }
     
     public static Clip loadSound(String fileName){

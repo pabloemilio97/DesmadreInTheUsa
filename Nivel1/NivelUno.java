@@ -42,6 +42,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private int newTacoCounter;
     private long lastTime;
     private int randomTime = 3000;
+    private SoundClip music;
     
     private Queue<Salsa> bulletQueue;
     private Queue<Taco> tacoQueue;
@@ -49,7 +50,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     private String actionPaths[] = {"salsa1.wav", "salsa2.wav", "salsa3.wav", "salsa4.wav"};
     public NivelUno(Control.Display display, Control.Player players[], Control.Master master) {
         super(display, master);
-
+ 
         tacoTransition = new Taco(0, 0, 0, 0, "/Images/Taco_hit/", 4, this);
         tacoReady = new Taco(0, 0, 0, 0, "/Images/Taco_ready/", 7, this);
         for(int i = 0; i < 4; i++){
@@ -64,9 +65,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         
         for(int i = 0; i < 4; i++)
             salsaBullets[i] = new Salsa(this.players[i].getWidth() / 2 + this.players[i].getX() - Salsa.width / 2, this.players[i].getY(), Salsa.width, Salsa.height, "/Images/Bullet_Salsa/", 2, this, i);
-        
-        //salsaBullets[0] = loadImage("/Images/Catsup.png)
-        
+                
         bulletQueue = new LinkedList<>();
         tacoQueue = new LinkedList<>();
         
@@ -80,6 +79,10 @@ public class NivelUno extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
+        music = new SoundClip("/Music/n1.wav");
+        music.setLooping(true);
+        music.play();
+        nivelTime = 120;
         /*
         Initialization of game characters should go here
          */
@@ -133,12 +136,9 @@ public class NivelUno extends Control.Nivel implements Runnable{
         
         for(int i = tacoQueue.size(); i > 0; i--){
             Taco current = tacoQueue.poll();
-            
             current.tick();
-            
             if(!current.isDestroyed())
                 tacoQueue.add(current);
-            
         }
         
         long now = (endTime - System.currentTimeMillis()) / 1000;
@@ -150,7 +150,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
         
         if(newTacoCounter-- == 0){
             tacoQueue.add(new Taco(taco));
-            
             Random rand = new Random();
             
             newTacoCounter = rand.nextInt(randomTime) + randomTime / 6;
@@ -166,10 +165,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
      */
     @Override
     public void render() {
-        if (g == null) {
-            System.out.println("Error extraño");
-            return;
-        }
         //g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
         //g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
         
@@ -207,9 +202,6 @@ public class NivelUno extends Control.Nivel implements Runnable{
         bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
         actionSounds[playerIndex].play();
     }
-
-    
-
     
     
 }

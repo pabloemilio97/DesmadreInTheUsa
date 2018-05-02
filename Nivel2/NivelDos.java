@@ -7,6 +7,7 @@ package Nivel2;
 
 import Control.Nivel;
 import Control.Player;
+import Control.SoundClip;
 import Control.Transition;
 import Nivel1.Player_N1;
 import java.awt.Graphics;
@@ -20,6 +21,11 @@ import javax.swing.JFrame;
  */
 public class NivelDos extends Control.Nivel implements Runnable{    
     
+    private static int centerSpace = 150;
+    public static int dirs[][] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    
+    
+    
     public NivelDos(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
@@ -32,6 +38,10 @@ public class NivelDos extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
+        SoundClip music = new SoundClip("/Music/n2.wav");
+        music.setLooping(true);
+        music.play();
+        nivelTime = 120;
         /*
         Initialization of game characters should go here
          */
@@ -43,8 +53,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
      * method, call them here
      */
     public void tick() {
-        //keyManager.tick();
-        //player.tick();
+        
     }
     
     @Override
@@ -57,11 +66,7 @@ public class NivelDos extends Control.Nivel implements Runnable{
      */
     @Override
     public void render() {
-        
-        g.drawImage(Control.Assets.pattern1, -400, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.pattern1, 800, 0, 600, getHeight(), null);
-        g.drawImage(Control.Assets.catsup, 400, 350, 50, 50, null);
-        
+        for(int i = 0; i < 4; i++) players[i].render(g);
     }
 
     @Override
