@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Nivel1;
+package Nivel4;
 
+import Control.Nivel;
 import java.awt.image.BufferedImage;
 
 /**
@@ -17,6 +18,16 @@ public class Salsa extends Control.Item{
     private boolean destroyed;
     public static final int width = 30, height = 30;
     /**
+     * receives as parameter an int representing the player that summons salsa
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param defaultImage
+     * @param game
+     * @param playerID 
+     */
+    /**
      * constructor for building salsa with its string path
      * @param x
      * @param y
@@ -27,7 +38,7 @@ public class Salsa extends Control.Item{
      * @param nivel
      * @param playerID 
      */
-    public Salsa(int x, int y, int width, int height, String path, int frames, Control.Nivel nivel, int playerID){
+    public Salsa(int x, int y, int width, int height, String path, int frames, Nivel nivel, int playerID){
         super(x, y, width, height, path, frames, nivel);
         destroyed = false;
         this.playerID = playerID;
@@ -42,7 +53,7 @@ public class Salsa extends Control.Item{
      * @param game
      * @param playerID 
      */
-    public Salsa(int x, int y, int width, int height, BufferedImage defaultImage, Control.Nivel game, int playerID) {
+    public Salsa(int x, int y, int width, int height, BufferedImage defaultImage, Nivel game, int playerID) {
         super(x, y, width, height, defaultImage, game);
         this.playerID = playerID; //se inicializa dependiendo del jugador
         destroyed = false;
@@ -113,10 +124,10 @@ public class Salsa extends Control.Item{
      */
     @Override
     public void tick() {
-        x += NivelUno.dirs[playerID][0];
-        y += NivelUno.dirs[playerID][1];
+        x += NivelCuatro.dirs[playerID][0];
+        y += NivelCuatro.dirs[playerID][1];
         
-        if(x < 0 || x + getWidth() > Control.Nivel.width || y < 0 || y + this.getHeight() > Control.Nivel.height){
+        if(x < 0 || x + getWidth() > Nivel.width || y < 0 || y + this.getHeight() > Nivel.height){
             destroyed = true;
             
             int oldPuntaje = nivel.getPlayers()[playerID].getPuntaje();
