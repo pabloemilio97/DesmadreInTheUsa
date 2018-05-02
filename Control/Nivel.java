@@ -55,7 +55,7 @@ public abstract class Nivel implements Runnable{
     
     @Override
     public void run() {
-        // init();
+         init();
 
         //frames per second
         int fps = 50;
