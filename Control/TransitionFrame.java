@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * manages assets for transitions
  */
 package Control;
 
@@ -12,13 +10,19 @@ import java.awt.image.BufferedImage;
 import javax.sound.sampled.Clip;
 
 /**
- *
- * @author adanlopezalatorre
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class TransitionFrame {
     private BufferedImage image;
     private SoundClip beginningSound;
     
+    /**
+     * constructor
+     * @param path 
+     */
     public TransitionFrame(String path){
         image = loadImage(path + ".png");
         try{
@@ -28,6 +32,10 @@ public class TransitionFrame {
         }
     }
     
+    /**
+     * renders image
+     * @param g 
+     */
     public void show(Graphics g){
         g.drawImage(image, 0, 0, Master.width, Master.height, null);
         if (beginningSound!=null){
@@ -36,6 +44,9 @@ public class TransitionFrame {
         
     } 
     
+    /**
+     * stops the transition's sound when the next appears
+     */
     public void stopSound(){
         if (beginningSound!=null){
             beginningSound.stop();

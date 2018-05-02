@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages salsa for level 4
  */
 package Nivel4;
 
@@ -18,16 +16,7 @@ public class Salsa extends Control.Item{
     private int playerID; //controls direccion of salsa, and its color
     private boolean destroyed, venomous;
     public static final int width = 30, height = 30;
-    /**
-     * receives as parameter an int representing the player that summons salsa
-     * @param x
-     * @param y
-     * @param width
-     * @param height
-     * @param defaultImage
-     * @param game
-     * @param playerID 
-     */
+
     /**
      * constructor for building salsa with its string path
      * @param x
@@ -73,10 +62,17 @@ public class Salsa extends Control.Item{
         destroyed = false;
     }
     
+    /**
+     * gets venomous
+     * @return 
+     */
     public boolean isVenomous(){
         return venomous;
     }
-    
+    /**
+     * sets venomous
+     * @param venomous 
+     */
     public void setVenomous(boolean venomous){
         this.venomous = venomous;
     }

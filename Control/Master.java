@@ -1,3 +1,6 @@
+/*
+ * this class controls how the levels and actions are handled
+ */
 package Control;
 
 import java.awt.Graphics;
@@ -6,15 +9,11 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author adanlopezalatorre
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Master implements KeyListener{
     Nivel []niveles; //Level array declaration
@@ -27,6 +26,9 @@ public class Master implements KeyListener{
     public Graphics g;
     private Transition end;
     
+    /**
+     * constructor executed at beginning of game
+     */
     public Master(){
         players = new Player[4];
         String []paths = {"Luchador/", "Mexicano/", "Frida/", "Calaca/"};
@@ -48,18 +50,32 @@ public class Master implements KeyListener{
         end = new Transition ("X", 3, display, null);
     }
     
+    /**
+     * gets if someone has won
+     * @return 
+     */
     public boolean getWon(){
         return won;
     }
+    /**
+     * sets the winner
+     * @param won 
+     */
     public void setWon(boolean won){
         this.won = won;
     }
     
+    /**
+     * gets the global display
+     * @return 
+     */
     public Display getDisplay(){
         return display;
     }
     
-    
+    /**
+     * executes levels by order
+     */
     public void nextGame(){
         if(currentNivel == 3){
             currentNivel++;
@@ -72,19 +88,28 @@ public class Master implements KeyListener{
         }
     }
 
-        //Key Typed method
+    /**
+     * key typed method
+     * @param e 
+     */
     @Override
     public void keyTyped(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    //KeyPreseed method
+    /**
+     * key pressed method
+     * @param e 
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    //Key release method
+    /**
+     * key released method
+     * @param e 
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
@@ -112,7 +137,10 @@ public class Master implements KeyListener{
             }
         }
     }
-    
+    /**
+     * main class of the whole game
+     * @param args 
+     */
     public static void main(String [] args){
         Master mas = new Master();
         mas.nextGame();

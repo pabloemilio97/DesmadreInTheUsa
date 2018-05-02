@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages the obstacle's actions in the third level
  */
 package Nivel3;
 
@@ -10,8 +8,10 @@ import Control.Nivel;
 import Control.SoundClip;
 import java.awt.image.BufferedImage;
 /**
- *
- * @author pablo
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 class Obstaculo_N3 extends Control.Item{
     private int yVel;
@@ -32,6 +32,10 @@ class Obstaculo_N3 extends Control.Item{
         yVel = 2;
         destroyed = false;
     }
+    /**
+     * copy constructor
+     * @param obstaculo 
+     */
     public Obstaculo_N3(Obstaculo_N3 obstaculo) {
         super(obstaculo.getX(), obstaculo.getY(), obstaculo.getWidth(), obstaculo.getHeight(), null, obstaculo.getGame());
         yVel = 2;

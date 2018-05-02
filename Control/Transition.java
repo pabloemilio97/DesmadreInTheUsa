@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages story transitions on the game
  */
 package Control;
 
@@ -9,8 +7,10 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 /**
- *
- * @author adanlopezalatorre
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Transition {
     private TransitionFrame frames[];
@@ -20,6 +20,13 @@ public class Transition {
     BufferStrategy bs;
     private Nivel nivel;
     
+    /**
+     * constructor
+     * @param transNumber
+     * @param amount
+     * @param display
+     * @param nivel 
+     */
     public Transition(String transNumber, int amount, Display display, Nivel nivel){
         frames = new TransitionFrame[amount];
         this.nivel = nivel;
@@ -36,6 +43,9 @@ public class Transition {
         return currentFrame;
     }
     
+    /**
+     * changes the transition frames
+     */
     public void nextTransition(){
         
         //	get	the	buffer	strategy	from	the	display

@@ -1,3 +1,6 @@
+/*
+ * Manages the attributes and methods common to all levels
+ */
 package Control;
 
 import static Control.Assets.loadImage;
@@ -7,13 +10,13 @@ import java.awt.image.BufferStrategy;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JLabel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
+/**
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
-
-
 public abstract class Nivel implements Runnable{
     
     public static int width = 700, height = 700, nivelTime = 20;
@@ -29,7 +32,12 @@ public abstract class Nivel implements Runnable{
     protected Control.Master master;
     protected Transition transition;
     protected SoundClip music;
-        
+    
+    /**
+     * copy constructor
+     * @param display
+     * @param master 
+     */    
     public Nivel(Display display, Control.Master master){
         this.display = display;
         this.master = master;
@@ -39,22 +47,39 @@ public abstract class Nivel implements Runnable{
         
     }
     
+    /**
+     * gets the transition for when game begins
+     * @return 
+     */
     public Transition getTransition(){
         return transition;
     }
     
+    /**
+     * will vary on each level
+     */
     public abstract void setTransition();
     
+    /**
+     * runs a level
+     */
     public void executeNivel(){
         display.createDisplay();
         display.setTransitionDisplay();
         transition.nextTransition();
     }
     
+    /**
+     * getter for running
+     * @return 
+     */
     public boolean isRunning(){
         return running;
     }
     
+    /**
+     * getter for endGame
+     */
     public void endGame(){
         if(music != null){
             music.stop();
@@ -66,6 +91,9 @@ public abstract class Nivel implements Runnable{
         
     }
     
+    /**
+     * sets fps of level, as wel as ticks
+     */
     @Override
     public void run() {
          init();
@@ -94,6 +122,10 @@ public abstract class Nivel implements Runnable{
         stop();
     }
     
+    /**
+     * gets the level's players
+     * @return 
+     */
     public Player[] getPlayers(){
         return players;
     }
@@ -138,17 +170,33 @@ public abstract class Nivel implements Runnable{
         }
     }
     
+    /**
+     * get the width of level's display
+     * @return 
+     */
     public int getWidth(){
         return display.getWidth();
     }
+    /**
+     * get the height of level's display
+     * @return 
+     */
     public int getHeight(){
         return display.getHeight();
     }
-
+    
+    /**
+     * get the end time
+     * @return 
+     */
     public long getEndTime() {
         return endTime;
     }
     
+    /**
+     * get the seconds that have elapsed since beginning of level
+     * @return 
+     */
     public int getSeconds(){
         return (int)(endTime - System.currentTimeMillis()) / 1000;
     }
@@ -163,11 +211,8 @@ public abstract class Nivel implements Runnable{
      */
     public abstract  void tick();
     /**
-     * Renders the graphics of the game
+     * Renders the score of each player
      */
-    
-    
-    
     private void renderScore(){
         
         
@@ -205,6 +250,9 @@ public abstract class Nivel implements Runnable{
         
     }
     
+    /**
+     * renders the level's background
+     */
     protected void gameRender() {
         
         if((endTime - System.currentTimeMillis()) / 1000 < 0){

@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Defines actions made in level 3
  */
 package Nivel3;
 
@@ -36,7 +34,12 @@ public class NivelTres extends Control.Nivel implements Runnable{
     private int randomTime = 3000;
     BufferedImage bg1;
     BufferedImage bg2;
-    
+    /**
+     * constructor
+     * @param display
+     * @param players
+     * @param master 
+     */
     public NivelTres(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
@@ -138,6 +141,9 @@ public class NivelTres extends Control.Nivel implements Runnable{
         }
 
     }
+    /**
+     * changes this level's transition
+     */
     @Override
     public void setTransition(){
         transition = new Transition("3", 8, display, this);

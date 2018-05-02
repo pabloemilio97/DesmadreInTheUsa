@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages what the player does in level 2
  */
 package Nivel2;
 
@@ -10,17 +8,34 @@ import Control.SoundClip;
 import java.awt.image.BufferedImage;
 
 /**
- *
- * @author macuser
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Player_N2 extends Control.Player {
 
     private int velX;
     private int velY;
 
+    /**
+     * constructor
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param spritePath
+     * @param frames
+     * @param game 
+     */
     public Player_N2(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
         super(x, y, width, height, spritePath, frames, game);
     }
+    /**
+     * copy constructor
+     * @param player
+     * @param miNivel 
+     */
     public Player_N2(Control.Player player, Nivel miNivel){
         super(player, miNivel);
     }

@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages the actions in level 2
  */
 package Nivel2;
 
@@ -21,8 +19,10 @@ import java.util.Random;
 import javax.swing.JFrame;
 
 /**
- *
- * @author adanlopezalatorre
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class NivelDos extends Control.Nivel implements Runnable{    
     
@@ -35,6 +35,12 @@ public class NivelDos extends Control.Nivel implements Runnable{
     private Chain chain;
     private Chain chain2;
     
+    /**
+     * constructor
+     * @param display
+     * @param players
+     * @param master 
+     */
     public NivelDos(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
@@ -183,7 +189,9 @@ public class NivelDos extends Control.Nivel implements Runnable{
     
    
   
-    
+    /**
+     * sets the transition to be updated in level 2
+     */
     @Override
     public void setTransition(){
         transition = new Transition("2", 10, display, this);
@@ -203,6 +211,10 @@ public class NivelDos extends Control.Nivel implements Runnable{
         for(int i = 0; i < 4; i++) players[i].render(g);
     }
 
+    /**
+     * overrides what players do with their action buttons
+     * @param playerIndex 
+     */
     @Override
     public void botonDeAccion(int playerIndex) {
         for(int i=0; i<4; i++){

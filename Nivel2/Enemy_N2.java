@@ -9,8 +9,10 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 /**
- *
- * @author macuser
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Enemy_N2 extends Control.Item{
     private int velX;
@@ -82,6 +84,9 @@ public class Enemy_N2 extends Control.Item{
         this.velY = velY;
     }
 
+    /**
+     * tick for enemy on second level
+     */
     @Override
     public void tick() {
         this.y += velY;

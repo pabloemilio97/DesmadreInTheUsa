@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages methods and attributes common to all players
  */
 package Control;
 
@@ -10,8 +8,10 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 /**
- *
- * @author adanlopezalatorre
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Player extends Item{
     
@@ -19,13 +19,27 @@ public class Player extends Item{
     protected int puntaje;
     protected Control.Player myClone;
 
+    /**
+     * constructor 
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param spritePath
+     * @param frames
+     * @param game 
+     */
     public Player(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
         super(x, y, width, height, spritePath, frames, game);
         puntaje = 0;
     }
     
     
-    
+    /**
+     * copy constructor
+     * @param p
+     * @param miNivel 
+     */
     public Player(Player p, Nivel miNivel){
         super(p.x, p.y, p.getWidth(), p.getHeight(), null, miNivel);
         myClone = p;
@@ -60,6 +74,9 @@ public class Player extends Item{
         return puntaje;
     }
     
+    /**
+     * manages tick of player, depending of each player
+     */
     @Override
     public void tick() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
