@@ -13,6 +13,7 @@ import Control.Transition;
 import Nivel1.*;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.JFrame;
@@ -33,9 +34,15 @@ public class NivelTres extends Control.Nivel implements Runnable{
     private int newObstacleCounter;
     private Obstaculo_N3 obstacle;
     private int randomTime = 3000;
+    BufferedImage bg1;
+    BufferedImage bg2;
     
     public NivelTres(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
+        
+        //backgrounds
+        bg1 = Control.ImageLoader.loadImage("/Images/BG3-1.png");
+        bg2 = Control.ImageLoader.loadImage("/Images/BG3-2.png");
         
         //time related stuff
         ready = false;
@@ -86,6 +93,15 @@ public class NivelTres extends Control.Nivel implements Runnable{
         //keyManager.tick();
         long thisTime = System.currentTimeMillis();
         int timeDiff = (int)(thisTime - prevTime);
+        
+        long now = (endTime - System.currentTimeMillis()) / 1000;
+        if (now != lastTime && now % 2 == 0) {
+            Control.Assets.backgrounds[3] = bg1;
+        }
+        else{
+            Control.Assets.backgrounds[3] = bg2;
+        }
+        
         if(timeDiff > 10){
             prevTime = thisTime;
             ready = true; //for moving players and obstacles
