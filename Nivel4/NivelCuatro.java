@@ -14,6 +14,8 @@ import Nivel1.Player_N1;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import javax.swing.JFrame;
 
 /**
@@ -26,6 +28,8 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public static final int dirs[][] = {{-1, -1}, {-1, 1}, {1, 1}, {1, -1}};
     public Vector [] circlePoints;
     private Trump trump;
+    private Queue<Salsa> bulletQueue;
+    private Salsa salsaBullets[];
     
     public void setPositionArray(){
         circlePoints = new Vector[1000];
@@ -80,13 +84,19 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         this.players[3].setX(0);
         this.players[3].setY(Nivel.height - Player.height);
         
+        bulletQueue = new LinkedList<>();
+        
+        salsaBullets = new Salsa[4];
+        
+        for(int i = 0; i < 4; i++)
+            salsaBullets[i] = new Salsa(this.players[i].getWidth() / 2 + this.players[i].getX() - Salsa.width / 2, this.players[i].getY(), Salsa.width, Salsa.height, "/Images/Bullet_Salsa/", 2, this, i);
+        
     }
     /**
      * initializing	the	display	window	of	the	game
      */
     public int[] init() {
         //Control.Assets.init();
-        Wall o = wallArray[-1];
         running = true;
         SoundClip music = new SoundClip("/Music/n4.wav");
         music.setLooping(true);
@@ -114,6 +124,15 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         for(int i = 0; i < 4; i++){
             players[i].tick();
         }
+        
+        for(int i = bulletQueue.size(); i > 0; i--){
+            Salsa current = bulletQueue.poll();
+                        
+            current.tick();
+            if(!current.isDestroyed())
+                bulletQueue.add(current);
+            
+        }
     }
     
     @Override
@@ -133,11 +152,20 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         for(int i = 0; i < 4; i++){
             players[i].render(g);
         }
+        for(int i = bulletQueue.size(); i > 0; i--){
+            Salsa current = bulletQueue.poll();
+            
+            current.render(g);
+            
+            bulletQueue.add(current);
+            
+        }
     }
 
     @Override
     public void botonDeAccion(int playerIndex) {
-        
+        System.out.println("hi");
+        bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
     }
 
     

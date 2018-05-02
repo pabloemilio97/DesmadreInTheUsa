@@ -69,7 +69,6 @@ public class Salsa extends Control.Item{
         
         this.setAnimation(salsa.getAnimation());
         destroyed = false;
-        
     }
     
     /**
@@ -124,8 +123,8 @@ public class Salsa extends Control.Item{
      */
     @Override
     public void tick() {
-        x += NivelCuatro.dirs[playerID][0];
-        y += NivelCuatro.dirs[playerID][1];
+        x -= NivelCuatro.dirs[playerID][0];
+        y -= NivelCuatro.dirs[playerID][1];
         
         if(x < 0 || x + getWidth() > Nivel.width || y < 0 || y + this.getHeight() > Nivel.height){
             destroyed = true;
