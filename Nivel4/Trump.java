@@ -13,7 +13,7 @@ import Control.Nivel;
  * @author Luis Felipe Miranda
  */
 public class Trump extends Item{
-    public static final int height = 300, width = 300;
+    public static final int height = 200, width = 200;
     public int index;
     
     public Trump(int x, int y, int width, int height, String spritePath, int frames, Nivel nivel){
@@ -25,10 +25,7 @@ public class Trump extends Item{
 
     @Override
     public void tick() {
-        index = (index + 1) % (((NivelCuatro)nivel).circlePoints.length);
         
-        x = Nivel.width / 2 + ((NivelCuatro)nivel).circlePoints[index].x;
-        y = Nivel.height / 2 + ((NivelCuatro)nivel).circlePoints[index].y;
         
     }
     
