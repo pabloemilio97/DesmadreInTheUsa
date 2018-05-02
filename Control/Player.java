@@ -17,6 +17,7 @@ public class Player extends Item{
     
     public static final int width = 50, height = 70;
     protected int puntaje;
+    protected Control.Player myClone;
 
     public Player(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
         super(x, y, width, height, spritePath, frames, game);
@@ -27,7 +28,13 @@ public class Player extends Item{
     
     public Player(Player p, Nivel miNivel){
         super(p.x, p.y, p.getWidth(), p.getHeight(), null, miNivel);
+        myClone = p;
         animation = p.animation;
+        puntaje = p.getPuntaje();
+    }
+    
+    public void prepare(){
+        puntaje = myClone.getPuntaje();
     }
     /**
      * Modifica el puntaje

@@ -38,8 +38,9 @@ public class NivelDos extends Control.Nivel implements Runnable{
     public NivelDos(Control.Display display, Player players[], Control.Master master) {
         super(display, master);
         
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 4; i++){
             this.players[i] = new Player_N2(players[i], this);
+        }
 
         enemies = new LinkedList<>();
         //Initialize array list of enemies

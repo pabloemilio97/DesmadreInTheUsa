@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 
 public abstract class Nivel implements Runnable{
     
-    public static int width = 700, height = 700, nivelTime = 10;
+    public static int width = 700, height = 700, nivelTime = 20;
     
     protected int lifestock;
     protected Display display;
@@ -59,6 +59,11 @@ public abstract class Nivel implements Runnable{
         if(music != null){
             music.stop();
         }
+        
+        for(int i = 0; i < 4; i++){
+            master.players[i].setPuntaje(this.players[i].getPuntaje());
+        }
+        
     }
     
     @Override
@@ -108,6 +113,9 @@ public abstract class Nivel implements Runnable{
                 e.printStackTrace();
             }
             thread.start();
+            for(int i = 0; i < 4; i++){
+                this.players[i].prepare();
+            }
             endTime = Nivel.nivelTime * 1000 + System.currentTimeMillis();
         }
     }

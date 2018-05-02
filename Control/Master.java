@@ -3,6 +3,7 @@ package Control;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 /*
@@ -42,7 +43,7 @@ public class Master implements KeyListener{
         niveles[2] = new Nivel3.NivelTres(display, players, this);
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS
-        currentNivel = 2;
+        currentNivel = -1;
         won = false;
         end = new Transition ("X", 3, display, null);
     }
@@ -92,6 +93,11 @@ public class Master implements KeyListener{
             if(key == KeyEvent.VK_SPACE){
                 if(currentNivel == 4){
                     end.nextTransition();
+                    
+                    if(end.getCurrentFrame() == 1){
+                        dispWinner();
+                    }
+                    
                 }
                 else{
                 niveles[currentNivel].getTransition().nextTransition();
@@ -118,5 +124,36 @@ public class Master implements KeyListener{
      */
     public int getNivel(){
         return currentNivel;
+    }
+    void dispWinner(){
+        BufferStrategy bs = display.getCanvas().getBufferStrategy();
+        if (bs == null) {
+            display.getCanvas().createBufferStrategy(2);
+            bs = display.getCanvas().getBufferStrategy();
+        }
+        Graphics g;
+        try
+        {
+        g = bs.getDrawGraphics();
+        }catch(Exception e){
+            return;
+        }
+            
+        
+        
+        g.drawImage(Assets.spaceBar, 0, 0, 300, 50, null);
+        
+        int whowon = 0;
+        
+        for(int i = 0; i < 4; i++){
+            if(players[i].getPuntaje() > players[whowon].getPuntaje()){
+                whowon = i;
+            }
+        }
+        
+        g.drawImage(players[whowon].getAnimation(0), 300, 200, 300, 300, null);
+        
+        bs.show();
+        g.dispose();
     }
 }

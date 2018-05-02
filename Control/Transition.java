@@ -32,6 +32,10 @@ public class Transition {
         
     }
     
+    public int getCurrentFrame(){
+        return currentFrame;
+    }
+    
     public void nextTransition(){
         
         //	get	the	buffer	strategy	from	the	display
@@ -64,7 +68,7 @@ public class Transition {
         }
         
         g.drawImage(Assets.spaceBar, 0, 0, 300, 50, null);
-            
+        
         bs.show();
         g.dispose();
     }
