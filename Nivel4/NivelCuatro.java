@@ -63,7 +63,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         setPositionArray();
         wallArray = new Wall[20];
         for (int i = 0; i < wallArray.length; i++){
-            wallArray[i] = new Wall(circlePoints.length / wallArray.length * i, 50, 50, loadImage("/Images/Calaca/0.png"), 0, this);
+            wallArray[i] = new Wall(circlePoints.length / wallArray.length * i, 50, 50, "/Images/Wall/", 4, this);
         }
         
         trump = new Trump((Nivel.width - Trump.width) / 2, (Nivel.height - Trump.height) / 2, Trump.width, Trump.height, "/Images/Frida/", 1, this);
