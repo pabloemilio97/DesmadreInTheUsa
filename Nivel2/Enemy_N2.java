@@ -32,12 +32,6 @@ public class Enemy_N2 extends Control.Item{
         this.velY = 0;
     }
     
-    public Enemy_N2(Enemy_N2 enemy) {
-        super(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight(), null, enemy.getGame());
-        this.velX = 0;
-        this.velY = 0;
-    }
-    
     /**
      * Para sacar la velocidad del enemigo
      * @return velocidadX
@@ -72,14 +66,11 @@ public class Enemy_N2 extends Control.Item{
 
     @Override
     public void tick() {
-            this.y += velY;
-        if(y > ((NivelDos) nivel).height){
-            destroyed = true;
-        }
-    }
-
-    @Override
-    public void render(Graphics g) {
+        this.y += velY;
+        this.x += velX;
+//        if (getY() >= height-50 || getX() >= width-50 || getX() <= 0 || getY() <= 0){
+//            destroyed = true;
+//        }
         
     }
     
