@@ -19,7 +19,7 @@ import javax.swing.JLabel;
  */
 public abstract class Nivel implements Runnable{
     
-    public static int width = 700, height = 700, nivelTime = 20;
+    public static int width = 700, height = 700, nivelTime = 100;
     
     protected int lifestock;
     protected Display display;
@@ -144,11 +144,12 @@ public abstract class Nivel implements Runnable{
             }catch (Exception e){
                 e.printStackTrace();
             }
+            endTime = Nivel.nivelTime * 1000 + System.currentTimeMillis(); 
             thread.start();
             for(int i = 0; i < 4; i++){
                 this.players[i].prepare();
             }
-            endTime = Nivel.nivelTime * 1000 + System.currentTimeMillis();
+            
         }
     }
 
@@ -220,8 +221,7 @@ public abstract class Nivel implements Runnable{
         for(int i = 0; i < 4; i++){
             labels[i].setText(players[i].getPuntaje() + "");
         }
-        
-           master.getDisplay().setClock((int)(endTime - System.currentTimeMillis()) / 1000);
+        master.getDisplay().setClock((int)(endTime - System.currentTimeMillis()) / 1000);
         
         /*int scoreHeight = Nivel.height / 5;
         
