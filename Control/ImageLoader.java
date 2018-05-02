@@ -10,8 +10,10 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
- *
- * @author antoniomejorado
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class ImageLoader {
     

@@ -1,5 +1,5 @@
 /*
- * Manages the tequila's actins in the 3rd level
+ * Manages the tequila's attributes in the 3rd level
  */
 package Nivel2;
 

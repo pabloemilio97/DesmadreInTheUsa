@@ -1,3 +1,6 @@
+/*
+ * Manages asset manipulation and sets backgrounds of each level
+ */
 package Control;
 
 import java.awt.geom.AffineTransform;
@@ -8,17 +11,16 @@ import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-/*
- * Manages asset manipulation and sets backgrounds of each level
- */
+
 /**
- *
- * @author adanlopezalatorre
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Assets {
 
     public static BufferedImage [] backgrounds;
-    public static BufferedImage spaceBar;
     /**
      * initializing	the	images	of	the	game
      */
@@ -27,19 +29,12 @@ public class Assets {
         for (int i=1; i<=4; i++){
             backgrounds[i] = loadImage("/Images/BG" + i + ".png");
         }
-        spaceBar = loadImage("/Images/Spacebar/1.png");
     }
     
     /**
-<<<<<<< HEAD
      * loads a sound given a path to that soundclip
      * @param fileName
      * @return Clip
-=======
-     * To access the sound and load it
-     * @param fileName is the name of the file
-     * @return 
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
      */
     public static Clip loadSound(String fileName){
         Clip collisionSound = null;
@@ -54,15 +49,9 @@ public class Assets {
     }
     
     /**
-<<<<<<< HEAD
      * loads an image given its string path
      * @param path
      * @return Buffered image
-=======
-     * To load an image
-     * @param path is the file name
-     * @return 
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
      */
     public static BufferedImage loadImage(String path) {
         BufferedImage bi = null;
@@ -76,15 +65,9 @@ public class Assets {
     }
     
     /**
-<<<<<<< HEAD
      * rotates image 90 degrees to the right
      * @param bufferedImage
      * @return BufferedImage, modified
-=======
-     * To change the rotation of an image
-     * @param bufferedImage
-     * @return 
->>>>>>> aa80a9303178bbfac8894e86a950e6af53aeeddb
      */
     public static BufferedImage rotateImage(BufferedImage bufferedImage){
         AffineTransform tx = new AffineTransform();

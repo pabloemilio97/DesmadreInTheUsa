@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Manages taco's actions in first level
  */
 package Nivel1;
 
@@ -14,8 +12,10 @@ import java.awt.image.BufferedImage;
 import java.util.Queue;
 
 /**
- *
- * @author adanlopezalatorre
+ * @author kevinradtke
+ * @author felipemiranda
+ * @author LuisMiranda97
+ * @author pabloemilio97
  */
 public class Taco extends Item{
     private int velocidad; //velocidad del taco
@@ -99,7 +99,7 @@ public class Taco extends Item{
             if(intersects(current)){
                 animation = ((NivelUno)nivel).getTacoTransition().getAnimation();
                 inTransition = true;
-                if(good != null) good.play();
+                good.play();
                 current.setDestroyed(true);
                 
                 int oldPuntaje = nivel.getPlayers()[current.getPlayerID()].getPuntaje();
