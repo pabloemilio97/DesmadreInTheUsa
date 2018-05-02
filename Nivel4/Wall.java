@@ -49,7 +49,7 @@ public class Wall extends Item{
     
     @Override
     public void render(Graphics g){
-        g.drawImage(animation[lives - 1], x, y, width, height, null);
+        g.drawImage(animation[animation.length - lives], x, y, width, height, null);
     }
 
     public void setVelocidad(int velocidad) {
@@ -67,8 +67,6 @@ public class Wall extends Item{
     public int getDegrees() {
         return degrees;
     }
-    
-    
     
     //Circular motion of the wall. Determine what happens with collision
     @Override
