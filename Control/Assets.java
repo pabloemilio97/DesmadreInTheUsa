@@ -32,6 +32,11 @@ public class Assets {
         spaceBar = loadImage("/Images/Spacebar/1.png");
     }
     
+    /**
+     * To access the sound and load it
+     * @param fileName is the name of the file
+     * @return 
+     */
     public static Clip loadSound(String fileName){
         Clip collisionSound = null;
         try{
@@ -44,6 +49,11 @@ public class Assets {
         return collisionSound;
     }
     
+    /**
+     * To load an image
+     * @param path is the file name
+     * @return 
+     */
     public static BufferedImage loadImage(String path) {
         BufferedImage bi = null;
         try {
@@ -55,6 +65,11 @@ public class Assets {
         return bi;
     }
     
+    /**
+     * To change the rotation of an image
+     * @param bufferedImage
+     * @return 
+     */
     public static BufferedImage rotateImage(BufferedImage bufferedImage){
         AffineTransform tx = new AffineTransform();
         tx.rotate(0.5 * Math.PI, bufferedImage.getWidth() / 2.0, bufferedImage.getHeight() / 2.0);

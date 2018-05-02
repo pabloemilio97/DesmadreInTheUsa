@@ -27,7 +27,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author antoniomejorado
+ * @author 
  */
 public class Display {
     private JFrame jframe;  // this is the app class
@@ -42,12 +42,24 @@ public class Display {
     private final int width;      // width of the window
     private final int height;     // height of the window
     
+    /**
+     * to get width of window
+     * @return width
+     */
     public int getWidth(){
         return width;
     }
+    /**
+     * to get height of window
+     * @return height
+     */
     public int getHeight(){
         return height;
     }
+    /**
+     * To get the labels that display score
+     * @return score Labels
+     */
     public JLabel[] getScoreLabels(){
         return scoreLabels;
     }
@@ -68,6 +80,13 @@ public class Display {
         createDisplay();
     }
     
+    /**
+     * To be able to resize an image
+     * @param img
+     * @param newW
+     * @param newH
+     * @return 
+     */
     public static BufferedImage resize(BufferedImage img, int newW, int newH) {  
         int w = img.getWidth();  
         int h = img.getHeight();  
@@ -80,12 +99,20 @@ public class Display {
         return dimg;  
     }  
     
+    /**
+     * To put a fixed size of an object
+     * @param cont
+     * @param d 
+     */
     private void fixSize(Component cont, Dimension d){
         cont.setMinimumSize(d);
         cont.setPreferredSize(d);
         cont.setMaximumSize(d);
     }
     
+    /**
+     * Creates the place where the score is displayed
+     */
     public void createScoreContainer(){
         scoreContainer = new Control.JPanel();
         fixSize(scoreContainer, new Dimension(Master.width - Nivel.width, Nivel.height));
@@ -128,25 +155,37 @@ public class Display {
         
     }
     
+    /**
+     * To set the display
+     */
     void setGameDisplay(){        
         canvas = gameCanvas;
-        
         jframe.setContentPane(gamePanel);
-        
         jframe.pack();
         
     }
     
+    /**
+     * To create the label of time
+     * @return 
+     */
     public JLabel getClockLabel(){
         return clockLabel;
     }
     
+    /**
+     * Display for transition story frames
+     */
     void setTransitionDisplay(){
         canvas = transitionCanvas;
         jframe.setContentPane(transitionPanel);
         jframe.pack();
     }
     
+    /**
+     * To change time of level
+     * @param seconds 
+     */
     public void setClock(int seconds){
         int minutes = seconds / 60;
         seconds %= 60;
@@ -155,6 +194,9 @@ public class Display {
         
     }
     
+    /**
+     * To create the display for game
+     */
     public void createDisplay(){
         jframe = new JFrame(title);
         jframe.setSize(width, height);
@@ -195,10 +237,16 @@ public class Display {
                         
     }
     
+    /**
+     * creates a display for transition story frames
+     */
     public void createTransitionDisplay(){        
         
     }
     
+    /**
+     * Creates display 
+     */
     public void createGameDisplay() {
         
         gamePanel = new JPanel();
