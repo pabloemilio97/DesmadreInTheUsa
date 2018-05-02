@@ -24,8 +24,8 @@ import javax.swing.JFrame;
  */
 public class NivelCuatro extends Control.Nivel implements Runnable{
     
-    private Wall [] wallArray;
-    public static final int dirs[][] = {{-1, -1}, {-1, 1}, {1, 1}, {1, -1}};
+    private Guard [] wallArray;
+    public static final int dirs[][] = {{-1, -1}, {1, -1}, {1, 1}, {-1, 1}};
     public Vector [] circlePoints;
     private Trump trump;
     private Queue<Salsa> bulletQueue;
@@ -54,7 +54,15 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         
     }
     
-    public Wall[] getWallArray(){
+    public Queue getBulletQueue(){
+        return bulletQueue;
+    }
+    
+    public Salsa[] getSalsaBullets(){
+        return salsaBullets;
+    }
+    
+    public Guard[] getWallArray(){
         return wallArray;
     }
     
@@ -65,12 +73,20 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
             this.players[i] = new Player_N4(players[i], this);
         
         setPositionArray();
-        wallArray = new Wall[20];
+        wallArray = new Guard[20];
         for (int i = 0; i < wallArray.length; i++){
-            wallArray[i] = new Wall(circlePoints.length / wallArray.length * i, 50, 50, "/Images/Wall/", 4, this);
+            
+            if(i % 2 == 0){
+                wallArray[i] = new Wall(circlePoints.length / wallArray.length * i, 50, 50, "/Images/Wall/", 4, this);
+            }
+            else{
+                wallArray[i] = new Reflector(circlePoints.length / wallArray.length * i, 50, 50, "/Images/Reflect/", 2, this);
+            }
+            
+            //wallArray[i] = new Wall(circlePoints.length / wallArray.length * i, 50, 50, "/Images/Wall/", 4, this);
         }
         
-        trump = new Trump((Nivel.width - Trump.width) / 2, (Nivel.height - Trump.height) / 2, Trump.width, Trump.height, "/Images/Frida/", 1, this);
+        trump = new Trump((Nivel.width - Trump.width) / 2, (Nivel.height - Trump.height) / 2, Trump.width, Trump.height, "/Images/Trump/", 6, this);
         
         this.players[0].setX(0);
         this.players[0].setY(0);
@@ -98,11 +114,10 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
-        SoundClip music = new SoundClip("/Music/n4.wav");
+        music = new SoundClip("/Music/n4.wav");
         music.setLooping(true);
         music.play();
         nivelTime = 120;
-        wallArray = new Wall[20];
         /*
         Initialization of game characters should go here
          */
@@ -119,16 +134,20 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         //player.tick();
         trump.tick();
         for(int i = 0; i < wallArray.length; i++){
-            wallArray[i].tick();
+            if(!wallArray[i].isDestroyed()){
+                wallArray[i].tick();
+            }
         }
+        
         for(int i = 0; i < 4; i++){
             players[i].tick();
         }
         
         for(int i = bulletQueue.size(); i > 0; i--){
             Salsa current = bulletQueue.poll();
-                        
-            current.tick();
+            
+            if(!current.isDestroyed())
+                current.tick();
             if(!current.isDestroyed())
                 bulletQueue.add(current);
         }
@@ -146,7 +165,9 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public void render() {
         trump.render(g);
         for(int i = 0; i < wallArray.length; i++){
-            wallArray[i].render(g);
+            if(!wallArray[i].isDestroyed()){
+                wallArray[i].render(g);
+            }
         }
         for(int i = 0; i < 4; i++){
             players[i].render(g);
@@ -163,7 +184,6 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
 
     @Override
     public void botonDeAccion(int playerIndex) {
-        System.out.println("hi");
         bulletQueue.add(new Salsa(salsaBullets[playerIndex]));
     }
 

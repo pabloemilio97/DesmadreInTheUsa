@@ -27,9 +27,9 @@ public class NivelTres extends Control.Nivel implements Runnable{
     private int limiteSup;
     private int limiteInf;
     private boolean ready; //when true, players and obstacles move
-    private long lastTime;
+    public long lastTime;
     private long prevTime; //controls how often players and objects move
-    private final int accums[] = {5, -100, 15};
+    private final int accums[] = {50, -50, 100};
     private Queue<Obstaculo_N3> obstacleQueue;
     private int newObstacleCounter;
     private Obstaculo_N3 obstacle;
@@ -67,7 +67,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
         }
         
         //initialize obstacle to be added to queue each time
-        obstacle = new Obstaculo_N3(0, 0, Player.width, Player.height, "/Images/Taco_normal/", 2, this);
+        obstacle = new Obstaculo_N3(0, 0, Player.width, Player.height, "/Images/Cactus/", 2, this);
     }
     /**
      * initializing	the	display	window	of	the	game
@@ -75,7 +75,7 @@ public class NivelTres extends Control.Nivel implements Runnable{
     public int[] init() {
         //Control.Assets.init();
         running = true;
-        SoundClip music = new SoundClip("/Music/n3.wav");
+        music = new SoundClip("/Music/n3.wav");
         music.setLooping(true);
         music.play();
         nivelTime = 120;
@@ -129,29 +129,14 @@ public class NivelTres extends Control.Nivel implements Runnable{
         //generacion de cactus individuales
         int randValue = (int)(Math.random() * 300) + 1;
         if (newObstacleCounter % randValue == 0 && obstacleQueue.size() < 5) {
-            int xRandom = (int) (Math.random() * (1000 - Player.width));
+            int xRandom = (int) (Math.random() * (Nivel.width - Player.width));
             obstacle.setX(xRandom);
             obstacleQueue.add(new Obstaculo_N3(obstacle));
             if(randValue % 2 == 0){
                 newObstacleCounter = 1;
             }
         }
-        /*
-        long now = (endTime - System.currentTimeMillis()) / 1000;
 
-        if (now != lastTime && now % 15 == 0) {
-            randomTime /= 1.2;
-        }
-        lastTime = now;
-        
-        if (newObstacleCounter-- == 0) {
-            int xRandom = (int)(Math.random() * (1000 - Player.width));
-            obstacle.setX(xRandom);
-            obstacleQueue.add(new Obstaculo_N3(obstacle));
-            Random rand = new Random();
-            newObstacleCounter = rand.nextInt(randomTime) + randomTime / 6;
-        }
-        */
     }
     @Override
     public void setTransition(){

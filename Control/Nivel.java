@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 
 public abstract class Nivel implements Runnable{
     
-    public static int width = 700, height = 700, nivelTime = 100;
+    public static int width = 700, height = 700, nivelTime = 50;
     
     protected int lifestock;
     protected Display display;
@@ -27,6 +27,7 @@ public abstract class Nivel implements Runnable{
     protected Control.Player players[];
     protected Control.Master master;
     protected Transition transition;
+    protected SoundClip music;
         
     public Nivel(Display display, Control.Master master){
         this.display = display;
@@ -46,11 +47,16 @@ public abstract class Nivel implements Runnable{
     public void executeNivel(){
         display.createTransitionDisplay();
         transition.nextTransition();
-        //start();
     }
     
     public boolean isRunning(){
         return running;
+    }
+    
+    public void endGame(){
+        if(music != null){
+            music.stop();
+        }
     }
     
     @Override
@@ -108,12 +114,13 @@ public abstract class Nivel implements Runnable{
         if (running) {
             running = false;
             try {
+                endGame();
+                master.nextGame();
                 thread.join();
             } catch (InterruptedException ie) {
                 ie.printStackTrace();
             }
             
-            master.nextGame();
             
         }
     }
@@ -123,6 +130,14 @@ public abstract class Nivel implements Runnable{
     }
     public int getHeight(){
         return display.getHeight();
+    }
+
+    public long getEndTime() {
+        return endTime;
+    }
+    
+    public int getSeconds(){
+        return (int)(endTime - System.currentTimeMillis()) / 1000;
     }
     
     /**

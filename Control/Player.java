@@ -16,7 +16,7 @@ import java.awt.image.BufferedImage;
 public class Player extends Item{
     
     public static final int width = 50, height = 70;
-    int puntaje;
+    protected int puntaje;
 
     public Player(int x, int y, int width, int height, String spritePath, int frames, Nivel game) {
         super(x, y, width, height, spritePath, frames, game);

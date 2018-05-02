@@ -6,6 +6,7 @@ package Nivel2;
 import Control.Nivel;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 /**
  *
@@ -28,13 +29,7 @@ public class Enemy_N2 extends Control.Item{
     public Enemy_N2(int x, int y, int width, 
             int height, BufferedImage defaultImage, Nivel nivel) {
         super(x, y, width, height, defaultImage, nivel);
-        this.velX = 0;
-        this.velY = 0;
-    }
-    
-    public Enemy_N2(Enemy_N2 enemy) {
-        super(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight(), null, enemy.getGame());
-        this.velX = 0;
+        this.velX = 1;
         this.velY = 0;
     }
     
@@ -72,14 +67,39 @@ public class Enemy_N2 extends Control.Item{
 
     @Override
     public void tick() {
-            this.y += velY;
-        if(y > ((NivelDos) nivel).height){
-            destroyed = true;
+        this.y += velY;
+        this.x += velX;
+        
+        if (getY() >= nivel.height+100){
+            Random myRand = new Random();
+            setX(nivel.getWidth()+myRand.nextInt(200));
+            setY(myRand.nextInt(nivel.getHeight()-100));
+            setVelX(-2);
+            setVelY(0);
         }
-    }
-
-    @Override
-    public void render(Graphics g) {
+        if (getX() >= nivel.width+100){
+            Random myRand = new Random();
+            setX(myRand.nextInt(nivel.getWidth()-100));
+            setY(-myRand.nextInt(200));
+            setVelY(2);
+            setVelX(0);
+        }
+        if (getX() <= -100){
+            Random myRand = new Random();
+            setX(myRand.nextInt(nivel.getWidth()-100));
+            setY(nivel.getHeight()+myRand.nextInt(200));
+            setVelY(-2);
+            setVelX(0);
+        }
+        if (getY() <= -100){
+            Random myRand = new Random();
+            setX(-myRand.nextInt(200));
+            setY(myRand.nextInt(nivel.getHeight()-100));
+            setVelX(2);
+            setVelY(0);
+        }
+            
+      
         
     }
     

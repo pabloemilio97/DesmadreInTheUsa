@@ -10,30 +10,16 @@ import Control.Nivel;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import static java.lang.Math.PI;
+import java.util.Queue;
 
 /**
  *
  * @author Luis Felipe Miranda
  */
-public class Wall extends Item{
-    private int velocidad;
-    private int degrees;
-    private int index;
-    private int type;
-    private int lives;
-    Vector [] circlePoints;
-
-    public Wall(int index, int width, int height, BufferedImage defaultImage, int type, Nivel game) {
-        super(((NivelCuatro)game).circlePoints[index].x, ((NivelCuatro)game).circlePoints[index].y, width, height, defaultImage, game);
-        this.type = type;
-        this.index = index;
-        this.circlePoints = ((NivelCuatro)game).circlePoints;
-        lives = 4;
-    }
-    
+public class Wall extends Guard{
+        
     public Wall(int index, int width, int height, String path, int frames, Nivel game){
-        super(((NivelCuatro)game).circlePoints[index].x, ((NivelCuatro)game).circlePoints[index].y, width, height, path, frames, game);
-        this.type = type;
+        super(index, width, height, path, frames, game);
         this.index = index;
         this.circlePoints = ((NivelCuatro)game).circlePoints;
         lives = 4;
@@ -51,30 +37,32 @@ public class Wall extends Item{
     public void render(Graphics g){
         g.drawImage(animation[animation.length - lives], x, y, width, height, null);
     }
-
-    public void setVelocidad(int velocidad) {
-        this.velocidad = velocidad;
-    }
-
-    public int getVelocidad() {
-        return velocidad;
-    }
-
-    public void setDegrees(int degrees) {
-        this.degrees = degrees;
-    }
-    
-    public int getDegrees() {
-        return degrees;
-    }
     
     //Circular motion of the wall. Determine what happens with collision
-    @Override
+     @Override
     public void tick() {
        index = (index + 1) % circlePoints.length;
        
        x = Nivel.width / 2 + circlePoints[index].x;
        y = Nivel.height / 2 + circlePoints[index].y;
+       
+       Queue<Salsa> q = ((NivelCuatro)nivel).getBulletQueue();
+       
+       boolean hit = false;
+       for(int i = q.size(); i > 0; i--){
+           Salsa current = q.poll();
+           
+           if(!current.isVenomous() && intersects(current)){
+               current.setDestroyed(true);
+               hit = true;
+           }
+           
+           q.add(current);
+       }
+       if(hit){
+           lives--;
+           if(lives == 0) destroyed = true;
+       }
        
     }
 }

@@ -147,6 +147,7 @@ public class Display {
         jframe.setLocationRelativeTo(null);
         jframe.setVisible(true);
         jframe.addKeyListener(master);
+        
         // set the size of the window
                 
     }
@@ -161,7 +162,10 @@ public class Display {
         canvas.setFocusable(false);
         
         //jframe.removeAll();
-        jframe.add(canvas);
+        JPanel panel = new JPanel();
+        
+        panel.add(canvas);
+        jframe.setContentPane(panel);
         jframe.pack();
         
     }
