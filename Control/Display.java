@@ -95,7 +95,7 @@ public class Display {
         scoreContainer.add(new JLabel());//new ImageIcon(loadImage("/Images/" + "scoreword"))));
         scoreLabels = new JLabel[4];
         
-        String traces[] = {"Calaca", "Frida", "Luchador", "Mexicano"};
+        String []paths = {"Luchador/", "Mexicano/", "Frida/", "Calaca/"};
         
         for(int i = 0; i < 4; i++){
                       
@@ -103,7 +103,7 @@ public class Display {
             current.setLayout(new GridLayout(1, 5));
             
             current.add(new Container());
-            Icon myIcon = new ImageIcon(resize(loadImage("/Images/" + traces[i] + "/0.png"), Player.width + 10, Player.height));
+            Icon myIcon = new ImageIcon(resize(loadImage("/Images/" + paths[i] + "0.png"), Player.width + 10, Player.height));
             
             JLabel imageLabel = new JLabel(myIcon);
             current.add(imageLabel);

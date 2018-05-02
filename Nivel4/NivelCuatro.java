@@ -76,7 +76,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         wallArray = new Guard[20];
         for (int i = 0; i < wallArray.length; i++){
             
-            if(i % 2 == 0){
+            if(i % 4 != 0){
                 wallArray[i] = new Wall(circlePoints.length / wallArray.length * i, 50, 50, "/Images/Wall/", 4, this);
             }
             else{
@@ -86,7 +86,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
             //wallArray[i] = new Wall(circlePoints.length / wallArray.length * i, 50, 50, "/Images/Wall/", 4, this);
         }
         
-        trump = new Trump((Nivel.width - Trump.width) / 2, (Nivel.height - Trump.height) / 2, Trump.width, Trump.height, "/Images/Trump/", 6, this);
+        trump = new Trump((Nivel.width - Trump.width) / 2, (Nivel.height - Trump.height) / 2, Trump.width, Trump.height, "/Images/Trump/", 2, this);
         
         this.players[0].setX(0);
         this.players[0].setY(0);
@@ -175,7 +175,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         for(int i = bulletQueue.size(); i > 0; i--){
             Salsa current = bulletQueue.poll();
             
-            current.render(g);
+            if(current != null)current.render(g);
             
             bulletQueue.add(current);
         }

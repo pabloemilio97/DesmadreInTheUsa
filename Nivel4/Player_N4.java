@@ -6,6 +6,7 @@
 package Nivel4;
 
 import Control.Nivel;
+import Control.Player;
 import Control.SoundClip;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -51,9 +52,13 @@ public class Player_N4 extends Control.Player{
         for(int i = q.size(); i > 0; i--){
             Salsa current = q.poll();
             
-            if(current.isVenomous() && intersects(current)){
+            if(current.isVenomous() && !current.isDestroyed() && intersects(current)){
                 current.setDestroyed(true);
                 puntaje -= 100;
+                Player[] array = nivel.getPlayers();
+                for(int j = 0; j < 4; j++){
+                    System.out.println(array[j].getPuntaje());
+                }
             }
             
             q.add(current);
