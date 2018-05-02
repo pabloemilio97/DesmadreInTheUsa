@@ -24,7 +24,7 @@ public class Master implements KeyListener{
     public boolean won;
     public Display display;
     public Graphics g;
-    private Transition end;
+    private Transition end, lose;
     
     /**
      * constructor executed at beginning of game
@@ -45,7 +45,7 @@ public class Master implements KeyListener{
         niveles[2] = new Nivel3.NivelTres(display, players, this);
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS
-        currentNivel = -1;
+        currentNivel = 2;
         won = false;
         end = new Transition ("X", 3, display, null);
     }
@@ -78,10 +78,24 @@ public class Master implements KeyListener{
      */
     public void nextGame(){
         if(currentNivel == 3){
-            currentNivel++;
-            display.createDisplay();
-            display.setTransitionDisplay();
-            end.nextTransition();
+            if(won){
+                currentNivel++;
+                display.createDisplay();
+                display.setTransitionDisplay();
+                end.nextTransition();
+            }
+            
+            else{
+                currentNivel = -20;
+                
+                display.createDisplay();
+                display.setTransitionDisplay();
+                
+                lose = new Transition("L", 1, display, null);
+                lose.nextTransition();
+                
+            }
+            
         }
         else {
             niveles[++currentNivel].executeNivel();
@@ -113,6 +127,8 @@ public class Master implements KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
+        
+        if(currentNivel == -20) return;
         
         if(currentNivel == 4 || !niveles[currentNivel].isRunning()){
             if(key == KeyEvent.VK_SPACE){

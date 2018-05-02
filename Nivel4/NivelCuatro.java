@@ -134,7 +134,6 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         music = new SoundClip("/Music/n4.wav");
         music.setLooping(true);
         music.play();
-        nivelTime = 120;
         /*
         Initialization of game characters should go here
          */
@@ -149,12 +148,12 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public void tick() {
         //keyManager.tick();
         //player.tick();
-        
         if(trump.getLife() == 0){
-            master.setWon(true);
+           master.setWon(true);
            stop();
            return;
         }
+        
         
         trump.tick();
         for(int i = 0; i < wallArray.length; i++){
@@ -191,6 +190,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     @Override
     public void render() {
         trump.render(g);
+        
         for(int i = 0; i < wallArray.length; i++){
             if(!wallArray[i].isDestroyed()){
                 wallArray[i].render(g);
