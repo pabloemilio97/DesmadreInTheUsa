@@ -74,7 +74,7 @@ public class Wall extends Guard{
        for(int i = q.size(); i > 0; i--){
            Salsa current = q.poll();
            
-           if(!current.isVenomous() && intersects(current)){
+           if(current != null && !current.isVenomous() && intersects(current)){
                current.setDestroyed(true);
                hit = true;
            }

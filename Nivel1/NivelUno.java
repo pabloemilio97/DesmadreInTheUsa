@@ -41,7 +41,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
     public Item tacoTransition, tacoReady;
     private int newTacoCounter;
     private long lastTime;
-    private int randomTime = 3000;
+    private int randomTime = 1500;
     
     private Queue<Salsa> bulletQueue;
     private Queue<Taco> tacoQueue;

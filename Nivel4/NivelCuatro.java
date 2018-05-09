@@ -169,9 +169,9 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
         for(int i = bulletQueue.size(); i > 0; i--){
             Salsa current = bulletQueue.poll();
             
-            if(!current.isDestroyed())
+            if(current != null && !current.isDestroyed())
                 current.tick();
-            if(!current.isDestroyed())
+            if(current != null && !current.isDestroyed())
                 bulletQueue.add(current);
         }
     }

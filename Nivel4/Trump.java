@@ -32,7 +32,7 @@ public class Trump extends Item{
         super(x, y, width, height, spritePath, frames, nivel);
         
         index = 0;
-        life = 10000;
+        life = 15000;
         
     }
     /**
@@ -40,7 +40,7 @@ public class Trump extends Item{
      * @param life 
      */
     public void setLife(int life) {
-        this.life = life;
+        //this.life = life;
     }
     
     /**
@@ -62,7 +62,7 @@ public class Trump extends Item{
         for(int i = q.size(); i > 0; i--){
             Salsa current = q.poll();
             
-            if(intersects(current)){
+            if(current != null && intersects(current)){
                 current.setDestroyed(true);
                 hit = true;
                 life = life - 50;

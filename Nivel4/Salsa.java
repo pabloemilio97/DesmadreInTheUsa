@@ -136,8 +136,7 @@ public class Salsa extends Control.Item{
         
         for(int i = q.size(); i > 0; i--){
             Salsa current = q.poll();
-            
-            if((current.isVenomous() != isVenomous()) && intersects(current)){
+            if(current != null && (current.isVenomous() != isVenomous()) && intersects(current)){
                 setDestroyed(true);
                 current.setDestroyed(true);
             }

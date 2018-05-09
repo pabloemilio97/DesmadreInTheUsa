@@ -54,7 +54,7 @@ public class Player_N4 extends Control.Player{
         for(int i = q.size(); i > 0; i--){
             Salsa current = q.poll();
             
-            if(current.isVenomous() && !current.isDestroyed() && intersects(current)){
+            if(current != null && current.isVenomous() && !current.isDestroyed() && intersects(current)){
                 current.setDestroyed(true);
                 puntaje -= 100;
             }

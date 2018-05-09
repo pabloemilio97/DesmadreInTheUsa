@@ -73,7 +73,7 @@ public class Reflector extends Guard{
        for(int i = q.size(); i > 0; i--){
            Salsa current = q.poll();
            
-           if(!current.isVenomous() && intersects(current)){
+           if(current != null && !current.isVenomous() && intersects(current)){
                reflection = true;
                current.setDestroyed(true);
                reflectCountDown = Reflector.refCount;
