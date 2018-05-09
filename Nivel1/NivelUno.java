@@ -174,7 +174,7 @@ public class NivelUno extends Control.Nivel implements Runnable{
         for(int i = bulletQueue.size(); i > 0; i--){
             Salsa current = bulletQueue.poll();
             
-            current.render(g);
+            if(current != null) current.render(g);
             
             bulletQueue.add(current);
             

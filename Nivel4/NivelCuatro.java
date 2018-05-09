@@ -148,7 +148,7 @@ public class NivelCuatro extends Control.Nivel implements Runnable{
     public void tick() {
         //keyManager.tick();
         //player.tick();
-        if(trump.getLife() == 0){
+        if(trump.getLife() <= 0){
            master.setWon(true);
            stop();
            return;
