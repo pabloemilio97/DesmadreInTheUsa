@@ -45,7 +45,7 @@ public class Master implements KeyListener{
         niveles[2] = new Nivel3.NivelTres(display, players, this);
         niveles[3] = new Nivel4.NivelCuatro(display, players, this);
         //CREATION OF PLAYERS
-        currentNivel = 2;
+        currentNivel = -1;
         won = false;
         end = new Transition ("X", 3, display, null);
     }

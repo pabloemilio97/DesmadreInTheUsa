@@ -34,7 +34,7 @@ public class Display {
     private Canvas canvas, transitionCanvas, gameCanvas;  // to display images
     private JPanel scoreContainer;
     private Master master;
-    private JLabel scoreLabels[], clockLabel;
+    private JLabel scoreLabels[], clockLabel, trumpLabel;
     private JPanel gamePanel, transitionPanel;
     private static final int playerScoreHeight = Master.height / 7;
     
@@ -149,7 +149,7 @@ public class Display {
         scoreContainer = new Control.JPanel();
         fixSize(scoreContainer, new Dimension(Master.width - Nivel.width, Nivel.height));
         scoreContainer.setOpaque(false);
-        scoreContainer.setLayout(new GridLayout(6, 1));
+        scoreContainer.setLayout(new GridLayout(7, 1));
                 
         scoreContainer.add(new JLabel());//new ImageIcon(loadImage("/Images/" + "scoreword"))));
         scoreLabels = new JLabel[4];
